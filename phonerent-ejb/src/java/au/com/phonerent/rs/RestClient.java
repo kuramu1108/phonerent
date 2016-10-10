@@ -1,6 +1,7 @@
 package au.com.phonerent.rs;
 
 import java.util.Date;
+import javax.annotation.PostConstruct;
 import javax.ejb.*;
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
@@ -24,10 +25,11 @@ public class RestClient {
     
     // use constructor for now
     public RestClient() {
-        init();
+        
     }
     
-    private void init() {
+    @PostConstruct
+    public void init() {
         Client client = ClientBuilder.newClient();
         TokenResponse res = client.target(tokenUrl)
                 .queryParam("client_id", consumer_key)
