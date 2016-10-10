@@ -4,3 +4,6 @@
 /build/
 /dist/
 /phonerent-war/dist/
+/nbproject/private/
+/phonerent-war/nbproject/private/
+/phonerent-ejb/nbproject/private/
