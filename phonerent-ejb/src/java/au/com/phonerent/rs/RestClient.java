@@ -65,8 +65,8 @@ public class RestClient {
         Date current = new Date();
         // check difference
         long up_time = current.getTime() - initTime.getTime();
-        System.out.println(up_time);
-        System.out.println(expires_in);
+        System.out.println( "up_time: " + up_time);
+        System.out.println("expires_in: " + expires_in);
         return expires_in < up_time;
     }
 }

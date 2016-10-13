@@ -27,10 +27,10 @@ public class EmailClient {
     private Properties props;
     
     public EmailClient() {
-        init();
+        
     }
     
-//    @PostConstruct
+    @PostConstruct
     public void init() {
         props = new Properties();
         props.put("mail.smtp.auth", "true");
