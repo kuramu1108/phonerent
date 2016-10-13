@@ -16,6 +16,7 @@ public class Account implements Serializable {
     private String lastName;
     private String username;
     private String password;
+    private String phoneNumber;
     private String email;
     private String accountType;
     private List<Purchase> purchases = new ArrayList<>();
@@ -156,6 +157,22 @@ public class Account implements Serializable {
      */
     public void setAccountType(String accountType) {
         this.accountType = accountType;
+    }
+
+    /**
+     * to get the accountType of a particular account
+     * accountType must not be null.
+     * @return the orders
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @param accountType the accountType to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
     
