@@ -30,4 +30,7 @@ public interface AccountFacadeLocal {
 
     int count();
     
+    void addSample();
+    
+    Account findByEmail(String email);
 }

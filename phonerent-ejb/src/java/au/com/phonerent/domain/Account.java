@@ -9,6 +9,10 @@ import javax.persistence.*;
  * @author mac
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name="Account.findByEmail",
+            query="select a from Account a where a.email = :email")
+})
 public class Account implements Serializable {
     private int id;
     private Date dob;
