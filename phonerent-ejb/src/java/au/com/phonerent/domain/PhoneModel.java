@@ -15,3 +15,7 @@ public enum PhoneModel {
     NOTE7,
     XPERIA
 }
+//    private int id;
+//    private String model;
+//    private String manufacturer;
+//    private double price;
