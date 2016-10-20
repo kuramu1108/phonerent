@@ -1,6 +1,7 @@
 package au.com.phonerent.domain;
 
 import java.io.Serializable;
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import javax.persistence.*;
 
@@ -18,12 +19,14 @@ public class Account implements Serializable {
     private Date dob;
     private String firstName;
     private String lastName;
-    private String username;
     private String password;
     private String phoneNumber;
     private String email;
     private String accountType;
     private List<Purchase> purchases = new ArrayList<>();
+    
+    private boolean isActivate;
+    private boolean isPasswordReset;
 
     public Account(){
         
@@ -89,20 +92,6 @@ public class Account implements Serializable {
     }
 
     /**
-     * @return the username
-     */
-    public String getUsername() {
-        return username;
-    }
-
-    /**
-     * @param username the username to set
-     */
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    /**
      * @return the password
      */
     public String getPassword() {
@@ -112,7 +101,7 @@ public class Account implements Serializable {
     /**
      * @param password the password to set
      */
-    public void setPassword(String password) {
+    public void setPassword(String password){
         this.password = password;
     }
 
@@ -178,6 +167,20 @@ public class Account implements Serializable {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    
+
+    public boolean isIsActivate() {
+        return isActivate;
+    }
+
+    public void setIsActivate(boolean isActivate) {
+        this.isActivate = isActivate;
+    }
+
+    public boolean isIsPasswordReset() {
+        return isPasswordReset;
+    }
+
+    public void setIsPasswordReset(boolean isPasswordReset) {
+        this.isPasswordReset = isPasswordReset;
+    }
 }

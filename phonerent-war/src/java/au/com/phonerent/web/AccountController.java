@@ -28,6 +28,16 @@ public class AccountController implements Serializable {
     
     private Account account = new Account();
     
+    private String confirmedPassword;
+
+    public String getConfirmedPassword() {
+        return confirmedPassword;
+    }
+
+    public void setConfirmedPassword(String confirmedPassword) {
+        this.confirmedPassword = confirmedPassword;
+    }
+    
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -60,5 +70,10 @@ public class AccountController implements Serializable {
     
     public void addSample() {
         accountFacade.addSample();
+    }
+    
+    public String signUp() {
+        accountFacade.create(account);
+        return "login?faces-redirect=true";
     }
 }

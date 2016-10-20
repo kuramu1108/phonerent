@@ -33,4 +33,6 @@ public interface AccountFacadeLocal {
     void addSample();
     
     Account findByEmail(String email);
+    
+    boolean isActivate(String email);
 }

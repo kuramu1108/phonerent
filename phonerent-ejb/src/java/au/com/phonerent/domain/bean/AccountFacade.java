@@ -6,7 +6,11 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
+import au.com.phonerent.domain.utility.Sha256;
+import java.security.NoSuchAlgorithmException;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -32,17 +36,36 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
     
     @Override
+    public void create(Account account) {
+        account.setIsActivate(false);
+        account.setIsPasswordReset(false);
+        account.setAccountType("Users");
+        try {
+            account.setPassword(Sha256.hash256(account.getPassword()));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error encrpytion");
+        }
+        getEntityManager().persist(account);
+    }
+    
+    @Override
     public void addSample() {
-        Account admin = new Account();
-        admin.setAccountType("Admins");
-        admin.setEmail("colagarychen@gmail.com");
-        admin.setFirstName("Gary");
-        admin.setLastName("Chen");
-        admin.setPassword("4ac1a11e2411b1ad6361357c564ffd5a3df39fc9950abc9059e1d7afcf0bcd02");
-        admin.setPhoneNumber("0431911088");
-        admin.setDob(new GregorianCalendar(1995, 11, 8).getTime());
-        
-        em.persist(admin);
+        try {
+            Account admin = new Account();
+            admin.setAccountType("Admins");
+            admin.setEmail("colagarychen@gmail.com");
+            admin.setFirstName("Gary");
+            admin.setLastName("Chen");
+            admin.setPassword(Sha256.hash256("841108"));
+            admin.setPhoneNumber("0431911088");
+            admin.setDob(new GregorianCalendar(1995, 11, 8).getTime());
+            admin.setIsActivate(true);
+            admin.setIsPasswordReset(false);
+            em.persist(admin);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     @Override
@@ -50,5 +73,11 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         TypedQuery<Account> query = em.createNamedQuery("Account.findByEmail", Account.class);
         query.setParameter("email", email);
         return query.getSingleResult();
+    }
+    
+    @Override
+    public boolean isActivate(String email) {
+        TypedQuery<Account> query = em.createNamedQuery("Account.findByEmail", Account.class);
+        return true;
     }
 }
