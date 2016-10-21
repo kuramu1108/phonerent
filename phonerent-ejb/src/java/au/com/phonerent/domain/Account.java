@@ -23,6 +23,9 @@ public class Account implements Serializable {
     private String phoneNumber;
     private String email;
     private String accountType;
+    private String deliveryAddress;
+    private CreditCard creditCard;
+    
     private List<Purchase> purchases = new ArrayList<>();
     
     private boolean isActivate;
@@ -182,5 +185,22 @@ public class Account implements Serializable {
 
     public void setIsPasswordReset(boolean isPasswordReset) {
         this.isPasswordReset = isPasswordReset;
+    }
+
+    public String getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    public void setDeliveryAddress(String deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
+    }
+
+    @OneToOne
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+
+    public void setCreditCard(CreditCard creditCard) {
+        this.creditCard = creditCard;
     }
 }
