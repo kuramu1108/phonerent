@@ -12,20 +12,36 @@
         <title>Rent a phone</title>
     </h:head>
     <h:body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Phonerent</a>
+        <h:form>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h:commandLink class="navbar-brand" value="Phonerent"/>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login"/>
+                        </li>
+                        <li>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-tags"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-user"/>
+                        </li>      
+                        <li>
+                            <h:commandLink  class="	glyphicon glyphicon-log-out"/>
+                        </li>
+                    </ul>    
                 </div>
-                
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                        <a href="#"><span class="glyphicon glyphicon-log-out"></span>Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        
+            </nav>
+        </h:form>
             
         <div class="container col-sm-9">
 		<div style="margin: 0 0 0 35%">
