@@ -8,6 +8,7 @@ package au.com.phonerent.web;
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
 import java.io.*;
+import java.util.List;
 import javax.ejb.*;
 import javax.enterprise.context.*;
 import javax.faces.application.FacesMessage;
@@ -75,5 +76,18 @@ public class AccountController implements Serializable {
     public String signUp() {
         accountFacade.create(account);
         return "login?faces-redirect=true";
+    }
+    
+    public List<Account> getAllAccounts() {
+        return accountFacade.findAll();
+    }
+    
+    public String sendPasswordRecovery() {
+        accountFacade.sendPasswordRecovery(account.getEmail());
+        return null;
+    }
+    
+    public void loadAccountByResetId(String resetId) {
+        account = accountFacade.findByPasswordResetId(resetId);
     }
 }

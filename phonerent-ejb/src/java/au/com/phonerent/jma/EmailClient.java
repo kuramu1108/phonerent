@@ -39,14 +39,17 @@ public class EmailClient {
         props.put("mail.smtp.port", 587);
     }
     
-    public boolean sentTo(String to) {
+    public boolean passwordRecoverySendTo(String to, String resetId) {
         Message message = getMessageInstance();
         
         try {
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Your Password Recovery for PhoneRent");
-            message.setContent("<h1>this is testing</h1>", "text/html");
+            message.setContent("<h1>this is testing</h1>"
+                    + "<br/>"
+                    + "<a href='http://localhost:8080/phonerent-war/faces/password_reset.xhtml?resetId=" + resetId 
+                    + "'>Reset Password</>", "text/html");
             
             Transport.send(message);
             System.out.println("Message Sent");

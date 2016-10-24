@@ -6,11 +6,14 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
+import au.com.phonerent.domain.utility.PasswordResetIdGenerator;
 import au.com.phonerent.domain.utility.Sha256;
+import au.com.phonerent.jma.EmailClient;
 import java.security.NoSuchAlgorithmException;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +28,9 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
 
     @PersistenceContext(unitName = "phonerent-ejbPU")
     private EntityManager em;
+    
+    @EJB
+    EmailClient emailClient;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -38,7 +44,6 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     @Override
     public void create(Account account) {
         account.setIsActivate(false);
-        account.setIsPasswordReset(false);
         account.setAccountType("Users");
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
@@ -61,7 +66,6 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
             admin.setPhoneNumber("0431911088");
             admin.setDob(new GregorianCalendar(1995, 11, 8).getTime());
             admin.setIsActivate(true);
-            admin.setIsPasswordReset(false);
             em.persist(admin);
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
@@ -76,8 +80,24 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
     
     @Override
+    public Account findByPasswordResetId(String resetId) {
+        TypedQuery<Account> query = em.createNamedQuery("Account.findByPasswordResetId", Account.class);
+        query.setParameter("resetId", resetId);
+        return query.getSingleResult();
+    }
+    
+    @Override
     public boolean isActivate(String email) {
         TypedQuery<Account> query = em.createNamedQuery("Account.findByEmail", Account.class);
         return true;
+    }
+    
+    @Override
+    public void sendPasswordRecovery(String email) {
+        Account account = findByEmail(email);
+        String resetId = PasswordResetIdGenerator.generateId(account.getEmail());
+        account.setPasswordResetId(resetId);
+        edit(account);
+        emailClient.passwordRecoverySendTo(account.getEmail(), resetId);
     }
 }

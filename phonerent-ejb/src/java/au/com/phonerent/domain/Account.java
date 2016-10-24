@@ -12,7 +12,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
     @NamedQuery(name="Account.findByEmail",
-            query="select a from Account a where a.email = :email")
+            query="select a from Account a where a.email = :email"),
+    @NamedQuery(name="Account.findByPasswordResetId",
+            query="select a from Account a where a.passwordResetId = :resetId")
 })
 public class Account implements Serializable {
     private int id;
@@ -29,7 +31,7 @@ public class Account implements Serializable {
     private List<Purchase> purchases = new ArrayList<>();
     
     private boolean isActivate;
-    private boolean isPasswordReset;
+    private String passwordResetId;
 
     public Account(){
         
@@ -179,12 +181,12 @@ public class Account implements Serializable {
         this.isActivate = isActivate;
     }
 
-    public boolean isIsPasswordReset() {
-        return isPasswordReset;
+    public String getPasswordResetId() {
+        return passwordResetId;
     }
 
-    public void setIsPasswordReset(boolean isPasswordReset) {
-        this.isPasswordReset = isPasswordReset;
+    public void setPasswordResetId(String passwordResetId) {
+        this.passwordResetId = passwordResetId;
     }
 
     public String getDeliveryAddress() {

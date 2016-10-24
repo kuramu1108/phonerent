@@ -15,6 +15,6 @@ public class EmailTest {
     public static void main(String[] args) {
         EmailClient client = new EmailClient();
         client.init();
-        System.out.println(client.sentTo("colagarychen@gmail.com"));
+        System.out.println(client.passwordRecoverySendTo("colagarychen@gmail.com", "test"));
     }
 }
