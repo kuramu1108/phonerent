@@ -34,5 +34,9 @@ public interface AccountFacadeLocal {
     
     Account findByEmail(String email);
     
+    Account findByPasswordResetId(String resetId);
+    
     boolean isActivate(String email);
+    
+    void sendPasswordRecovery(String email);
 }

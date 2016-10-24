@@ -22,35 +22,35 @@
             <h1>Welcome to the Register page</h1>
 
             <h:form style="margin-top:40px;">
-                <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1">
+                <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
                     <p>
-                        <label>Email: 
+                        <label>Email 
                             <h:inputText id="email" value="#{accountController.account.email}"/>
                         </label>
                     </p>
                     <p>
-                        <label>Password: 
+                        <label>Password
                             <h:inputSecret id="password" value="#{accountController.account.password}"/>
                         </label>
                     </p>
                     <p>
-                        <label>Confirm Password: 
+                        <label>Confirm Password
                             <h:inputSecret id="confirmPassword" value="#{accountController.confirmedPassword}"/>
                         </label>
                     </p>
 
                     <p style="margin-top: 25px;">
-                        <label>First Name: 
+                        <label>First Name
                             <h:inputText id="firstName" value="#{accountController.account.firstName}"/>
                         </label>
                     </p>
                     <p>
-                        <label>Last Name: 
+                        <label>Last Name
                             <h:inputText id="lastName" value="#{accountController.account.lastName}"/>
                         </label>
                     </p>
                     <p>
-                        <label>Mobile Phone: 
+                        <label>Mobile Phone
                             <h:inputText id="mobilePhone" value="#{accountController.account.phoneNumber}"/>
                         </label>
                     </p>
