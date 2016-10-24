@@ -11,7 +11,6 @@ import javax.persistence.*;
 public class Phone implements Serializable {
     private int id; 
     private PhoneModel model;    
-    private double price;
     private Purchase purchase;
 
     public Phone(){
@@ -28,21 +27,13 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    @Enumerated(EnumType.STRING)
+    @ManyToOne
     public PhoneModel getModel() {
         return model;
     }
 
     public void setModel(PhoneModel model) {
         this.model = model;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
     
     @ManyToOne
