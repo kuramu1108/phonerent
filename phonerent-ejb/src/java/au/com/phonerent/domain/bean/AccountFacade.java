@@ -11,6 +11,7 @@ import au.com.phonerent.domain.utility.Sha256;
 import au.com.phonerent.jma.EmailClient;
 import java.security.NoSuchAlgorithmException;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
@@ -47,6 +48,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setAccountType("Users");
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
+            emailClient.registerationConfirmationSendTo(account.getEmail());
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error encrpytion");
@@ -76,14 +78,22 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     public Account findByEmail(String email) {
         TypedQuery<Account> query = em.createNamedQuery("Account.findByEmail", Account.class);
         query.setParameter("email", email);
-        return query.getSingleResult();
+        List result = query.getResultList();
+        if (result.isEmpty())
+            return null;
+        else
+            return (Account) result.get(0);
     }
     
     @Override
     public Account findByPasswordResetId(String resetId) {
         TypedQuery<Account> query = em.createNamedQuery("Account.findByPasswordResetId", Account.class);
         query.setParameter("resetId", resetId);
-        return query.getSingleResult();
+        List result = query.getResultList();
+        if (result.isEmpty())
+            return null;
+        else
+            return (Account) result.get(0);
     }
     
     @Override
@@ -99,5 +109,29 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setPasswordResetId(resetId);
         edit(account);
         emailClient.passwordRecoverySendTo(account.getEmail(), resetId);
+    }
+    
+    @Override
+    public void resetPassword(Account account, String newPassword) {
+        try {
+            account.setPasswordResetId(null);
+            account.setPassword(Sha256.hash256(newPassword));
+            edit(account);
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    @Override
+    public boolean confirmRegistration(String email) {
+        Account account = findByEmail(email);
+        
+        if (null == account)
+            return false;
+        else {
+            account.setIsActivate(true);
+            edit(account);
+            return true;
+        }
     }
 }

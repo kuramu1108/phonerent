@@ -39,4 +39,8 @@ public interface AccountFacadeLocal {
     boolean isActivate(String email);
     
     void sendPasswordRecovery(String email);
+    
+    void resetPassword(Account account, String newPassword);
+    
+    boolean confirmRegistration(String email);
 }

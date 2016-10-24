@@ -49,10 +49,28 @@ public class EmailClient {
             message.setContent("<h1>this is testing</h1>"
                     + "<br/>"
                     + "<a href='http://localhost:8080/phonerent-war/faces/password_reset.xhtml?resetId=" + resetId 
-                    + "'>Reset Password</>", "text/html");
+                    + "'>Reset Password</a>", "text/html");
             
             Transport.send(message);
-            System.out.println("Message Sent");
+        } catch (MessagingException ex) {
+            Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        return true;
+    }
+    
+    public boolean registerationConfirmationSendTo(String to) {
+        Message message = getMessageInstance();
+        
+        try {
+            message.setFrom(new InternetAddress(from));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+            message.setSubject("Confrim your registration with Phonerent");
+            message.setContent("<h1>You've just sign up with Phonerent</h1>"
+                    + "<a href='http://localhost:8080/phonerent-war/faces/confirm_registration.xhtml?email=" + to 
+                    + "'>Confirm</a>", "text/html");
+            
+            Transport.send(message);
         } catch (MessagingException ex) {
             Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
             return false;

@@ -24,19 +24,21 @@ import javax.servlet.http.HttpServletRequest;
 @Named
 @SessionScoped
 public class AccountController implements Serializable {
+    private final String REDIRECT = "?faces-redirect=true";
+    
     @EJB
     private AccountFacadeLocal accountFacade;
     
     private Account account = new Account();
-    
-    private String confirmedPassword;
+        
+    private String newPassword;
 
-    public String getConfirmedPassword() {
-        return confirmedPassword;
+    public String getNewPassword() {
+        return newPassword;
     }
 
-    public void setConfirmedPassword(String confirmedPassword) {
-        this.confirmedPassword = confirmedPassword;
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
     
     public String login() {
@@ -49,7 +51,10 @@ public class AccountController implements Serializable {
             context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!",e.getMessage()));
             return null;
         }
-        return "test?faces-redirect=true";
+        if ("Admins".equals(account.getAccountType()))
+            return "admin_dashboard.xhtml" + REDIRECT;
+        else
+            return "dashboard.xhtml" + REDIRECT;
     }
     
     public String logout() {
@@ -62,7 +67,7 @@ public class AccountController implements Serializable {
             // (you could also log the exception to the server log)
             context.addMessage(null, new FacesMessage(e.getMessage()));
         }
-        return "login?faces-redirect=true";
+        return "login" + REDIRECT;
     }
     
     public Account getAccount() {
@@ -75,7 +80,7 @@ public class AccountController implements Serializable {
     
     public String signUp() {
         accountFacade.create(account);
-        return "login?faces-redirect=true";
+        return "login" + REDIRECT;
     }
     
     public List<Account> getAllAccounts() {
@@ -87,7 +92,23 @@ public class AccountController implements Serializable {
         return null;
     }
     
-    public void loadAccountByResetId(String resetId) {
+    public String loadAccountByResetId(String resetId) {
         account = accountFacade.findByPasswordResetId(resetId);
+        if (null == account)
+            return "password_recovery.xhtml" + REDIRECT;
+        else
+            return null;
+    }
+    
+    public String resetPassword() {
+        accountFacade.resetPassword(account, newPassword);
+        return "login.xhtml" + REDIRECT;
+    }
+    
+    public String confirmRegistration(String email) {
+        if (accountFacade.confirmRegistration(email))
+            return null;
+        else
+            return "login.xhtml" + REDIRECT;
     }
 }
