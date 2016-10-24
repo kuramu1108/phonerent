@@ -36,13 +36,14 @@
                             <h:commandLink class="glyphicon glyphicon-user"/>
                         </li>      
                         <li>
-                            <h:commandLink  class="	glyphicon glyphicon-log-out"/>
+                            <h:commandLink  class="glyphicon glyphicon-log-out"/>
                         </li>
                     </ul>    
                 </div>
             </nav>
         </h:form>
-            
+        
+        <h:form>
         <div class="container col-sm-9">
 		<div style="margin: 0 0 0 35%">
                     <div class="panel-group">
@@ -61,29 +62,23 @@
                                         </div>
                                 </div>
       
-                            <div class="panel-body">          
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Model</th>
-                                            <th>Make</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead> 
-
-                                    <tbody>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="iPhone 6S"/></td>
-                                            <td><h:outputText value="Apple"/></td>
-                                            <td><h:outputText value="$6.5"/></td>
-                                        </tr>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="Galaxy S6"/></td>
-                                            <td><h:outputText value="Samsung"/></td>
-                                            <td><h:outputText value="$6.4"/></td>
-                                        </tr> 
-                                    </tbody>
-                                </table>  
+                            <div class="panel-body">  
+                                <h:form>
+                                        <h:dataTable var="row" value="#">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    Staff ID
+                                                </f:facet>
+                                                <h:outputText value="#"/>
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    Name
+                                                </f:facet>
+                                                <h:outputText value="#"/>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:form> 
                             </div>                           
                         </div>
                     </div>
@@ -91,5 +86,65 @@
 	    
 	</div>
         
+        <div class="container col-sm-9">
+		<div style="margin: 0 0 0 35%">
+                    <div class="panel-group">
+    			<div class="panel panel-default">
+        			<div class="panel-heading clearfix"> 
+                                    <p class="panel-title pull-left" style="padding-top:7.5px;">List of Available Sims</p>
+      					<div class="input-group">
+                                            <div class="input-group-btn">
+                        			<button class="btn btn-inverse pull-right" data-toggle="dropdown"><i class="glyphicon glyphicon-sort"></i></button>
+                                                    <ul class="dropdown-menu pull-right">
+                        				<li><a href="#">Make</a></li>
+                        				<li><a href="#">Model</a></li>
+                                                        <li><a href="#">Price</a></li>
+                                                    </ul>
+                                            </div>
+                                        </div>
+                                </div>
+      
+                            <div class="panel-body">          
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Sim Name</th>
+                                            <th>Credit</th>
+                                            <th>Bonus SMS</th>
+                                            <th>Plan Duration</th>
+                                            <th>Price</th>
+                                        </tr>
+                                    </thead> 
+                                    
+                                    
+                                    <tbody>
+                                        <tr>
+                                            <td><h:outputText value="Hoptus"/></td>
+                                            <td><h:outputText value="$5.00"/></td>
+                                            <td><h:outputText value="200"/></td>
+                                            <td><h:outputText value="48 hours"/></td>
+                                            <td><h:outputText value="$7.00"/></td>
+                                            <td><h:commandButton value="Add to Cart"/></td>
+                                        </tr>
+                                        <tr onclick="document.location = 'http://www.facebook.com';">
+                                            <td><h:outputText value="Modafone"/></td>
+                                            <td><h:outputText value="$10.00"/></td>
+                                            <td><h:outputText value="200"/></td>
+                                            <td><h:outputText value="240 hours"/></td>
+                                            <td><h:outputText value="$15.00"/></td>
+                                            <td><h:commandButton value="Add to Cart"/></td>
+                                        </tr> 
+                                    </tbody>                                    
+                                </table>  
+                                
+                            </div>   
+                                
+                        </div>
+                    </div>
+                </div>
+            <center style="margin-left: 35%"><h:commandButton value="GO TO CART"/></center>
+	</div>
+           
+        </h:form>
     </h:body>
 </html>
