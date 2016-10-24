@@ -20,10 +20,10 @@ import javax.mail.internet.*;
  */
 @Stateless
 public class EmailClient {
-    private String host = "express-relay.jangosmtp.net";
-    private String from = "info@phonerent.com.au";
-    private final String username = "kuramu1108";
-    private final String password = "PhoneRent!";
+    private String host = "in-v3.mailjet.com";
+    private String from = "colagarychen@gmail.com";
+    private final String username = "5516087c870da43d5e1716d8ab1483eb";
+    private final String password = "ca112c066d6d36a475c105f6a9c27037";
     private Properties props;
     
     public EmailClient() {
@@ -36,7 +36,7 @@ public class EmailClient {
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
-        props.put("mail.smtp.port", 2525);
+        props.put("mail.smtp.port", 587);
     }
     
     public boolean sentTo(String to) {
