@@ -77,7 +77,7 @@ public class AccountController implements Serializable {
             // (you could also log the exception to the server log)
             context.addMessage(null, new FacesMessage(e.getMessage()));
         }
-        return "login" + REDIRECT;
+        return "/login.xhtml" + REDIRECT;
     }
     
     public Account getAccount() {
@@ -100,7 +100,7 @@ public class AccountController implements Serializable {
     public String signUp() {
         accountFacade.create(account);
         newRegisteration = true;
-        return "login" + REDIRECT;
+        return "login.xhtml" + REDIRECT;
     }
     
     public List<Account> getAllAccounts() {
