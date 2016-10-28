@@ -50,19 +50,19 @@
                                                 <f:facet name="header">
                                                     Model Name
                                                 </f:facet>
-                                                <h:outputText value="#{phone.model.modelName}"/>
+                                                <h:outputText value="#{phoneList.model.modelName}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Manufacturer
                                                 </f:facet>
-                                                <h:outputText value="#{phone.model.manufacturer}"/>
+                                                <h:outputText value="#{phoneList.model.manufacturer}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Price
                                                 </f:facet>
-                                                <h:outputText value="#{phone.model.price}" />
+                                                <h:outputText value="#{phoneList.model.price}" />
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="View Detail"/>
@@ -94,31 +94,31 @@
                                                 <f:facet name="header">
                                                     Sim Name
                                                 </f:facet>
-                                                <h:outputText value="Optus"/>
+                                                <h:outputText value="#{simList.name}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Credit
                                                 </f:facet>
-                                                <h:outputText value="200.00"/>
+                                                <h:outputText value="#{simList.credit}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Bonus SMS
                                                 </f:facet>
-                                                <h:outputText value="13"/>
+                                                <h:outputText value="#{simList.bonusSMS}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Plan Duration
                                                 </f:facet>
-                                                <h:outputText value="7"/>
+                                                <h:outputText value="#{simList.planDuration}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Price
                                                 </f:facet>
-                                                <h:outputText value="13.00"/>
+                                                <h:outputText value="#{simList.price}"/>
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="View Detail" />

@@ -49,24 +49,24 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">          
                                         <h:form>
-                                            <h:dataTable var="activePurchase" value="#{accountController.allAccounts}" class="table table-hover" >
+                                            <h:dataTable var="activePurchase" value="#{purchaseController.allPurchases}" class="table table-hover" >
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase ID
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.id}"/>
+                                                    <h:outputText value="#{activePurchase.id}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase Date
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.startDate}"/>
+                                                    <h:outputText value="#{activePurchase.startDate}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Total Price
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.total}"/>
+                                                    <h:outputText value="#{activePurchase.total}"/>
                                                 </h:column>      
                                                 <h:column>
                                                         <h:commandButton value="View Detail"/>
@@ -90,19 +90,19 @@
                                                     <f:facet name="header">
                                                         Purchase ID
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.id}"/>
+                                                    <h:outputText value="#{inactivePurchase.id}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase Date
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.startDate}"/>
+                                                    <h:outputText value="#{inactivePurchase.startDate}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Total Price
                                                     </f:facet>
-                                                    <h:outputText value="#{purchase.price}"/>
+                                                    <h:outputText value="#{inactivePurchase.total}"/>
                                                 </h:column>      
                                                 <h:column>
                                                         <h:commandButton value="View Detail"/>
