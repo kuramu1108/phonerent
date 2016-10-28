@@ -52,6 +52,7 @@ public class EmailClient {
                     + "'>Reset Password</a>", "text/html");
             
             Transport.send(message);
+            System.out.println("Email sent to " + to);
         } catch (MessagingException ex) {
             Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
             return false;
@@ -71,6 +72,7 @@ public class EmailClient {
                     + "'>Confirm</a>", "text/html");
             
             Transport.send(message);
+            System.out.println("Email sent to " + to);
         } catch (MessagingException ex) {
             Logger.getLogger(EmailClient.class.getName()).log(Level.SEVERE, null, ex);
             return false;

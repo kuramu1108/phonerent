@@ -76,9 +76,4 @@ public class CreditCard implements Serializable {
     public void setOwner(Account owner) {
         this.owner = owner;
     }
-
-
-    
-     
-            
 }

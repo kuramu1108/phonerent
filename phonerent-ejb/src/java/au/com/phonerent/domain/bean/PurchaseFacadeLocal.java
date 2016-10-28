@@ -30,4 +30,5 @@ public interface PurchaseFacadeLocal {
 
     int count();
     
+    void addSample();
 }
