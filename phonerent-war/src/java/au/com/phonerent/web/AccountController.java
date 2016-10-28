@@ -29,9 +29,14 @@ public class AccountController implements Serializable {
     @EJB
     private AccountFacadeLocal accountFacade;
     
+    @EJB
+    private CreditCardFacade creditCardFacade;
+    
     private Account account = new Account();
-        
+    private CreditCard creditCard = new CreditCard();  
+    
     private String newPassword;
+    private boolean newRegisteration = false;
 
     public String getNewPassword() {
         return newPassword;
@@ -52,7 +57,7 @@ public class AccountController implements Serializable {
             return null;
         }
         if ("Admins".equals(account.getAccountType()))
-            return "admin_dashboard.xhtml" + REDIRECT;
+            return "secret/admin_dashboard.xhtml" + REDIRECT;
         else
             return "dashboard.xhtml" + REDIRECT;
     }
@@ -74,12 +79,21 @@ public class AccountController implements Serializable {
         return account;
     }
     
+    public CreditCard getCreditCard() {
+        return creditCard;
+    }
+    
+    public boolean getNewRegisteration () {
+        return newRegisteration;
+    }
+    
     public void addSample() {
         accountFacade.addSample();
     }
     
     public String signUp() {
         accountFacade.create(account);
+        newRegisteration = true;
         return "login" + REDIRECT;
     }
     
@@ -110,5 +124,21 @@ public class AccountController implements Serializable {
             return null;
         else
             return "login.xhtml" + REDIRECT;
+    }
+    
+    public void editAccount() {
+        accountFacade.edit(account);
+    }
+    
+    public void editCreditCard() {
+        creditCardFacade.edit(creditCard);
+    }
+    
+    public void deleteAccount() {
+        accountFacade.remove(account);
+    }
+    
+    public void deleteCreditCard() {
+        creditCardFacade.remove(creditCard);
     }
 }
