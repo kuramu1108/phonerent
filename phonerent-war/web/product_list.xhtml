@@ -45,24 +45,24 @@
       
                             <div class="panel-body">  
                                 <h:form>
-                                        <h:dataTable var="row" value="#" class="table table-hover" >
+                                    <h:dataTable var="phoneList" value="#{productController.allPhones}" class="table table-hover" >
                                             <h:column>
                                                 <f:facet name="header">
                                                     Model Name
                                                 </f:facet>
-                                                <h:outputText value="Iphone 7 Plus"/>
+                                                <h:outputText value="#{phone.model.modelName}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Manufacturer
                                                 </f:facet>
-                                                <h:outputText value="Apple"/>
+                                                <h:outputText value="#{phone.model.manufacturer}"/>
                                             </h:column>
                                             <h:column>
                                                 <f:facet name="header">
                                                     Price
                                                 </f:facet>
-                                                <h:outputText value="13.00"/>
+                                                <h:outputText value="#{phone.model.price}" />
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="View Detail"/>
@@ -89,7 +89,7 @@
       
                             <div class="panel-body">          
                                 <h:form>
-                                        <h:dataTable var="row" value="#" class="table table-hover" >
+                                    <h:dataTable var="simList" value="#{productController.allSimPlans}" class="table table-hover" >
                                             <h:column>
                                                 <f:facet name="header">
                                                     Sim Name

@@ -30,6 +30,7 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
+    @ManyToOne
     public PhoneModel getModel() {
         return model;
     }
