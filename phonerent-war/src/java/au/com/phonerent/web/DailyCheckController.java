@@ -20,9 +20,13 @@ import javax.inject.Named;
 public class DailyCheckController {
     @EJB
     ExpiryTimer timer;
-    
+
     private int test = 1;
     public int getTest(){
         return test;
+    }
+    
+    public void starTimer() {
+        
     }
 }
