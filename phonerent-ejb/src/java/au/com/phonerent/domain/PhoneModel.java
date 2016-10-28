@@ -31,11 +31,11 @@ public class PhoneModel implements Serializable {
         this.id = id;
     }
     
-    public String getModel() {
+    public String getModelName() {
         return modelName;
     }
 
-    public void setModel(String model) {
+    public void setModelName(String model) {
         this.modelName = model;
     }
 
