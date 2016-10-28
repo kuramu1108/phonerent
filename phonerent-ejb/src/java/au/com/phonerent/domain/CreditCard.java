@@ -17,9 +17,10 @@ import javax.persistence.*;
 public class CreditCard implements Serializable {
     private int id;
     private String cardNumber;
+    private String nameOnCard;
     private int cvv;
-    private int ExpiryMonth;
-    private int ExpiryYear;
+    private int expiryMonth;
+    private int expiryYear;
     private Account owner;
 
     public CreditCard(){
@@ -44,6 +45,14 @@ public class CreditCard implements Serializable {
         this.cardNumber = cardNumber;
     }
 
+    public String getNameOnCard() {
+        return nameOnCard;
+    }
+
+    public void setNameOnCard(String nameOnCard) {
+        this.nameOnCard = nameOnCard;
+    }    
+    
     public int getCvv() {
         return cvv;
     }
@@ -53,19 +62,19 @@ public class CreditCard implements Serializable {
     }
     
         public int getExpiryMonth() {
-        return ExpiryMonth;
+        return expiryMonth;
     }
 
-    public void setExpiryMonth(int ExpiryMonth) {
-        this.ExpiryMonth = ExpiryMonth;
+    public void setExpiryMonth(int expiryMonth) {
+        this.expiryMonth = expiryMonth;
     }
 
     public int getExpiryYear() {
-        return ExpiryYear;
+        return expiryYear;
     }
 
-    public void setExpiryYear(int ExpiryYear) {
-        this.ExpiryYear = ExpiryYear;
+    public void setExpiryYear(int expiryYear) {
+        this.expiryYear = expiryYear;
     }
 
     @OneToOne(mappedBy = "creditCard")
@@ -75,5 +84,5 @@ public class CreditCard implements Serializable {
 
     public void setOwner(Account owner) {
         this.owner = owner;
-    }
+    } 
 }

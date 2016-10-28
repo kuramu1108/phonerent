@@ -1,8 +1,7 @@
 package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
-import au.com.phonerent.domain.bean.PurchaseFacade;
-import au.com.phonerent.domain.bean.ShoppingCartFacade;
+import au.com.phonerent.domain.bean.*;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -17,10 +16,10 @@ import javax.inject.*;
 @SessionScoped
 public class PurchaseController implements Serializable{
     @EJB
-    PurchaseFacade purchaseFacade;
+    PurchaseFacadeLocal purchaseFacade;
     
     @EJB
-    ShoppingCartFacade shoppingcardFacade;
+    ShoppingCartFacadeLocal shoppingcardFacade;
     
     private Purchase purchase = new Purchase();
     private ShoppingCart shoppingCart = new ShoppingCart();
