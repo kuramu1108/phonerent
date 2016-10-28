@@ -9,4 +9,4 @@
  */
 
 delete from account
-where email = 'colagarychen@gmail.com'
+where email = 'colagarychen@gmail.com';

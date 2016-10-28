@@ -7,6 +7,7 @@ package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
+import au.com.phonerent.domain.utility.ExpiryTimer;
 import java.io.*;
 import java.util.List;
 import javax.ejb.*;
@@ -31,6 +32,10 @@ public class AccountController implements Serializable {
     
     @EJB
     private CreditCardFacadeLocal creditCardFacade;
+    
+    // just for testing
+    @EJB
+    private PurchaseFacadeLocal purchaseFacade;
     
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  
@@ -59,7 +64,7 @@ public class AccountController implements Serializable {
         if ("Admins".equals(account.getAccountType()))
             return "secret/admin_dashboard.xhtml" + REDIRECT;
         else
-            return "dashboard.xhtml" + REDIRECT;
+            return "user_dashboard.xhtml" + REDIRECT;
     }
     
     public String logout() {
@@ -89,6 +94,7 @@ public class AccountController implements Serializable {
     
     public void addSample() {
         accountFacade.addSample();
+        purchaseFacade.addSample();
     }
     
     public String signUp() {
