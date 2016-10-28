@@ -30,7 +30,7 @@ public class AccountController implements Serializable {
     private AccountFacadeLocal accountFacade;
     
     @EJB
-    private CreditCardFacade creditCardFacade;
+    private CreditCardFacadeLocal creditCardFacade;
     
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  

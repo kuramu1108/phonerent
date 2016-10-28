@@ -8,9 +8,7 @@ package au.com.phonerent.web;
 import au.com.phonerent.domain.Phone;
 import au.com.phonerent.domain.PhoneModel;
 import au.com.phonerent.domain.SimPlan;
-import au.com.phonerent.domain.bean.PhoneFacade;
-import au.com.phonerent.domain.bean.PhoneModelFacade;
-import au.com.phonerent.domain.bean.SimPlanFacade;
+import au.com.phonerent.domain.bean.*;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -25,13 +23,13 @@ import javax.inject.Named;
 @SessionScoped
 public class ProductController implements Serializable {
     @EJB
-    PhoneFacade phoneFacade;
+    PhoneFacadeLocal phoneFacade;
     
     @EJB
-    SimPlanFacade simplanFacade;
+    SimPlanFacadeLocal simplanFacade;
     
     @EJB
-    PhoneModelFacade phoneModelFacade;
+    PhoneModelFacadeLocal phoneModelFacade;
     
     private Phone phone = new Phone();
     private SimPlan simplan = new SimPlan();
