@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
@@ -71,29 +72,32 @@
                                     <p class="panel-title pull-left" style="padding-top:7.5px;">Your Rent: Phone</p>
                                 </div>
       
-                            <div class="panel-body">          
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Model</th>
-                                            <th>Manufacturer</th>
-                                            <th>Price</th>
-                                        </tr>
-                                    </thead> 
-
-                                    <tbody>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="iPhone 6S"/></td>
-                                            <td><h:outputText value="Apple"/></td>
-                                            <td><h:outputText value="$6.5"/></td>
-                                        </tr>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="Galaxy S6"/></td>
-                                            <td><h:outputText value="Samsung"/></td>
-                                            <td><h:outputText value="$6.4"/></td>
-                                        </tr> 
-                                    </tbody>
-                                </table>  
+                            <div class="panel-body">  
+                                <h:form>
+                                    <h:dataTable var="row" value="#" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Model Name
+                                            </f:facet>
+                                            <h:outputText value="Iphone 7 Plus"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Manufacturer
+                                            </f:facet>
+                                            <h:outputText value="Apple"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="13.00"/>
+                                        </h:column>  
+                                        <h:column>
+                                                <h:commandButton value="View Detail"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form>
                             </div>                           
                         </div>
                     </div>
@@ -108,40 +112,50 @@
                                 </div>
       
                             <div class="panel-body">          
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Price</th>
-                                            <th>Credit</th>
-                                            <th>Bonus SMS</th>
-                                            <th>Plan Duration</th>
-                                        </tr>
-                                    </thead> 
-                                    <tbody>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="Optus"/></td>
-                                            <td><h:outputText value="30"/></td>
-                                            <td><h:outputText value="20.0"/></td>
-                                            <td><h:outputText value="200"/></td>
-                                            <td><h:outputText value="7"/></td>
-                                        </tr>
-                                        <tr onclick="document.location = 'http://www.facebook.com';">
-                                            <td><h:outputText value="Optus"/></td>
-                                            <td><h:outputText value="30"/></td>
-                                            <td><h:outputText value="20.0"/></td>
-                                            <td><h:outputText value="200"/></td>
-                                            <td><h:outputText value="7"/></td>
-                                        </tr> 
-                                    </tbody>
-                                </table>  
+                                <h:form>
+                                    <h:dataTable var="row" value="#" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Sim Name
+                                            </f:facet>
+                                            <h:outputText value="Optus"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Credit
+                                            </f:facet>
+                                            <h:outputText value="200.00"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Bonus SMS
+                                            </f:facet>
+                                            <h:outputText value="13"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Plan Duration
+                                            </f:facet>
+                                            <h:outputText value="7"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="13.00"/>
+                                        </h:column>      
+                                        <h:column>
+                                                <h:commandButton value="View Detail"/>
+                                        </h:column>
+                                    </h:dataTable>
+                                </h:form> 
                             </div>                           
                         </div>
                     </div>
                     <h:form style="margin-bottom : 30px;">
-                        <h:commandButton value="Cancel" action="#{accountController.signUp()}"/>
+                        <h:commandButton value="Cancel" action="#"/>
                         <h:inputText style="margin-left:25px;" /> week
-                        <h:commandButton value="Extend Rent Period" action="#{accountController.signUp()}" style="margin-left:25px;" />
+                        <h:commandButton value="Extend Rent Period" action="#" style="margin-left:25px;" />
                     </h:form>
                 </div>
             </div>
