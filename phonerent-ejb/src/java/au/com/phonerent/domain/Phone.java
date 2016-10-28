@@ -1,6 +1,8 @@
 package au.com.phonerent.domain;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -11,8 +13,8 @@ import javax.persistence.*;
 public class Phone implements Serializable {
     private int id; 
     private PhoneModel model;    
-    private Purchase purchase;
-    private ShoppingCart shoppingCart;
+    private List<Purchase> purchases = new ArrayList<>();
+    private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
     public Phone(){
         
@@ -28,7 +30,6 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne
     public PhoneModel getModel() {
         return model;
     }
@@ -36,22 +37,24 @@ public class Phone implements Serializable {
     public void setModel(PhoneModel model) {
         this.model = model;
     }
-    
-    @ManyToOne
-    public Purchase getPurchase() {
-        return purchase;
-    }
-    
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
+
+    @ManyToMany
+    public List<Purchase> getPurchases() {
+        return purchases;
     }
 
-    @ManyToOne
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    @ManyToMany
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
     }
+
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
+    }
+
+   
 }

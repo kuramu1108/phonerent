@@ -121,7 +121,7 @@ public class Purchase implements Serializable {
     /**
      * @return the phones
      */
-    @OneToMany(mappedBy = "purchase")
+    @ManyToMany(mappedBy = "purchases")
     public List<Phone> getPhones() {
         return phones;
     }
@@ -136,7 +136,7 @@ public class Purchase implements Serializable {
     /**
      * @return the simPlans
      */
-    @OneToMany(mappedBy = "purchase")
+    @ManyToMany(mappedBy = "purchases")
     public List<SimPlan> getSimPlans() {
         return simPlans;
     }

@@ -6,6 +6,8 @@
 package au.com.phonerent.domain;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.*;
 
 /**
@@ -20,8 +22,8 @@ public class SimPlan implements Serializable{
     private double credit;
     private int bonusSMS;
     private int planDuration;
-    private Purchase purchase;
-    private ShoppingCart shoppingCart;
+    private List<Purchase> purchases = new ArrayList<>();
+    private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
     public SimPlan(){
         
@@ -98,22 +100,23 @@ public class SimPlan implements Serializable{
     public void setPlanDuration(int planDuration) {
         this.planDuration = planDuration;
     }
-    
-    @ManyToOne
-    public Purchase getPurchase() {
-        return purchase;
-    }
-    
-    public void setPurchase(Purchase purchase) {
-        this.purchase = purchase;
+
+    @ManyToMany
+    public List<Purchase> getPurchases() {
+        return purchases;
     }
 
-    @ManyToOne
-    public ShoppingCart getShoppingCart() {
-        return shoppingCart;
+    public void setPurchases(List<Purchase> purchases) {
+        this.purchases = purchases;
     }
 
-    public void setShoppingCart(ShoppingCart shoppingCart) {
-        this.shoppingCart = shoppingCart;
+    @ManyToMany
+    public List<ShoppingCart> getShoppingCarts() {
+        return shoppingCarts;
     }
+
+    public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
+        this.shoppingCarts = shoppingCarts;
+    }
+    
 }

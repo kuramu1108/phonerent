@@ -46,7 +46,7 @@ public class ShoppingCart implements Serializable {
         this.account = account;
     }
 
-    @OneToMany(mappedBy = "shoppingCart")
+    @ManyToMany(mappedBy = "shoppingCarts")
     public List<Phone> getPhones() {
         return phones;
     }
@@ -55,7 +55,7 @@ public class ShoppingCart implements Serializable {
         this.phones = phones;
     }
 
-    @OneToMany(mappedBy = "shoppingCart")
+    @ManyToMany(mappedBy = "shoppingCarts")
     public List<SimPlan> getSimPlans() {
         return simPlans;
     }
