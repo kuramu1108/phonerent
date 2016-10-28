@@ -27,6 +27,7 @@ public class Account implements Serializable {
     private String accountType;
     private String deliveryAddress;
     private CreditCard creditCard;
+    private ShoppingCart shoppingCart;
     
     private List<Purchase> purchases = new ArrayList<>();
     
@@ -204,5 +205,14 @@ public class Account implements Serializable {
 
     public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
+    }
+
+    @OneToOne
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

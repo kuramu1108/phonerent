@@ -21,6 +21,7 @@ public class SimPlan implements Serializable{
     private int bonusSMS;
     private int planDuration;
     private Purchase purchase;
+    private ShoppingCart shoppingCart;
 
     public SimPlan(){
         
@@ -105,5 +106,14 @@ public class SimPlan implements Serializable{
     
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
+    }
+
+    @ManyToOne
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

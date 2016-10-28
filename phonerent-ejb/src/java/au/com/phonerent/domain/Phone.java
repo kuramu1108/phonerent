@@ -12,6 +12,7 @@ public class Phone implements Serializable {
     private int id; 
     private PhoneModel model;    
     private Purchase purchase;
+    private ShoppingCart shoppingCart;
 
     public Phone(){
         
@@ -43,5 +44,14 @@ public class Phone implements Serializable {
     
     public void setPurchase(Purchase purchase) {
         this.purchase = purchase;
+    }
+
+    @ManyToOne
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }
