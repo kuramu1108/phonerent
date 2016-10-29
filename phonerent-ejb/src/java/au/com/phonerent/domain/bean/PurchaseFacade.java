@@ -72,7 +72,7 @@ public class PurchaseFacade extends AbstractFacade<Purchase> implements Purchase
                 //add sim card number later
                 body.setTo(simplans.get(0).getName());
                 String sms = "Reminder from PhoneRent\n"
-                        + "your order for this sim plan is expring at\n"
+                        + "your order(#" + p.getId() + ") for this sim plan is expring at\n"
                         + p.getEndDate().toString() + "\n"
                         + "Please visit our website for detail or extension";
                 body.setBody(sms);

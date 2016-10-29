@@ -5,6 +5,7 @@
  */
 package au.com.phonerent.domain.bean;
 
+import au.com.phonerent.domain.Purchase;
 import au.com.phonerent.domain.ShoppingCart;
 import java.util.List;
 import javax.ejb.Local;
@@ -30,4 +31,7 @@ public interface ShoppingCartFacadeLocal {
 
     int count();
     
+    void process(ShoppingCart shoppingCart, Purchase purchase);
+    
+    void empty(ShoppingCart shoppingCart);
 }
