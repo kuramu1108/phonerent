@@ -6,6 +6,7 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
+import au.com.phonerent.domain.ShoppingCart;
 import au.com.phonerent.domain.utility.PasswordResetIdGenerator;
 import au.com.phonerent.domain.utility.Sha256;
 import au.com.phonerent.jma.EmailClient;
@@ -46,6 +47,8 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     public void create(Account account) {
         account.setIsActivate(false);
         account.setAccountType("Users");
+        ShoppingCart cart = new ShoppingCart();
+        account.setShoppingCart(cart);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
             emailClient.registerationConfirmationSendTo(account.getEmail());
