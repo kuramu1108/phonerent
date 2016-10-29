@@ -101,7 +101,7 @@ public class SimPlan implements Serializable{
         this.planDuration = planDuration;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -110,7 +110,7 @@ public class SimPlan implements Serializable{
         this.purchases = purchases;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }

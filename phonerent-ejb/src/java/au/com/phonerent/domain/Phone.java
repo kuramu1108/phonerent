@@ -30,7 +30,7 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     public PhoneModel getModel() {
         return model;
     }
@@ -39,7 +39,7 @@ public class Phone implements Serializable {
         this.model = model;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -48,7 +48,7 @@ public class Phone implements Serializable {
         this.purchases = purchases;
     }
 
-    @ManyToMany
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }

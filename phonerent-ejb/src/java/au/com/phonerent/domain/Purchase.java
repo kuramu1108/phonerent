@@ -121,7 +121,7 @@ public class Purchase implements Serializable {
     /**
      * @return the phones
      */
-    @ManyToMany(mappedBy = "purchases")
+    @ManyToMany(mappedBy = "purchases", cascade=CascadeType.ALL)
     public List<Phone> getPhones() {
         return phones;
     }
@@ -136,7 +136,7 @@ public class Purchase implements Serializable {
     /**
      * @return the simPlans
      */
-    @ManyToMany(mappedBy = "purchases")
+    @ManyToMany(mappedBy = "purchases", cascade=CascadeType.ALL)
     public List<SimPlan> getSimPlans() {
         return simPlans;
     }

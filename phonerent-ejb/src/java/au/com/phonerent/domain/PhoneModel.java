@@ -55,7 +55,7 @@ public class PhoneModel implements Serializable {
         this.price = price;
     }
     
-    @OneToMany(mappedBy = "model")
+    @OneToMany(mappedBy = "model", cascade=CascadeType.ALL)
     public List<Phone> getPhones() {
         return phones;
     }

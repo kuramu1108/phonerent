@@ -130,7 +130,7 @@ public class Account implements Serializable {
      * The list can be null. One account can issues several order at the same time
      * @return the orders
      */
-    @OneToMany(mappedBy = "account")
+    @OneToMany(mappedBy = "account", cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -198,7 +198,7 @@ public class Account implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -207,7 +207,7 @@ public class Account implements Serializable {
         this.creditCard = creditCard;
     }
 
-    @OneToOne
+    @OneToOne(cascade=CascadeType.ALL)
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
