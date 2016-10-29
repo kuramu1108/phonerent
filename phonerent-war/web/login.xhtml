@@ -16,28 +16,22 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <h:commandLink class="navbar-brand" value="Phonerent"/>
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/login?faces-redirect=true" />
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login"/>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="/login?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp"/>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="/register?faces-redirect=true" />
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="product_list?faces-redirect=true" />
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-user"/>
-                        </li>      
-                        <li>
-                            <h:commandLink  class="	glyphicon glyphicon-log-out"/>
-                        </li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="cart?faces-redirect=true" />
+                        </li>   
                     </ul>    
                 </div>
             </nav>
@@ -66,12 +60,12 @@
                         </label>
                     </p>
                     <h:commandButton value="Login" action="#{accountController.login()}" style="margin-right: 15px;"/>
-                    <h:commandButton value="Sign Up" action="#"/>
+                    <h:commandButton value="Sign Up" action="/register?faces-redirect=true"/>
                     <h:commandButton value="Logout" action="#{accountController.logout()}"/>
                 </h:form>
 
-                <p style="margin-top: 15px;">Forgot your password? Click <a href="#">here</a> for password recovery</p>
-                <p>Not a member yet? <a href="#">Sign Up</a> now!</p>
+                <p style="margin-top: 15px;">Forgot your password? Click <a href="password_recovery.xhtml">here</a> for password recovery</p>
+                <p>Not a member yet? <a href="register.xhtml">Sign Up</a> now!</p>
                     
                 <h:messages></h:messages>
         </center>  
