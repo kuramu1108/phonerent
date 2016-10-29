@@ -24,7 +24,7 @@
                             <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true" />
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/product_list?faces-redirect=true" />
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true" />
                         </li>    
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}" />
@@ -65,7 +65,9 @@
                                                 <h:outputText value="#{phoneList.model.price}" />
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="View Detail"/>
+                                                <h:commandButton value="View Detail">
+                                                    <f:param name="phoneDetail" value="#{phoneList.id}" />
+                                                </h:commandButton>
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="Add to Cart"/>
@@ -121,7 +123,9 @@
                                                 <h:outputText value="#{simList.price}"/>
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="View Detail" />
+                                                <h:commandButton value="View Detail" >
+                                                    <f:param name="simDetail" value="#{simList.id}" />
+                                                </h:commandButton>
                                             </h:column>
                                             <h:column>
                                                 <h:commandButton value="Add to Cart"/>
@@ -132,7 +136,7 @@
                         </div>
                     </div>
                 </div>
-            <center style="margin-left: 35%"><h:commandButton value="GO TO CART"/></center>
+            <center style="margin-left: 35%"><h:commandButton value="GO TO CART" action="/cart?faces-redirect=true"/></center>
 	</div>
            
         </h:form>
