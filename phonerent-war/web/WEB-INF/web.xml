@@ -37,8 +37,9 @@
         <display-name>Logged in pages</display-name>
         <web-resource-collection>
             <web-resource-name>secure</web-resource-name>
-            <url-pattern>/faces/welcome.xhtml</url-pattern>
-            <url-pattern>/faces/secret/*</url-pattern>
+            <url-pattern>/faces/product_list.xhtml</url-pattern>
+            <url-pattern>/faces/user_dashboard.xhtml</url-pattern>
+            <url-pattern>/faces/product_detail.xhtml</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>Users</role-name>
@@ -49,7 +50,6 @@
         <display-name>Admin pages</display-name>
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
-            <url-pattern>/faces/admin.xhtml</url-pattern>
             <url-pattern>/faces/secret/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
