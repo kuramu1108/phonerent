@@ -21,26 +21,38 @@
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="/login?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="/register?faces-redirect=true" />
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="product_list?faces-redirect=true" />
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="cart?faces-redirect=true" />
-                        </li>   
+                        <c:choose>
+                            <c:when test="#{accountController.loggedIn}">
+                                <li>
+                                    <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true" />
+                                </li>
+                                <li>
+                                    <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true" />
+                                </li>
+                                <li>
+                                    <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout}"/>
+                                </li>
+                            </c:when>
+                            <c:otherwise>
+                                <li>
+                                    <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="/login?faces-redirect=true"/>
+                                </li>
+                                <li>
+                                    <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="/register?faces-redirect=true" />
+                                </li>
+                            </c:otherwise>
+                        </c:choose>
                     </ul>    
                 </div>
             </nav>
         </h:form>
-        <c:if test="#{accountController.newRegisteration}">
-            <div class="alert alert-success fade in">
-                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <center><strong>Success!</strong> You have created an account</center>
+        
+        <c:if test="#{accountController.displayRegistrationAlert()}">
+            <div class="container">
+                <div class="alert alert-success fade in">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <center><strong>Success!</strong> You have created an account</center>
+                </div>
             </div>
         </c:if>
         
@@ -50,26 +62,24 @@
                 Add sample data
                 <h:commandButton value="Add" action="#{accountController.addSample()}"/>
             </h:form>
-                <h:form>
-                    <p>
-                        <label>Email: 
-                            <h:inputText id="email" value="#{accountController.account.email}"/>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Password: 
-                            <h:inputSecret id="password" value="#{accountController.account.password}"/>
-                        </label>
-                    </p>
-                    <h:commandButton value="Login" action="#{accountController.login()}" style="margin-right: 15px;"/>
-                    <h:commandButton value="Sign Up" action="/register?faces-redirect=true"/>
-                    <h:commandButton value="Logout" action="#{accountController.logout()}"/>
-                </h:form>
+            <h:form>
+                <p>
+                    <label>Email: 
+                        <h:inputText id="email" value="#{accountController.account.email}"/>
+                    </label>
+                </p>
+                <p>
+                    <label>Password: 
+                        <h:inputSecret id="password" value="#{accountController.account.password}"/>
+                    </label>
+                </p>
+                <h:commandButton value="Login" action="#{accountController.login()}" style="margin-right: 15px;"/>
+            </h:form>
 
-                <p style="margin-top: 15px;">Forgot your password? Click <a href="password_recovery.xhtml">here</a> for password recovery</p>
-                <p>Not a member yet? <a href="register.xhtml">Sign Up</a> now!</p>
-                    
-                <h:messages></h:messages>
+            <p style="margin-top: 15px;">Forgot your password? Click <h:link value="here" outcome="/password_recovery?faces-redirect=true"/> for password recovery</p>
+            <p>Not a member yet? <h:link value="Sign Up" outcome="/register?faces-redirect=true"/> now!</p>
+
+            <h:messages></h:messages>
         </center>  
     </h:body>
 </html>

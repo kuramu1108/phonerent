@@ -39,9 +39,14 @@ public class AccountController implements Serializable {
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  
     
+    
+    // Presentation Logic Supporting variables =========================================
     private String newPassword;
-    private boolean newRegisteration = false;
+    private boolean newRegistration = false;
+    private boolean registrationChecked = false;
 
+    private boolean loggedIn = false;
+    
     public String getNewPassword() {
         return newPassword;
     }
@@ -60,6 +65,7 @@ public class AccountController implements Serializable {
             context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!",e.getMessage()));
             return null;
         }
+        loggedIn = true;
         if ("Admins".equals(account.getAccountType())) {
             account = new Account();
             return "/secret/admin_dashboard" + REDIRECT;
@@ -89,10 +95,6 @@ public class AccountController implements Serializable {
         return creditCard;
     }
     
-    public boolean getNewRegisteration () {
-        return newRegisteration;
-    }
-    
     public void addSample() {
         accountFacade.addSample();
         purchaseFacade.addSample();
@@ -106,7 +108,7 @@ public class AccountController implements Serializable {
     
     public String signUp() {
         accountFacade.signUp(account);
-        newRegisteration = true;
+        newRegistration = true;
         return "/login" + REDIRECT;
     }
     
@@ -153,5 +155,23 @@ public class AccountController implements Serializable {
     
     public void deleteCreditCard() {
         creditCardFacade.remove(creditCard);
+    }
+    
+    
+    // Presentation Logic functions ===========================================
+    
+    public boolean displayRegistrationAlert() {
+        if (newRegistration) {
+            if (!registrationChecked) {
+                registrationChecked = true;
+                return true;
+            } else
+                return false;
+        } else
+            return false;
+    }
+    
+    public boolean getLoggedIn() {
+        return loggedIn;
     }
 }
