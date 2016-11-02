@@ -174,4 +174,15 @@ public class AccountController implements Serializable {
     public boolean getLoggedIn() {
         return loggedIn;
     }
+    
+    private boolean test = false;
+    // testing function
+    public boolean getTest() {
+        return test;
+    }
+    
+    public String testing() {
+        test = !test;
+        return null;
+    }
 }
