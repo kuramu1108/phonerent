@@ -67,7 +67,6 @@ public class AccountController implements Serializable {
         }
         loggedIn = true;
         if ("Admins".equals(account.getAccountType())) {
-            account = new Account();
             return "/secret/admin_dashboard" + REDIRECT;
         }
         else
@@ -100,11 +99,6 @@ public class AccountController implements Serializable {
         purchaseFacade.addSample();
     }
     
-    public String addAccount() {
-        accountFacade.create(account);
-        account = new Account();
-        return "/secret/admin_dashboard" + REDIRECT;
-    }
     
     public String signUp() {
         accountFacade.signUp(account);
@@ -129,6 +123,18 @@ public class AccountController implements Serializable {
             return null;
     }
     
+    public String loadAccount(int id, String type) {
+        account = accountFacade.find(id);
+        if (null == account) {
+            if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user_dashbaord" + REDIRECT;
+        }
+        else
+            return null;
+    }
+    
     public String resetPassword() {
         accountFacade.resetPassword(account, newPassword);
         return "/login" + REDIRECT;
@@ -141,8 +147,17 @@ public class AccountController implements Serializable {
             return "/login" + REDIRECT;
     }
     
-    public void editAccount() {
+    public String addAccount() {
+        accountFacade.create(account);
+        return "/secret/admin_dashboard" + REDIRECT;
+    }
+    
+    public String editAccount(String type) {
         accountFacade.edit(account);
+        if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user_dashbaord" + REDIRECT;
     }
     
     public void editCreditCard() {
@@ -153,8 +168,17 @@ public class AccountController implements Serializable {
         accountFacade.remove(account);
     }
     
+    public void deleteAccount(int id) {
+        accountFacade.remove(accountFacade.find(id));
+    }
+    
     public void deleteCreditCard() {
         creditCardFacade.remove(creditCard);
+    }
+    
+    // initialize new Entities ================================================
+    public void newAccount() {
+        account = new Account();
     }
     
     
@@ -174,6 +198,9 @@ public class AccountController implements Serializable {
     public boolean getLoggedIn() {
         return loggedIn;
     }
+    
+    
+    
     
     private boolean test = false;
     // testing function

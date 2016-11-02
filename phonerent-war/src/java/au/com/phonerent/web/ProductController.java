@@ -102,21 +102,38 @@ public class ProductController implements Serializable {
         phone = phoneFacade.find(id);
     }
     
-    public void loadSimPlan(int id) {
+    public String loadSimPlan(int id, String type) {
         simplan = simplanFacade.find(id);
-    }
-    
-    public void loadPhoneModel(int id) {
-        phoneModel = phoneModelFacade.find(id);
-    }
-    
-    public String loadPurchase (int id, String type) {
-        purchase = purchaseFacade.find(id);
-        if (null == purchase)
+        if (null == simplan) {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
                 return "/user_dashbaord" + REDIRECT;
+        }
+        else
+            return null;
+    }
+    
+    public String loadPhoneModel(int id, String type) {
+        phoneModel = phoneModelFacade.find(id);
+        if (null == phoneModel) {
+            if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user_dashbaord" + REDIRECT;
+        }
+        else
+            return null;
+    }
+    
+    public String loadPurchase (int id, String type) {
+        purchase = purchaseFacade.find(id);
+        if (null == purchase) {
+            if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user_dashbaord" + REDIRECT;
+        }
         else
             return null;
     }
@@ -127,38 +144,46 @@ public class ProductController implements Serializable {
     
     // Create functions =======================================================
     
-    public void addPhone() {
+    public String addPhone() {
         phoneFacade.create(phone);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void addSimPlan() {
+    public String addSimPlan() {
         simplanFacade.create(simplan);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void addPhoneModel() {
+    public String addPhoneModel() {
         phoneModelFacade.create(phoneModel);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
     // Edit functions =========================================================
     
-    public void editPhone() {
+    public String editPhone() {
         phoneFacade.edit(phone);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void editSimPlan() {
+    public String editSimPlan() {
         simplanFacade.edit(simplan);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void editPhoneModel() {
+    public String editPhoneModel() {
         phoneModelFacade.edit(phoneModel);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void editPurchase() {
+    public String editPurchase() {
         purchaseFacade.edit(purchase);
+        return "/secret/admin_dashboard" + REDIRECT;
     }
     
-    public void editShoppingCart() {
+    public String editShoppingCart() {
         shoppingCartFacade.edit(shoppingCart);
+        return "/user_dashboard" + REDIRECT;
     }
     
     // Delete functions =======================================================
@@ -171,8 +196,17 @@ public class ProductController implements Serializable {
         simplanFacade.remove(simplan);
     }
     
+    public void deleteSimPlan(int id) {
+        simplanFacade.remove(simplanFacade.find(id));
+    }
+    
     public void deletePhoneModel() {
         phoneModelFacade.remove(phoneModel);
+    }
+    
+    public String deletePoneModel(int id) {
+        phoneModelFacade.remove(phoneModelFacade.find(id));
+        return null;
     }
     
     public void deletePurchase() {
@@ -181,5 +215,22 @@ public class ProductController implements Serializable {
     
     public void deletePurchase(int id) {
         purchaseFacade.remove(purchaseFacade.find(id));
+    }
+    
+    // initialize new Entities ================================================
+    public void newPhone() {
+        phone = new Phone();
+    }
+    
+    public void newSimPlan() {
+        simplan = new SimPlan();
+    }
+    
+    public void newPhoneModel() {
+        phoneModel = new PhoneModel();
+    }
+    
+    public void newPurchase() {
+        purchase = new Purchase();
     }
 }
