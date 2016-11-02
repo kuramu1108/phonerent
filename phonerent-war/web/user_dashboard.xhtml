@@ -49,7 +49,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">          
                                         <h:form>
-                                            <h:dataTable var="activePurchase" value="#{productController.allPurchases}" class="table table-hover" >
+                                            <h:dataTable var="activePurchase" value="#{accountController.account.purchases}" class="table table-hover" >
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase ID
@@ -87,7 +87,7 @@
                                 <div class="panel panel-default">
                                     <div class="panel-body">          
                                         <h:form>
-                                            <h:dataTable var="inactivePurchase" value="#{productController.allPurchases}" class="table table-hover" >
+                                            <h:dataTable var="inactivePurchase" value="#{accountController.account.purchases}" class="table table-hover" >
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase ID
