@@ -44,7 +44,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     }
     
     @Override
-    public void create(Account account) {
+    public void signUp(Account account) {
         account.setIsActivate(false);
         account.setAccountType("Users");
         ShoppingCart cart = new ShoppingCart();
@@ -52,6 +52,21 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
             emailClient.registerationConfirmationSendTo(account.getEmail());
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("error encrpytion");
+        }
+        getEntityManager().persist(account);
+    }
+    
+    @Override
+    public void create(Account account) {
+        account.setIsActivate(false);
+        account.setAccountType("Users");
+        ShoppingCart cart = new ShoppingCart();
+        account.setShoppingCart(cart);
+        try {
+            account.setPassword(Sha256.hash256(account.getPassword()));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error encrpytion");

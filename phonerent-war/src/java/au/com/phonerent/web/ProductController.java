@@ -19,6 +19,8 @@ import javax.inject.Named;
 @Named
 @SessionScoped
 public class ProductController implements Serializable {
+    private final String REDIRECT = "?faces-redirect=true";
+    
     @EJB
     private PhoneFacadeLocal phoneFacade;
     @EJB
@@ -108,8 +110,15 @@ public class ProductController implements Serializable {
         phoneModel = phoneModelFacade.find(id);
     }
     
-    public void loadPurchase (int id) {
+    public String loadPurchase (int id, String type) {
         purchase = purchaseFacade.find(id);
+        if (null == purchase)
+            if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user_dashbaord" + REDIRECT;
+        else
+            return null;
     }
     
     public void loadShoppingCart(int id) {
@@ -168,5 +177,9 @@ public class ProductController implements Serializable {
     
     public void deletePurchase() {
         purchaseFacade.remove(purchase);
+    }
+    
+    public void deletePurchase(int id) {
+        purchaseFacade.remove(purchaseFacade.find(id));
     }
 }
