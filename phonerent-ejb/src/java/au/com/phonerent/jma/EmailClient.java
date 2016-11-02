@@ -21,9 +21,9 @@ import javax.mail.internet.*;
 @Stateless
 public class EmailClient {
     private String host = "in-v3.mailjet.com";
-    private String from = "colagarychen@gmail.com";
+    private String from = "phonerent@outlook.com";
     private final String username = "5516087c870da43d5e1716d8ab1483eb";
-    private final String password = "ca112c066d6d36a475c105f6a9c27037";
+    private final String password = "417ad7646c8ab221f419edda6cafd2fd";
     private Properties props;
     
     public EmailClient() {
@@ -46,7 +46,7 @@ public class EmailClient {
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Your Password Recovery for PhoneRent");
-            message.setContent("<h1>this is testing</h1>"
+            message.setContent("<h1>You've requested a password recovery for your Phonerent account</h1>"
                     + "<br/>"
                     + "<a href='http://localhost:8080/phonerent-war/faces/password_reset.xhtml?resetId=" + resetId 
                     + "'>Reset Password</a>", "text/html");
@@ -67,7 +67,7 @@ public class EmailClient {
             message.setFrom(new InternetAddress(from));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Confrim your registration with Phonerent");
-            message.setContent("<h1>You've just sign up with Phonerent</h1>"
+            message.setContent("<h1>You've just signed up with Phonerent</h1>"
                     + "<a href='http://localhost:8080/phonerent-war/faces/confirm_registration.xhtml?email=" + to 
                     + "'>Confirm</a>", "text/html");
             
