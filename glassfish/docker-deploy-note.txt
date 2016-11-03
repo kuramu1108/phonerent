@@ -1,0 +1,4 @@
+Creating realm
+properties
+    encrypt algorithm
+    --digestrealm-password-enc-algorithm
