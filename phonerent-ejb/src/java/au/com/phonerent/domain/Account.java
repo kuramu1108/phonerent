@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -57,7 +58,9 @@ public class Account implements Serializable {
     /**
      * @return the dob
      */
+    
     @Temporal(TemporalType.DATE)
+    @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$")
     public Date getDob() {
         return dob;
     }
@@ -72,6 +75,7 @@ public class Account implements Serializable {
     /**
      * @return the firstName
      */
+    @Size(min=1)
     public String getFirstName() {
         return firstName;
     }
@@ -86,6 +90,7 @@ public class Account implements Serializable {
     /**
      * @return the lastName
      */
+    @Size(min=1)
     public String getLastName() {
         return lastName;
     }
@@ -100,6 +105,7 @@ public class Account implements Serializable {
     /**
      * @return the password
      */
+    @Size(min=6)
     public String getPassword() {
         return password;
     }
@@ -114,6 +120,7 @@ public class Account implements Serializable {
     /**
      * @return the email
      */
+    @Pattern(regexp = "[a-z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
     public String getEmail() {
         return email;
     }
@@ -163,6 +170,7 @@ public class Account implements Serializable {
      * accountType must not be null.
      * @return the orders
      */
+    @Size(min=4, max=12)
     public String getPhoneNumber() {
         return phoneNumber;
     }
@@ -190,6 +198,7 @@ public class Account implements Serializable {
         this.passwordResetId = passwordResetId;
     }
 
+    @Size(min=3)
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
