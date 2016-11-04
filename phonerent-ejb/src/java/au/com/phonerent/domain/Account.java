@@ -60,7 +60,6 @@ public class Account implements Serializable {
      */
     
     @Temporal(TemporalType.DATE)
-    @Pattern(regexp = "^\\d{2}-\\d{2}-\\d{4}$")
     public Date getDob() {
         return dob;
     }
