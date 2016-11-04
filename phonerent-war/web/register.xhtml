@@ -37,42 +37,60 @@
         
         <center style="margin:75px;">
             <h1>Welcome to the Register page</h1>
-
-            <h:form style="margin-top:40px;">
-                <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                    <p>
-                        <label>Email 
-                            <h:inputText id="email" value="#{accountController.account.email}"/>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Password
-                            <h:inputSecret id="password" value="#{accountController.account.password}"/>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Confirm Password
-                            <h:inputSecret id="confirmPassword"/>
-                        </label>
-                    </p>
-
-                    <p style="margin-top: 25px;">
-                        <label>First Name
-                            <h:inputText id="firstName" value="#{accountController.account.firstName}"/>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Last Name
-                            <h:inputText id="lastName" value="#{accountController.account.lastName}"/>
-                        </label>
-                    </p>
-                    <p>
-                        <label>Mobile Phone
-                            <h:inputText id="mobilePhone" value="#{accountController.account.phoneNumber}"/>
-                        </label>
-                    </p>
-                    <h:commandButton value="Register" action="#{accountController.signUp()}"/>
-                </h:panelGrid>
+            <h:form class="form-horizontal" style="margin-top:40px;">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Email:
+                    </label>
+                    <div class="col-sm-3">
+                        <h:inputText class="form-control" id="email" value="#{accountController.account.email}" validatorMessage="Please ensure you enter a valid email address" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h:message for="email" style="color:red;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Password:</label>
+                    <div class="col-sm-3">
+                        <h:inputSecret class="form-control" id="password" value="#{accountController.account.password}" validatorMessage="Password required to be 6 or more characters" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h:message for="password" style="color:red;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Confirm Password:</label>
+                    <div class="col-sm-3">
+                        <h:inputSecret class="form-control" id="confirmPassword" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">First Name:</label>
+                    <div class="col-sm-3">
+                        <h:inputText class="form-control" id="firstName" value="#{accountController.account.firstName}" validatorMessage="This field must not be empty" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h:message for="firstName" style="color:red;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Last Name:</label>
+                    <div class="col-sm-3">
+                        <h:inputText class="form-control" id="lastName" value="#{accountController.account.lastName}" validatorMessage="This field must not be empty" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h:message for="lastName" style="color:red;"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Mobile Phone:</label>
+                    <div class="col-sm-3">
+                        <h:inputText class="form-control" id="phoneNumber" value="#{accountController.account.phoneNumber}" validatorMessage="Please enter a valid mobile phone number" />
+                    </div>
+                    <div class="col-sm-3">
+                        <h:message for="phoneNumber" style="color:red;"/>
+                    </div>
+                </div>                
+                <h:commandButton class="btn btn-primary btn-lg" value="Register" action="#{accountController.signUp()}" style="margin-top : 12px;"/>
             </h:form>             
         </center>     
     </h:body>

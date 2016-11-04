@@ -149,13 +149,13 @@ public class AccountController implements Serializable {
     
     public String addAccount() {
         accountFacade.create(account);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "tab=account";
     }
     
     public String editAccount(String type) {
         accountFacade.edit(account);
         if ("Admins".equals(type))
-                return "/secret/admin_dashboard" + REDIRECT;
+                return "/secret/admin_dashboard" + REDIRECT + "tab=account";
             else
                 return "/user_dashbaord" + REDIRECT;
     }

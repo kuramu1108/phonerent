@@ -96,6 +96,10 @@ public class ProductController implements Serializable {
         return shoppingCart;
     }
     
+    public int getShoppingItemCount() {
+        return shoppingCart.getPhones().size() + shoppingCart.getSimPlans().size();
+    }
+    
     // Load Object functions =================================================
     
     public void loadPhone(int id) {
@@ -146,39 +150,39 @@ public class ProductController implements Serializable {
     
     public String addPhone() {
         phoneFacade.create(phone);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
     }
     
     public String addSimPlan() {
         simplanFacade.create(simplan);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "?tab=sim";
     }
     
     public String addPhoneModel() {
         phoneModelFacade.create(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
     }
     
     // Edit functions =========================================================
     
     public String editPhone() {
         phoneFacade.edit(phone);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
     }
     
     public String editSimPlan() {
         simplanFacade.edit(simplan);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
     }
     
     public String editPhoneModel() {
         phoneModelFacade.edit(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     public String editPurchase() {
         purchaseFacade.edit(purchase);
-        return "/secret/admin_dashboard" + REDIRECT;
+        return "/secret/admin_dashboard" + REDIRECT + "tab=purchase";
     }
     
     public String editShoppingCart() {
