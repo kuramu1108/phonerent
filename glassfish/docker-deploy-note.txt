@@ -2,3 +2,9 @@ Creating realm
 properties
     encrypt algorithm
     --digestrealm-password-enc-algorithm
+
+build docker image
+
+docker build -t po/phonerent .
+
+docker run -it -p 80:8080 -p 4848:4848 po/phonerent /bin/bash
