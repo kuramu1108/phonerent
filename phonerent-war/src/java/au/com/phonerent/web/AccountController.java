@@ -199,7 +199,12 @@ public class AccountController implements Serializable {
         return loggedIn;
     }
     
-    
+    public String loggedInGuard() {
+        if (loggedIn)
+            return "/user_dashboard" + REDIRECT;
+        else
+            return null;
+    }
     
     
     private boolean test = false;
