@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -47,6 +48,7 @@ public class SimPlan implements Serializable{
      * name must not be null
      * @return the name
      */
+    @Size(min=1)
     public String getName() {
         return name;
     }
@@ -55,6 +57,7 @@ public class SimPlan implements Serializable{
         this.name = name;
     }
 
+    @Size(min=1)
     public double getPrice() {
         return price;
     }
@@ -70,6 +73,7 @@ public class SimPlan implements Serializable{
      * credit must not be null
      * @return the credit
      */
+    @Size(min=1)
     public double getCredit() {
         return credit;
     }

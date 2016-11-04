@@ -197,7 +197,6 @@ public class Account implements Serializable {
         this.passwordResetId = passwordResetId;
     }
 
-    @Size(min=3)
     public String getDeliveryAddress() {
         return deliveryAddress;
     }

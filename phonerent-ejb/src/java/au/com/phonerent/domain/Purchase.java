@@ -8,6 +8,7 @@ package au.com.phonerent.domain;
 import java.io.*;
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -92,6 +93,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the total
      */
+    @Size(min=1)
     public double getTotal() {
         return total;
     }
@@ -107,6 +109,7 @@ public class Purchase implements Serializable {
      * status displays the condition of the order whether the purchases have been fulfilled
      * @return the status
      */
+    @Size(min=3)
     public String getStatus() {
         return status;
     }
