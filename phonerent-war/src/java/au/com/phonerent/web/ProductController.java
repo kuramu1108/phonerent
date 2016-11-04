@@ -172,17 +172,17 @@ public class ProductController implements Serializable {
     
     public String editSimPlan() {
         simplanFacade.edit(simplan);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=sim";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
     }
     
     public String editPhoneModel() {
         phoneModelFacade.edit(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     public String editPurchase() {
         purchaseFacade.edit(purchase);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=purchase";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=purchase";
     }
     
     public String editShoppingCart() {
