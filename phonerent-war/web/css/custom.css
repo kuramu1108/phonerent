@@ -1,18 +1,55 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 13/10/2016, 3:47:09 PM
-    Author     : Darren
-*/
 
-.navbar-default .navbar-nav>li>a,
-.navbar-default .navbar-nav>li>form>a, 
-.navbar-default .form>navbar-nav>ul>li>a{
-    color: #255;
+
+.homepagebtn
+{
+		color: #FFF;
+		font-size: 1.20em;
+		text-transform: uppercase;
+		font-family:roboto;
+		padding: 0.7em 0.8em;
+		transition: 0.5s all;
+		-webkit-transition: 0.5s all;
+		-moz-transition: 0.5s all;
+		-o-transition: 0.5s all;
+		display: block;
+		width:15%;
+		background-color: #F83030;
+		border: 2px solid #F83030;
+		border-radius:30px;
+}
+
+.homepagebtn:hover
+{
+	background-color: rgba(248, 48, 48, 0.4);
+	text-decoration: none;
+	color: white;
+	border: 2px solid rgba(248, 48, 48, 0.8);
+}
+
+.homepagebg {
+    background-image: url("../img/classic.jpg");
+    background-size: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    background-blend-mode: multiply;
+    background-repeat: no-repeat;
+/*    background-position: center center;*/
+}
+
+.homepagetitle {
+    margin-top : 100px;
+    font-family: Roboto;
+    font-size: 55px;
+    color: #F0FFFF;
 
 }
+
+.homepagetxt {
+    margin-top : 40px;
+    font-family: Roboto;
+    font-size: 35px;
+    color: white;
+
+}
+
 
 

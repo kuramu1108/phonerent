@@ -18,18 +18,27 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <h:commandLink class="navbar-brand" value="Phonerent" action="/user_dashboard?faces-redirect=true" />
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true"/>
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true" />
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true" />
-                        </li>    
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
+                        </li>
                         <li>
-                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}" />
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                        </li>      
+                        <li>
+                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
                         </li>
                     </ul>    
                 </div>

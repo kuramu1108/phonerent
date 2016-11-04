@@ -3,43 +3,60 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet"/>
+        <link rel="stylesheet" href="css/custom.css"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
-        <title>Facelet Title</title>
+        <title>Phonerent</title>
     </h:head>
-    <h:body>
+    <h:body class="homepagebg">
         <h:form>
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <h:commandLink class="navbar-brand" value="Phonerent"/>
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true"/>
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login"/>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
                         </li>
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp"/>
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart"/>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-user"/>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
                         </li>      
                         <li>
-                            <h:commandLink  class="glyphicon glyphicon-log-out"/>
+                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
                         </li>
                     </ul>    
                 </div>
             </nav>
         </h:form>
+        
+        <center>
+        <div class="homepagetitle">
+            <p>Have a phone, anywhere.. anytime</p>
+        </div>
+        <div style="margin-top: 75px">
+            <h:button class="homepagebtn" value="Register" outcome="register.xhtml"/>
+        </div>
+        <p class="homepagetxt">or maybe..</p>
+        <div style="margin-top: 50px">
+            <h:button class="homepagebtn" value="Login" outcome="login.xhtml"/>
+        </div>
+        </center>
+        
+        
     </h:body>
 </html>
 
