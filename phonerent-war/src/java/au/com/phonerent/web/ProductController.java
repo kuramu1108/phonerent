@@ -150,24 +150,24 @@ public class ProductController implements Serializable {
     
     public String addPhone() {
         phoneFacade.create(phone);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     public String addSimPlan() {
         simplanFacade.create(simplan);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=sim";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
     }
     
     public String addPhoneModel() {
         phoneModelFacade.create(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     // Edit functions =========================================================
     
     public String editPhone() {
         phoneFacade.edit(phone);
-        return "/secret/admin_dashboard" + REDIRECT + "?tab=phone";
+        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     public String editSimPlan() {

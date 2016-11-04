@@ -9,25 +9,34 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
-        <title>Rent a phone</title>
+        <title>Product List</title>
     </h:head>
     <h:body>
         <h:form>
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <h:commandLink class="navbar-brand" value="Phonerent" action="/user_dashboard?faces-redirect=true" />
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true"/>
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true" />
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true" />
-                        </li>    
+                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
+                        </li>
                         <li>
-                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}" />
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                        </li>      
+                        <li>
+                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
                         </li>
                     </ul>    
                 </div>
@@ -65,12 +74,12 @@
                                                 <h:outputText value="#{phoneList.model.price}" />
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="View Detail">
+                                                <h:commandButton value="View Detail" class="btn btn-info">
                                                     <f:param name="phoneDetail" value="#{phoneList.id}" />
                                                 </h:commandButton>
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="Add to Cart"/>
+                                                <h:commandButton value="Add to Cart" class="btn btn-success"/>
                                             </h:column>                                  
                                         </h:dataTable>
                                     </h:form> 
@@ -123,12 +132,12 @@
                                                 <h:outputText value="#{simList.price}"/>
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="View Detail" >
+                                                <h:commandButton value="View Detail" class="btn btn-info">
                                                     <f:param name="simDetail" value="#{simList.id}" />
                                                 </h:commandButton>
                                             </h:column>
                                             <h:column>
-                                                <h:commandButton value="Add to Cart"/>
+                                                <h:commandButton value="Add to Cart" class="btn btn-success"/>
                                             </h:column>                                  
                                         </h:dataTable>
                                     </h:form> 
@@ -136,7 +145,7 @@
                         </div>
                     </div>
                 </div>
-            <center style="margin-left: 35%"><h:commandButton value="GO TO CART" action="/cart?faces-redirect=true"/></center>
+            <center style="margin-left: 35%"><h:commandButton value="Checkout" action="/cart?faces-redirect=true" class="btn btn-primary btn-lg"/></center>
 	</div>
            
         </h:form>
