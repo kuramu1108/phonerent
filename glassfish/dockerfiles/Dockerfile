@@ -45,7 +45,7 @@ RUN echo "grant { permission java.net.SocketPermission \"localhost:1527\", \"lis
 ADD password_1.txt /tmp/password_1.txt
 ADD password_2.txt /tmp/password_2.txt
 RUN asadmin --user admin --passwordfile /tmp/password_1.txt change-admin-password --domain_name domain1 ; asadmin start-domain domain1 ; asadmin --user admin --passwordfile /tmp/password_2.txt enable-secure-admin ; asadmin stop-domain domain1
-RUN rm /tmp/password_?.txt
+# RUN rm /tmp/password_?.txt
 
 # Add our GF startup script
 ADD start-gf.sh /usr/local/bin/start-gf.sh
