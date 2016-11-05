@@ -35,6 +35,8 @@ public class AccountController implements Serializable {
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  
     
+    private String deleteObjectType = "";
+    private int deleteObjectId;
     
     // Presentation Logic Supporting variables =========================================
     private String newPassword;
@@ -169,6 +171,15 @@ public class AccountController implements Serializable {
     
     public void deleteCreditCard() {
         creditCardFacade.remove(creditCard);
+    }
+    
+    public String deleteObjectTemp(int id) {
+        deleteObjectId = id;
+        return "#";
+    }
+    
+    public void deleteTempObject() {
+        deleteAccount(deleteObjectId);
     }
     
     // initialize new Entities ================================================
