@@ -12,7 +12,9 @@ import javax.persistence.*;
 @Entity
 public class Phone implements Serializable {
     private int id; 
-    private PhoneModel model;    
+    private String modelName;
+    private String manufacturer;
+    private double price;   
     private List<Purchase> purchases = new ArrayList<>();
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
@@ -28,15 +30,6 @@ public class Phone implements Serializable {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @ManyToOne(cascade=CascadeType.ALL)
-    public PhoneModel getModel() {
-        return model;
-    }
-
-    public void setModel(PhoneModel model) {
-        this.model = model;
     }
 
     @ManyToMany(cascade=CascadeType.ALL)
@@ -55,6 +48,30 @@ public class Phone implements Serializable {
 
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
    

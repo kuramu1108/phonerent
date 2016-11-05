@@ -1,7 +1,6 @@
 package au.com.phonerent.web;
 
 import au.com.phonerent.domain.Phone;
-import au.com.phonerent.domain.PhoneModel;
 import au.com.phonerent.domain.Purchase;
 import au.com.phonerent.domain.ShoppingCart;
 import au.com.phonerent.domain.SimPlan;
@@ -26,15 +25,12 @@ public class ProductController implements Serializable {
     @EJB
     private SimPlanFacadeLocal simplanFacade;
     @EJB
-    private PhoneModelFacadeLocal phoneModelFacade;
-    @EJB
     private PurchaseFacadeLocal purchaseFacade;
     @EJB
     private ShoppingCartFacadeLocal shoppingCartFacade;
     
     private Phone phone = new Phone();
     private SimPlan simplan = new SimPlan();
-    private PhoneModel phoneModel = new PhoneModel();
     private Purchase purchase = new Purchase();
     private ShoppingCart shoppingCart = new ShoppingCart();
     
@@ -96,14 +92,6 @@ public class ProductController implements Serializable {
         return simplan;
     }
     
-    public List<PhoneModel> getAllPhoneModels() {
-        return phoneModelFacade.findAll();
-    }
-    
-    public PhoneModel getPhoneModel () {
-        return phoneModel;
-    }
-    
     public List<Purchase> getAllPurchases() {
         return purchaseFacade.findAll();
     }
@@ -129,18 +117,6 @@ public class ProductController implements Serializable {
     public String loadSimPlan(int id, String type) {
         simplan = simplanFacade.find(id);
         if (null == simplan) {
-            if ("Admins".equals(type))
-                return "/secret/admin_dashboard" + REDIRECT;
-            else
-                return "/user/user_dashbaord" + REDIRECT;
-        }
-        else
-            return null;
-    }
-    
-    public String loadPhoneModel(int id, String type) {
-        phoneModel = phoneModelFacade.find(id);
-        if (null == phoneModel) {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
@@ -178,11 +154,6 @@ public class ProductController implements Serializable {
         return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
     }
     
-    public String addPhoneModel() {
-        phoneModelFacade.create(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
-    }
-    
     // Edit functions =========================================================
     
     public String editPhone() {
@@ -193,11 +164,6 @@ public class ProductController implements Serializable {
     public String editSimPlan() {
         simplanFacade.edit(simplan);
         return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
-    }
-    
-    public String editPhoneModel() {
-        phoneModelFacade.edit(phoneModel);
-        return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
     }
     
     public String editPurchase() {
@@ -224,15 +190,6 @@ public class ProductController implements Serializable {
         simplanFacade.remove(simplanFacade.find(id));
     }
     
-    public void deletePhoneModel() {
-        phoneModelFacade.remove(phoneModel);
-    }
-    
-    public String deletePoneModel(int id) {
-        phoneModelFacade.remove(phoneModelFacade.find(id));
-        return null;
-    }
-    
     public void deletePurchase() {
         purchaseFacade.remove(purchase);
     }
@@ -248,10 +205,6 @@ public class ProductController implements Serializable {
     
     public void newSimPlan() {
         simplan = new SimPlan();
-    }
-    
-    public void newPhoneModel() {
-        phoneModel = new PhoneModel();
     }
     
     public void newPurchase() {

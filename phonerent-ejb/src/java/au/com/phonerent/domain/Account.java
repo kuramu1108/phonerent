@@ -119,7 +119,7 @@ public class Account implements Serializable {
     /**
      * @return the email
      */
-    @Pattern(regexp = "[a-z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
+    @Pattern(regexp = "[a-zA-Z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
     public String getEmail() {
         return email;
     }
