@@ -38,7 +38,8 @@ public class ProductController implements Serializable {
     private Purchase purchase = new Purchase();
     private ShoppingCart shoppingCart = new ShoppingCart();
     
-    
+    private String deleteObjectType = "";
+    private int deleteObjectId;
     // shopping cart operation =================================================
     
     public void ckeckout() {
@@ -166,6 +167,11 @@ public class ProductController implements Serializable {
         shoppingCart = shoppingCartFacade.find(id);
     }
     
+    public String loadTempDeleteObject(int id, String type) {
+        deleteObjectId = id;
+        deleteObjectType = type;
+        return null;
+    }
     // Create functions =======================================================
     
     public String addPhone() {
@@ -216,6 +222,11 @@ public class ProductController implements Serializable {
         phoneFacade.remove(phone);
     }
     
+    public String deletePhone(int id) {
+        phoneFacade.remove(phoneFacade.find(id));
+        return null;
+    }
+    
     public void deleteSimPlan() {
         simplanFacade.remove(simplan);
     }
@@ -241,6 +252,22 @@ public class ProductController implements Serializable {
         purchaseFacade.remove(purchaseFacade.find(id));
     }
     
+    public void deleteTempObject() {
+        if (null != deleteObjectType)
+            switch (deleteObjectType) {
+            case "Phone":
+                this.deletePhone(deleteObjectId);
+                break;
+            case "SimPlan":
+                this.deleteSimPlan(deleteObjectId);
+                break;
+            case "Purchase":
+                this.deletePurchase(deleteObjectId);
+                break;
+            default:
+                break;
+        }
+    }
     // initialize new Entities ================================================
     public void newPhone() {
         phone = new Phone();
