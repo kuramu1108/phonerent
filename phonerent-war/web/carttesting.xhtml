@@ -9,8 +9,8 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
+        <link rel="stylesheet" href="css/custom.css"/>
         <title>testing</title>
-        
     </h:head>
     <h:body>
     
@@ -30,6 +30,7 @@
                             <a id="cart-popover" class="glyphicon glyphicon-shopping-cart" role="button" data-trigger="focus" data-placement="bottom" tabindex="0">
                                 <h:outputText value="#{productController.shoppingItemCount}"/>
                             </a>
+                            
                         </li>
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout}"/>
@@ -50,7 +51,7 @@
         
         <div id="cart-popover-content" class="hidden">
           <div>
-            <b>Example popover #2</b> - content
+            <b>Example popover #2</b> - content adgadsfgdfadfgsdfgs
             <h:form>
                 <h:commandLink value="Check out" action="/cart?faces-redirect=true" />
             </h:form>

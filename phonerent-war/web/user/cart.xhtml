@@ -8,11 +8,14 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
-        <script src="js/moment.js"></script>
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
-        <script src="js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../js/moment.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css" />
+        <script src="../js/bootstrap-datetimepicker.min.js"></script>
         <title>Checkout Cart</title>
     </h:head>
+    <f:metadata>
+        <f:viewAction action="#{productController.loadShoppingCart(accountController.account.shoppingCart.id)}"/>
+    </f:metadata>
     <h:body>
         <h:form>
             <nav class="navbar navbar-inverse">
@@ -174,7 +177,7 @@
                                         <h:inputText class="form-control" id="address" value="#{accountController.account.deliveryAddress}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="address" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +189,7 @@
                                         <h:inputText class="form-control" id="cardNumber" value="#{accountController.creditCard.cardNumber}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="cardNumber" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>           
@@ -198,7 +201,7 @@
                                         <h:inputText class="form-control" id="nameOnCard" value="#{accountController.creditCard.nameOnCard}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="nameOnCard" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>
@@ -210,7 +213,7 @@
                                         <h:inputText class="form-control" id="cvv" value="#{accountController.creditCard.cvv}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="cvv" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +225,7 @@
                                         <h:inputText class="form-control" id="expiryMonth" value="#{accountController.creditCard.expiryMonth}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="expiryMonth" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>
@@ -234,7 +237,7 @@
                                         <h:inputText class="form-control" id="expiryYear" value="#{accountController.creditCard.expiryYear}" validatorMessage="Please ensure you enter a valid email address"/>
                                     </div>
                                     <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
+                                        <h:message for="expiryYear" style="color:red;"/>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +245,7 @@
                         </center>
                     </div>                           
                 </div>
-                <center><h:commandButton class="btn btn-info" value="Checkout" action="#"/></center>
+                <center><h:commandButton class="btn btn-info" value="Checkout" action="#{productController.ckeckout()}"/></center>
             </div> 
         </h:form>
  

@@ -11,6 +11,9 @@
         
         <title>Product List</title>
     </h:head>
+    <f:metadata>
+        <f:viewAction action="#{productController.loadShoppingCart(accountController.account.shoppingCart.id)}"/>
+    </f:metadata>
     <h:body>
         <h:form>
             <nav class="navbar navbar-inverse">
@@ -49,35 +52,35 @@
       
                             <div class="panel-body">  
                                 <h:form>
-                                    <h:dataTable var="phoneList" value="#{productController.allPhones}" class="table table-hover" >
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Model Name
-                                                </f:facet>
-                                                <h:outputText value="#{phoneList.model.modelName}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Manufacturer
-                                                </f:facet>
-                                                <h:outputText value="#{phoneList.model.manufacturer}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Price
-                                                </f:facet>
-                                                <h:outputText value="#{phoneList.model.price}" />
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="View Detail" class="btn btn-info">
-                                                    <f:param name="phoneDetail" value="#{phoneList.id}" />
-                                                </h:commandButton>
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="Add to Cart" class="btn btn-success"/>
-                                            </h:column>                                  
-                                        </h:dataTable>
-                                    </h:form> 
+                                    <h:dataTable var="phone" value="#{productController.allPhones}" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Model Name
+                                            </f:facet>
+                                            <h:outputText value="#{phone.model.modelName}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Manufacturer
+                                            </f:facet>
+                                            <h:outputText value="#{phone.model.manufacturer}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="#{phone.model.price}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:link value="View Detail" class="btn btn-info">
+                                                <f:param name="phoneDetail" value="#{phone.id}" />
+                                            </h:link>
+                                        </h:column>
+                                        <h:column>
+                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addPhoneToCart(phone.id)}"/>
+                                        </h:column>                                  
+                                    </h:dataTable>
+                                </h:form> 
                             </div>                           
                         </div>
                     </div>
@@ -95,47 +98,47 @@
       
                             <div class="panel-body">          
                                 <h:form>
-                                    <h:dataTable var="simList" value="#{productController.allSimPlans}" class="table table-hover" >
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Sim Name
-                                                </f:facet>
-                                                <h:outputText value="#{simList.name}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Credit
-                                                </f:facet>
-                                                <h:outputText value="#{simList.credit}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Bonus SMS
-                                                </f:facet>
-                                                <h:outputText value="#{simList.bonusSMS}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Plan Duration
-                                                </f:facet>
-                                                <h:outputText value="#{simList.planDuration}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <f:facet name="header">
-                                                    Price
-                                                </f:facet>
-                                                <h:outputText value="#{simList.price}"/>
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="View Detail" class="btn btn-info">
-                                                    <f:param name="simDetail" value="#{simList.id}" />
-                                                </h:commandButton>
-                                            </h:column>
-                                            <h:column>
-                                                <h:commandButton value="Add to Cart" class="btn btn-success"/>
-                                            </h:column>                                  
-                                        </h:dataTable>
-                                    </h:form> 
+                                    <h:dataTable var="sim" value="#{productController.allSimPlans}" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Sim Name
+                                            </f:facet>
+                                            <h:outputText value="#{sim.name}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Credit
+                                            </f:facet>
+                                            <h:outputText value="#{sim.credit}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Bonus SMS
+                                            </f:facet>
+                                            <h:outputText value="#{sim.bonusSMS}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Plan Duration
+                                            </f:facet>
+                                            <h:outputText value="#{sim.planDuration}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="#{sim.price}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:link value="View Detail" class="btn btn-info">
+                                                <f:param name="simDetail" value="#{sim.id}" />
+                                            </h:link>
+                                        </h:column>
+                                        <h:column>
+                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addSimPlanToCart(sim.id)}"/>
+                                        </h:column>                                  
+                                    </h:dataTable>
+                                </h:form> 
                             </div>    
                         </div>
                     </div>
