@@ -31,11 +31,7 @@ public class AccountController implements Serializable {
     
     @EJB
     private CreditCardFacadeLocal creditCardFacade;
-    
-    // just for testing
-    @EJB
-    private PurchaseFacadeLocal purchaseFacade;
-    
+        
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  
     
@@ -96,7 +92,6 @@ public class AccountController implements Serializable {
     
     public void addSample() {
         accountFacade.addSample();
-        purchaseFacade.addSample();
     }
     
     
