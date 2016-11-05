@@ -111,8 +111,16 @@ public class ProductController implements Serializable {
     
     // Load Object functions =================================================
     
-    public void loadPhone(int id) {
+    public String loadPhone(int id, String type) {
         phone = phoneFacade.find(id);
+        if (null == phone) {
+            if ("Admins".equals(type))
+                return "/secret/admin_dashboard" + REDIRECT;
+            else
+                return "/user/user_dashbaord" + REDIRECT;
+        }
+        else
+            return null;
     }
     
     public String loadSimPlan(int id, String type) {
