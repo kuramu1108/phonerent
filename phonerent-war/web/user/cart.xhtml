@@ -29,13 +29,13 @@
                             <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
                         </li>      
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>

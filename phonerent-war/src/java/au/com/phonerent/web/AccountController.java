@@ -70,7 +70,7 @@ public class AccountController implements Serializable {
             return "/secret/admin_dashboard" + REDIRECT;
         }
         else
-            return "/user_dashboard" + REDIRECT;
+            return "/user/user_dashboard" + REDIRECT;
     }
     
     public String logout() {
@@ -129,7 +129,7 @@ public class AccountController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
         }
         else
             return null;
@@ -157,7 +157,7 @@ public class AccountController implements Serializable {
         if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT + "tab=account";
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
     }
     
     public void editCreditCard() {
@@ -201,7 +201,7 @@ public class AccountController implements Serializable {
     
     public String loggedInGuard() {
         if (loggedIn)
-            return "/user_dashboard" + REDIRECT;
+            return "/user/user_dashboard" + REDIRECT;
         else
             return null;
     }

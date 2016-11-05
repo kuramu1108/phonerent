@@ -38,6 +38,9 @@ public class ProductController implements Serializable {
     private Purchase purchase = new Purchase();
     private ShoppingCart shoppingCart = new ShoppingCart();
     
+    
+    // shopping cart operation =================================================
+    
     public void ckeckout() {
         shoppingCartFacade.process(shoppingCart, purchase);
     }
@@ -54,6 +57,22 @@ public class ProductController implements Serializable {
         SimPlan sim = simplanFacade.find(id);
         if (null != sim) {
             shoppingCart.getSimPlans().add(sim);
+            shoppingCartFacade.edit(shoppingCart);
+        }
+    }
+    
+    public void removePhoneFromCart(int id) {
+        Phone ph = phoneFacade.find(id);
+        if (null != ph) {
+            shoppingCart.getPhones().remove(ph);
+            shoppingCartFacade.edit(shoppingCart);
+        }
+    }
+    
+    public void removeSimPlanFromCart(int id) {
+        SimPlan sim = simplanFacade.find(id);
+        if (null != sim) {
+            shoppingCart.getSimPlans().remove(sim);
             shoppingCartFacade.edit(shoppingCart);
         }
     }
@@ -112,7 +131,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
         }
         else
             return null;
@@ -124,7 +143,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
         }
         else
             return null;
@@ -136,7 +155,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
         }
         else
             return null;
@@ -187,7 +206,7 @@ public class ProductController implements Serializable {
     
     public String editShoppingCart() {
         shoppingCartFacade.edit(shoppingCart);
-        return "/user_dashboard" + REDIRECT;
+        return "/user/user_dashboard" + REDIRECT;
     }
     
     // Delete functions =======================================================

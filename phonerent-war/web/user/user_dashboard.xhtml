@@ -20,19 +20,13 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
                         </li>      
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
@@ -78,7 +72,7 @@
                                                     <h:outputText value="#{activePurchase.total}"/>
                                                 </h:column>      
                                                 <h:column>
-                                                        <h:commandButton value="View Detail" action="purchase_detail?faces-redirect=true">
+                                                        <h:commandButton value="View Detail" action="/user/purchase_detail?faces-redirect=true">
                                                             <f:param name="purchaseDetail" value="#{activePurchase.id}" />
                                                         </h:commandButton>
                                                 </h:column>
@@ -116,7 +110,7 @@
                                                     <h:outputText value="#{inactivePurchase.total}"/>
                                                 </h:column>      
                                                 <h:column>
-                                                        <h:commandButton value="View Detail" action="purchase_detail?faces-redirect=true">
+                                                        <h:commandButton value="View Detail" action="/user/purchase_detail?faces-redirect=true">
                                                             <f:param name="purchaseDetail" value="#{inactivePurchase.id}" />
                                                         </h:commandButton>
                                                 </h:column>
@@ -158,7 +152,7 @@
                                                         <h:inputText id="deliveryAddress" value="#{accountController.account.deliveryAddress}"/>
                                                     </label>
                                                 </p>
-                                                <h:commandButton value="Update" action="#{accountController.editAccount()}" style="margin-top:15px;" />
+                                                <h:commandButton value="Update" action="#{accountController.editAccount('Users')}" style="margin-top:15px;" />
                                             </h:panelGrid>
                                         </h:form>  
                                     </div>                           
