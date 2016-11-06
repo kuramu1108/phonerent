@@ -8,7 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
-        <title>Product Detail</title>
+        <title>Phone Detail</title>
     </h:head>
     <h:body>
         <h:form>
@@ -35,30 +35,36 @@
                 </div>
             </nav>
         </h:form>
-        
-        <div class="container com-sm-12">
-            <h:form role="form">
+             
+        <center style="margin:25px;">
+            <h1>Phone Detail</h1>
+            <h:form class="form-horizontal" style="margin-top:50px;">
                 <div class="form-group">
-                  <label for="title">Make:</label>
-                  <div><h:outputText value="Apple"/></div>
+                    <label class="control-label col-sm-5">Phone Model:
+                    </label>
+                    <div class="col-sm-3">
+                        <h:outputText value="Galaxy S9"/>
+                    </div>
                 </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Phone Manufacturer:</label>
+                    <div class="col-sm-3">
+                        <h:outputText value="Samsumg"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Rent Price:</label>
+                    <div class="col-sm-3">
+                        <h:outputText value="$6.6"/>
+                    </div>
+                </div>  
+                <div style="margin-top : 22px;">
+                    <h:button class="btn btn-primary btn-md" value="Cancel" outcome="/user/product_list.xhtml?faces-redirect=true" style=""/>
+                    <h:commandButton class="btn btn-primary btn-md" value="Add" />
+                </div>
+            </h:form>             
+        </center>
 
-                <div class="form-group">
-                  <label for="creator">Model:</label>
-                  <div><h:outputText value="Galaxy S9"/></div>
-                </div>
-
-                <div class="form-group">
-                  <label for="creator">Price:</label>
-                  <div><h:outputText value="$6.6"/></div>
-                </div>
-                <h:commandButton value="Back" />
-                <h:commandButton value="Add to Cart" />                
-            </h:form>
-        </div>
-  
-        
-        
     </h:body>
 </html>
 
