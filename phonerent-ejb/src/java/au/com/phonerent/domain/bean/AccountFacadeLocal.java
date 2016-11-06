@@ -6,6 +6,7 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
+import au.com.phonerent.domain.CreditCard;
 import java.util.List;
 import javax.ejb.Local;
 

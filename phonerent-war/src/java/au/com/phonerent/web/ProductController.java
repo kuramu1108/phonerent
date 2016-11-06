@@ -36,6 +36,10 @@ public class ProductController implements Serializable {
     
     private String deleteObjectType = "";
     private int deleteObjectId;
+    
+    // presentation logic support =============================================
+    private boolean dateConfirmed = false;
+    
     // shopping cart operation =================================================
     
     public void ckeckout() {
@@ -246,4 +250,14 @@ public class ProductController implements Serializable {
     public void newPurchase() {
         purchase = new Purchase();
     }
+    
+    // presentation logic supporting methods =================================
+
+    public boolean isDateConfirmed() {
+        return dateConfirmed;
+    }
+
+    public void dateEntered() {
+        this.dateConfirmed = true;
+    }    
 }
