@@ -43,7 +43,6 @@ public class AccountController implements Serializable {
     private boolean registrationChecked = false;
 
     private boolean loggedIn = false;
-    private boolean paymentConfirmed = false;
     
     // business logic processing ==============================================
     public String login() {
@@ -223,12 +222,20 @@ public class AccountController implements Serializable {
     }
     
     public boolean isPaymentConfirmed() {
-        return paymentConfirmed;
-    }
-
-    public void paymentEntered() {
-        accountFacade.edit(account);
-        this.paymentConfirmed = true;
+        if (creditCard.getCardNumber() == null)
+            return false;
+        else if (creditCard.getCvv() == 0)
+            return false;
+        else if (creditCard.getExpiryMonth() == 0)
+            return false;
+        else if (creditCard.getExpiryYear() == 0)
+            return false;
+        else if (creditCard.getNameOnCard() == null)
+            return false;
+        else if (account.getDeliveryAddress() == null)
+            return false;
+        else
+            return true;
     }
     
     private boolean test = false;

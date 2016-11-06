@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
@@ -70,13 +71,13 @@
                                             <h:outputText value="#{phone.price}" />
                                         </h:column>
                                         <h:column>
-                                            <h:link value="View Detail" class="btn btn-info">
-                                                <f:param name="phoneDetail" value="#{phone.id}" />
+                                            <h:link value="View Detail" class="btn btn-info" outcome="/user/phone_detail?faces-redirect=true">
+                                                <f:param name="id" value="#{phone.id}" />
                                             </h:link>
                                         </h:column>
                                         <h:column>
-                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addPhoneToCart(phone.id)}"/>
-                                        </h:column>                                  
+                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addPhoneToCart(phone.id)}" disabled="#{productController.isPhoneInCart(phone.id)}"/>
+                                        </h:column>                         
                                     </h:dataTable>
                                 </h:form> 
                             </div>                           
@@ -122,13 +123,13 @@
                                             <h:outputText value="#{sim.price}"/>
                                         </h:column>
                                         <h:column>
-                                            <h:link value="View Detail" class="btn btn-info">
-                                                <f:param name="simDetail" value="#{sim.id}" />
+                                            <h:link value="View Detail" class="btn btn-info" outcome="/user/sim_detail?faces-redirect=true">
+                                                <f:param name="id" value="#{sim.id}" />
                                             </h:link>
                                         </h:column>
-                                        <h:column>
-                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addSimPlanToCart(sim.id)}"/>
-                                        </h:column>                                  
+                                                <h:column>
+                                                    <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addSimPlanToCart(sim.id)}"  disabled="#{productController.isSimPlanInCart(sim.id)}"/>
+                                                </h:column>
                                     </h:dataTable>
                                 </h:form> 
                             </div>    
