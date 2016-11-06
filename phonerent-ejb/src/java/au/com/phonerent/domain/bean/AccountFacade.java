@@ -6,12 +6,12 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
+import au.com.phonerent.domain.CreditCard;
 import au.com.phonerent.domain.ShoppingCart;
 import au.com.phonerent.domain.utility.PasswordResetIdGenerator;
 import au.com.phonerent.domain.utility.Sha256;
 import au.com.phonerent.jma.EmailClient;
 import java.security.NoSuchAlgorithmException;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,23 +47,27 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     public void signUp(Account account) {
         account.setIsActivate(false);
         account.setAccountType("Users");
+        CreditCard card = new CreditCard();
         ShoppingCart cart = new ShoppingCart();
+        account.setCreditCard(card);
         account.setShoppingCart(cart);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
+            getEntityManager().persist(account);
             emailClient.registerationConfirmationSendTo(account.getEmail());
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("error encrpytion");
         }
-        getEntityManager().persist(account);
     }
     
     @Override
     public void create(Account account) {
         account.setIsActivate(false);
         account.setAccountType("Users");
+        CreditCard card = new CreditCard();
         ShoppingCart cart = new ShoppingCart();
+        account.setCreditCard(card);
         account.setShoppingCart(cart);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
