@@ -15,6 +15,7 @@
         <title>Checkout Cart</title>
     </h:head>
     <f:metadata>
+        <f:viewAction action="#{productController.newPurchase()}"/>
         <f:viewAction action="#{productController.loadShoppingCart(accountController.account.shoppingCart.id)}"/>
     </f:metadata>
     <h:body>
@@ -141,9 +142,7 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='startdate'>
-                                <h:inputText id="startdateinput" class="form-control" value="#{productController.purchase.startDate}">  
-                                   <f:convertDateTime pattern="dd/mm/yyyy"/>  
-                                </h:inputText>
+                                <h:inputText id="startdateinput" class="form-control" value="#{productController.startDateString}"/>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -157,9 +156,7 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='enddate'>
-                                <h:inputText id="enddateinput" class="form-control" value="#{productController.purchase.endDate}">  
-                                   <f:convertDateTime pattern="dd/mm/yyyy"/>  
-                                </h:inputText>
+                                <h:inputText id="enddateinput" class="form-control" value="#{productController.endDateString}"/>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -178,6 +175,9 @@
                     <c:when test="#{accountController.paymentConfirmed}">
                         <center><h:commandButton class="btn btn-info" value="Checkout" action="#{productController.ckeckout()}"/></center>
                     </c:when>
+                    <c:when test="#{!accountController.account.isActivate}">
+                        <center>Please Activate Your Account before making an order</center>
+                    </c:when>
                     <c:otherwise>
                         <center>Please Complete Your address and payment detail First</center>
                     </c:otherwise>
@@ -187,10 +187,10 @@
         <script>
             $(function() {
                 $('#startdate').datetimepicker({
-                    format: 'DD/MM/YYYY',           
+                    format: 'YYYY-MM-DD'           
                 });
                 $('#enddate').datetimepicker({
-                    format: 'DD/MM/YYYY',           
+                    format: 'YYYY-MM-DD'   
                 });
             });
         </script>

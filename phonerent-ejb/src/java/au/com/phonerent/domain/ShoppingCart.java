@@ -37,7 +37,7 @@ public class ShoppingCart implements Serializable {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "shoppingCart", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy = "shoppingCart")
     public Account getAccount() {
         return account;
     }

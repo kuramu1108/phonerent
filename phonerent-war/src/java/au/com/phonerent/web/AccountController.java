@@ -7,6 +7,7 @@ package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
+import au.com.phonerent.rs.RestClient;
 import java.io.*;
 import java.util.List;
 import javax.ejb.*;
@@ -88,12 +89,12 @@ public class AccountController implements Serializable {
     
     public String sendPasswordRecovery() {
         accountFacade.sendPasswordRecovery(account.getEmail());
-        return null;
+        return "/password_confirmation" + REDIRECT;
     }
     
     public String resetPassword() {
         accountFacade.resetPassword(account, newPassword);
-        return "/login" + REDIRECT;
+        return "/password_changed" + REDIRECT;
     }
     
     public String confirmRegistration(String email) {
@@ -135,6 +136,10 @@ public class AccountController implements Serializable {
         }
         else
             return null;        
+    }
+    
+    public void reloadAccount() {
+        account = accountFacade.find(account.getId());
     }
     
     public void loadCreditCard() {
@@ -224,7 +229,7 @@ public class AccountController implements Serializable {
     public boolean isPaymentConfirmed() {
         if (creditCard.getCardNumber() == null)
             return false;
-        else if (creditCard.getCvv() == 0)
+        else if (creditCard.getCvv() != null)
             return false;
         else if (creditCard.getExpiryMonth() == 0)
             return false;

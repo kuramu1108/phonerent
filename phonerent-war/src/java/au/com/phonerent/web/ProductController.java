@@ -6,7 +6,12 @@ import au.com.phonerent.domain.ShoppingCart;
 import au.com.phonerent.domain.SimPlan;
 import au.com.phonerent.domain.bean.*;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
@@ -37,14 +42,27 @@ public class ProductController implements Serializable {
     private String deleteObjectType = "";
     private int deleteObjectId;
     
+    private String startDateString = "";
+    private String endDateString = "";
+    
     // presentation logic support =============================================
     private boolean dateConfirmed = false;
     
     // shopping cart operation =================================================
     
-    public void ckeckout() {
-        shoppingCartFacade.process(shoppingCart, purchase);
-        purchase = new Purchase();
+    public String ckeckout() {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date startDate = formatter.parse(startDateString);
+            Date endDate = formatter.parse(endDateString);
+            purchase.setStartDate(startDate);
+            purchase.setEndDate(endDate);
+            shoppingCartFacade.process(shoppingCart.getId(), purchase);
+            purchase = new Purchase();
+        } catch (ParseException ex) {
+            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "/user/user_dashboard" + REDIRECT;
     }
     
     public String addPhoneToCart(int id) {
@@ -149,6 +167,24 @@ public class ProductController implements Serializable {
     public int getShoppingItemCount() {
         return shoppingCart.getPhones().size() + shoppingCart.getSimPlans().size();
     }
+
+    public String getStartDateString() {
+        return startDateString;
+    }
+
+    public void setStartDateString(String startDateString) {
+        this.startDateString = startDateString;
+    }
+
+    public String getEndDateString() {
+        return endDateString;
+    }
+
+    public void setEndDateString(String endDateString) {
+        this.endDateString = endDateString;
+    }
+    
+
     
     // Load Object functions =================================================
     
@@ -158,7 +194,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user/user_dashbaord" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT;
         }
         else
             return null;
@@ -170,7 +206,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user/user_dashbaord" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT;
         }
         else
             return null;
@@ -182,7 +218,7 @@ public class ProductController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user/user_dashbaord" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT;
         }
         else
             return null;
