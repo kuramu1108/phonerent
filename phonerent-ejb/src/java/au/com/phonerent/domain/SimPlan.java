@@ -22,6 +22,7 @@ public class SimPlan implements Serializable{
     private double price;
     private double credit;
     private int bonusSMS;
+    private String phoneNumber;
     private List<Purchase> purchases = new ArrayList<>();
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
@@ -118,6 +119,14 @@ public class SimPlan implements Serializable{
 
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
 }
