@@ -18,7 +18,7 @@ public class CreditCard implements Serializable {
     private int id;
     private String cardNumber;
     private String nameOnCard;
-    private String cvv;
+    private int cvv;
     private int expiryMonth;
     private int expiryYear;
     private Account owner;
@@ -53,11 +53,11 @@ public class CreditCard implements Serializable {
         this.nameOnCard = nameOnCard;
     }    
     
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
     
