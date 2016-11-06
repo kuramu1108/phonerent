@@ -248,7 +248,7 @@ public class Account implements Serializable {
      * OneToOne relationship is being used because one user can only have one credit card details
      * @return creditCard 
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -267,7 +267,7 @@ public class Account implements Serializable {
      * OneToOne relationship is used because one user can only have one cart
      * @return shoppingCart can be null
      */
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

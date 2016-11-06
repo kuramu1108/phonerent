@@ -55,10 +55,12 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setAccountType("Users");
         CreditCard card = new CreditCard();
         ShoppingCart cart = new ShoppingCart();
-        creditCardFacade.create(card);
+        card.setOwner(account);
         account.setCreditCard(card);
-        shoppingCartFacade.create(cart);
+        cart.setAccount(account);
         account.setShoppingCart(cart);
+        shoppingCartFacade.create(cart);
+        creditCardFacade.create(card);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
             getEntityManager().persist(account);
@@ -74,11 +76,13 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setIsActivate(true);
         account.setAccountType("Users");
         CreditCard card = new CreditCard();
-        creditCardFacade.create(card);
         ShoppingCart cart = new ShoppingCart();
-        shoppingCartFacade.create(cart);
+        cart.setAccount(account);
+        card.setOwner(account);
         account.setCreditCard(card);
         account.setShoppingCart(cart);
+        creditCardFacade.create(card);
+        shoppingCartFacade.create(cart);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
         } catch (NoSuchAlgorithmException ex) {
