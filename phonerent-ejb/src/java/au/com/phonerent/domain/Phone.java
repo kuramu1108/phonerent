@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -12,7 +13,9 @@ import javax.persistence.*;
 @Entity
 public class Phone implements Serializable {
     private int id; 
-    private PhoneModel model;    
+    private String modelName;
+    private String manufacturer;
+    private double price;   
     private List<Purchase> purchases = new ArrayList<>();
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
@@ -30,16 +33,7 @@ public class Phone implements Serializable {
         this.id = id;
     }
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    public PhoneModel getModel() {
-        return model;
-    }
-
-    public void setModel(PhoneModel model) {
-        this.model = model;
-    }
-
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "phones", cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -48,13 +42,41 @@ public class Phone implements Serializable {
         this.purchases = purchases;
     }
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "phones", cascade=CascadeType.ALL)
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
 
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    @Size(min=1, max=20)
+    public String getModelName() {
+        return modelName;
+    }
+
+    public void setModelName(String modelName) {
+        this.modelName = modelName;
+    }
+
+    @Size(min=1, max=20)
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    @NotNull
+    @DecimalMax("100.0") @DecimalMin("1.0")
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
    

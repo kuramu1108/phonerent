@@ -31,7 +31,7 @@ public interface ShoppingCartFacadeLocal {
 
     int count();
     
-    void process(ShoppingCart shoppingCart, Purchase purchase);
+    void process(int id, Purchase purchase);
     
     void empty(ShoppingCart shoppingCart);
 }

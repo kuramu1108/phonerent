@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <title>Phone Detail</title>
+    </h:head>
+    <f:metadata>
+        <f:viewAction action="#{productController.loadPhone(param.id, 'Users')}"/>
+    </f:metadata>
+    <h:body>
+        <h:form>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true"/>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
+                        </li>      
+                        <li>
+                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
+                        </li>
+                    </ul>    
+                </div>
+            </nav>
+        </h:form>
+             
+        <center style="margin:25px;">
+            <h1>Phone Detail</h1>
+            <h:form class="form-horizontal" style="margin-top:50px;">
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Phone Model:
+                    </label>
+                    <div class="col-sm-3">
+                        <h:outputText value="Galaxy S9"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Phone Manufacturer:</label>
+                    <div class="col-sm-3">
+                        <h:outputText value="Samsumg"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-5">Rent Price:</label>
+                    <div class="col-sm-3">
+                        <h:outputText value="$6.6"/>
+                    </div>
+                </div>  
+                <div style="margin-top : 22px;">
+                    <h:button class="btn btn-primary btn-md" value="Back" outcome="/user/product_list.xhtml?faces-redirect=true" style=""/>
+                </div>
+            </h:form>             
+        </center>
+
+    </h:body>
+</html>
+

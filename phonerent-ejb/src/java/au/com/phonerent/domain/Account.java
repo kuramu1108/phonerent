@@ -1,13 +1,12 @@
 package au.com.phonerent.domain;
 
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
 /**
- *
+ * A class that stores the information about account
  * @author mac
  */
 @Entity
@@ -19,7 +18,6 @@ import javax.validation.constraints.*;
 })
 public class Account implements Serializable {
     private int id;
-    private Date dob;
     private String firstName;
     private String lastName;
     private String password;
@@ -35,12 +33,17 @@ public class Account implements Serializable {
     private boolean isActivate;
     private String passwordResetId;
 
+    /**
+     * Creates a new instance of account
+     */
     public Account(){
         
     }
     
     /**
-     * @return the id
+     * to get or request for the id of a particular account
+     * Id is being auto generated for every new instances of account
+     * @return id must not be null and it is a primary key for this class
      */
     @Id
     @GeneratedValue
@@ -49,47 +52,38 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param id the id to set
+     * to set new id into the account
+     * @param id 
      */
     public void setId(int id) {
         this.id = id;
     }
 
-    /**
-     * @return the dob
-     */
-    
-    @Temporal(TemporalType.DATE)
-    public Date getDob() {
-        return dob;
-    }
 
     /**
-     * @param dob the dob to set
+     * to get or request for the first name of the account
+     * first name must be between 1 and 50 characters
+     * @return the firstName must not be null
      */
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
-
-    /**
-     * @return the firstName
-     */
-    @Size(min=1)
+    @Size(min=1, max=50)
     public String getFirstName() {
         return firstName;
     }
 
     /**
-     * @param firstName the firstName to set
+     * to set the first name into a particular account
+     * @param firstName 
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
 
     /**
-     * @return the lastName
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
      */
-    @Size(min=1)
+    @Size(min=1, max=20)
     public String getLastName() {
         return lastName;
     }
@@ -102,9 +96,11 @@ public class Account implements Serializable {
     }
 
     /**
-     * @return the password
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
      */
-    @Size(min=6)
+    @NotNull
     public String getPassword() {
         return password;
     }
@@ -117,9 +113,11 @@ public class Account implements Serializable {
     }
 
     /**
-     * @return the email
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
      */
-    @Pattern(regexp = "[a-z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
+    @Pattern(regexp = "[a-zA-Z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
     public String getEmail() {
         return email;
     }
@@ -151,7 +149,8 @@ public class Account implements Serializable {
     /**
      * to get the accountType of a particular account
      * accountType must not be null.
-     * @return the orders
+     * There are two type of account 'Admins' or 'User'
+     * @return accountType must not be null
      */
     public String getAccountType() {
         return accountType;
@@ -169,18 +168,23 @@ public class Account implements Serializable {
      * accountType must not be null.
      * @return the orders
      */
-    @Size(min=4, max=12)
+    @Pattern(regexp = "[0-9]{8,14}")
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
-     * @param accountType the accountType to set
+     * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
+    /**
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
+     */
     public boolean isIsActivate() {
         return isActivate;
     }
@@ -189,6 +193,11 @@ public class Account implements Serializable {
         this.isActivate = isActivate;
     }
 
+    /**
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
+     */
     public String getPasswordResetId() {
         return passwordResetId;
     }
@@ -197,7 +206,11 @@ public class Account implements Serializable {
         this.passwordResetId = passwordResetId;
     }
 
-    @Size(min=3)
+    /**
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
+     */
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
@@ -206,7 +219,14 @@ public class Account implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+
+    /**
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
+     */
+
+    @OneToOne
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -215,7 +235,14 @@ public class Account implements Serializable {
         this.creditCard = creditCard;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+
+    /**
+     * to get or request for the the card number of a credit card
+     * card number must be exactly 16 characters 
+     * @return cardNumber must not be null 
+     */
+
+    @OneToOne
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

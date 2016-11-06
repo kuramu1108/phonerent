@@ -29,10 +29,8 @@ public interface PurchaseFacadeLocal {
     List<Purchase> findRange(int[] range);
 
     int count();
-    
-    void addSample();
-    
+        
     List<Purchase> findExpiringPurchase(int day);
     
-    void sendReminders(List<Purchase> purchases);
+    void updateStatus(Purchase p);
 }

@@ -9,6 +9,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -21,7 +22,7 @@ public class SimPlan implements Serializable{
     private double price;
     private double credit;
     private int bonusSMS;
-    private int planDuration;
+    private String phoneNumber;
     private List<Purchase> purchases = new ArrayList<>();
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
@@ -47,6 +48,8 @@ public class SimPlan implements Serializable{
      * name must not be null
      * @return the name
      */
+    @Column(name="simName")
+    @Size(min=1, max=255)
     public String getName() {
         return name;
     }
@@ -55,6 +58,8 @@ public class SimPlan implements Serializable{
         this.name = name;
     }
 
+    @NotNull
+    @DecimalMax("100.0") @DecimalMin("1.0") 
     public double getPrice() {
         return price;
     }
@@ -70,6 +75,8 @@ public class SimPlan implements Serializable{
      * credit must not be null
      * @return the credit
      */
+    @NotNull
+    @DecimalMax("500.0") @DecimalMin("10.0") 
     public double getCredit() {
         return credit;
     }
@@ -85,6 +92,9 @@ public class SimPlan implements Serializable{
      * bonusSMS can be null
      * @return the endDate
      */
+    @NotNull
+    @Min(1)
+    @Max(100)
     public int getBonusSMS() {
         return bonusSMS;
     }
@@ -93,15 +103,7 @@ public class SimPlan implements Serializable{
         this.bonusSMS = bonusSMS;
     }
 
-    public int getPlanDuration() {
-        return planDuration;
-    }
-
-    public void setPlanDuration(int planDuration) {
-        this.planDuration = planDuration;
-    }
-
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "simPlans", cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -110,13 +112,23 @@ public class SimPlan implements Serializable{
         this.purchases = purchases;
     }
 
-    @ManyToMany(cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "simPlans", cascade=CascadeType.ALL)
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
 
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
+    }
+
+    @NotNull
+    @Pattern(regexp = "[0-9]{8,14}")
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
     
 }

@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{productController.findPurchase(param.purchaseDetail)}"/>
+        <f:viewAction action="#{productController.loadPurchase(param.id, 'Users')}"/>
     </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
@@ -23,19 +23,13 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
                         </li>      
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
@@ -49,12 +43,6 @@
             <h1>Purchase Details</h1>
             <h:form style="margin-top:40px;">
                 <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                        <label>Purchase ID: 
-                            <h:outputText value="#{productController.purchase.id}"/>
-                        </label>
-                        <label>Card Number:
-                            <h:outputText value="#{productController.purchase.account.creditCard.cardNumber}"/>
-                        </label>
                         <label>Delivery Address:
                             <h:outputText value="#{productController.purchase.account.deliveryAddress}"/>
                         </label>
@@ -62,10 +50,14 @@
                             <h:outputText value="#{productController.purchase.status}"/>
                         </label>
                         <label>Order Date:
-                            <h:outputText value="#{productController.purchase.startDate}"/>
+                            <h:outputText value="#{productController.purchase.startDate}">
+                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                            </h:outputText>
                         </label>
                         <label>Expiry Date:
-                            <h:outputText value="#{productController.purchase.endDate}"/>
+                            <h:outputText value="#{productController.purchase.endDate}">
+                                <f:convertDateTime pattern="yyyy-mm-dd"/>
+                            </h:outputText>
                         </label>
                         <label>Total Price:
                             <h:outputText value="#{productController.purchase.total}"/>
@@ -83,24 +75,24 @@
       
                             <div class="panel-body">  
                                 <h:form>
-                                    <h:dataTable var="phoneList" value="#{productController.allPhones}" class="table table-hover" >
+                                    <h:dataTable var="phone" value="#{productController.purchase.phones}" class="table table-hover" >
                                         <h:column>
                                             <f:facet name="header">
                                                 Model Name
                                             </f:facet>
-                                            <h:outputText value="#{phoneList.model.modelName}"/>
+                                            <h:outputText value="#{phone.modelName}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Manufacturer
                                             </f:facet>
-                                            <h:outputText value="#{phoneList.model.manufacturer}"/>
+                                            <h:outputText value="#{phone.manufacturer}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Price
                                             </f:facet>
-                                            <h:outputText value="#{phoneList.model.price}"/>
+                                            <h:outputText value="#{phone.price}"/>
                                         </h:column>  
                                     </h:dataTable>
                                 </h:form>
@@ -119,36 +111,30 @@
       
                             <div class="panel-body">          
                                 <h:form>
-                                    <h:dataTable var="simList" value="#{productController.allSimPlans}" class="table table-hover" >
+                                    <h:dataTable var="sim" value="#{productController.purchase.simPlans}" class="table table-hover" >
                                         <h:column>
                                             <f:facet name="header">
                                                 Sim Name
                                             </f:facet>
-                                            <h:outputText value="#{simList.name}"/>
+                                            <h:outputText value="#{sim.name}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Credit
                                             </f:facet>
-                                            <h:outputText value="#{simList.credit}"/>
+                                            <h:outputText value="#{sim.credit}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Bonus SMS
                                             </f:facet>
-                                            <h:outputText value="#{simList.bonusSMS}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
-                                                Plan Duration
-                                            </f:facet>
-                                            <h:outputText value="#{simList.planDuration}"/>
-                                        </h:column>
+                                            <h:outputText value="#{sim.bonusSMS}"/>
+                                        </h:column>                                        
                                         <h:column>
                                             <f:facet name="header">
                                                 Price
                                             </f:facet>
-                                            <h:outputText value="#{simList.price}"/>
+                                            <h:outputText value="#{sim.price}"/>
                                         </h:column>      
                                     </h:dataTable>
                                 </h:form> 
@@ -156,9 +142,7 @@
                         </div>
                     </div>
                     <h:form style="margin-bottom : 30px;">
-                        <h:commandButton value="Cancel" action="#"/>
-                        <h:inputText style="margin-left:25px;" /> week
-                        <h:commandButton value="Extend Rent Period" action="#" style="margin-left:25px;" />
+                        <h:link value="Back" outcome="/user/user_dashboard?faces-redirect=true"/>
                     </h:form>
                 </div>
             </div>

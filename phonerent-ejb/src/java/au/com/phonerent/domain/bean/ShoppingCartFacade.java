@@ -5,8 +5,10 @@
  */
 package au.com.phonerent.domain.bean;
 
+import au.com.phonerent.domain.Phone;
 import au.com.phonerent.domain.Purchase;
 import au.com.phonerent.domain.ShoppingCart;
+import au.com.phonerent.domain.SimPlan;
 import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -36,11 +38,20 @@ public class ShoppingCartFacade extends AbstractFacade<ShoppingCart> implements 
     }
 
     @Override
-    public void process(ShoppingCart shoppingCart, Purchase purchase) {
+    public void process(int id, Purchase purchase) {
+        ShoppingCart shoppingCart = this.find(id);
         purchase.setAccount(shoppingCart.getAccount());
         purchase.setPhones(shoppingCart.getPhones());
         purchase.setSimPlans(shoppingCart.getSimPlans());
         purchase.setStatus("Recieved");
+        double total = 0;
+        for (Phone p : purchase.getPhones()) {
+            total += p.getPrice();
+        }
+        for (SimPlan sm : purchase.getSimPlans()) {
+            total += sm.getPrice();
+        }
+        purchase.setTotal(total);
         purchaseFacade.create(purchase);
         this.empty(shoppingCart);
     }

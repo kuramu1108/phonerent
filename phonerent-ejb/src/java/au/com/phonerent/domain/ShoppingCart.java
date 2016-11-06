@@ -37,7 +37,7 @@ public class ShoppingCart implements Serializable {
         this.id = id;
     }
 
-    @OneToOne(mappedBy = "shoppingCart", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy = "shoppingCart")
     public Account getAccount() {
         return account;
     }
@@ -46,7 +46,7 @@ public class ShoppingCart implements Serializable {
         this.account = account;
     }
 
-    @ManyToMany(mappedBy = "shoppingCarts", cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<Phone> getPhones() {
         return phones;
     }
@@ -55,7 +55,7 @@ public class ShoppingCart implements Serializable {
         this.phones = phones;
     }
 
-    @ManyToMany(mappedBy = "shoppingCarts", cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<SimPlan> getSimPlans() {
         return simPlans;
     }

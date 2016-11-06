@@ -2,17 +2,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
-        <script src="js/moment.js"></script>
-        <link rel="stylesheet" href="css/bootstrap-datetimepicker.css" />
-        <script src="js/bootstrap-datetimepicker.min.js"></script>
+        <script src="../js/moment.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap-datetimepicker.css" />
+        <script src="../js/bootstrap-datetimepicker.min.js"></script>
         <title>Checkout Cart</title>
     </h:head>
+    <f:metadata>
+        <f:viewAction action="#{productController.newPurchase()}"/>
+        <f:viewAction action="#{productController.loadShoppingCart(accountController.account.shoppingCart.id)}"/>
+    </f:metadata>
     <h:body>
         <h:form>
             <nav class="navbar navbar-inverse">
@@ -23,19 +28,13 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="Login" action="login.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink style="font-family: helvetica; font-weight:bold;" value="SignUp" action="register.xhtml"/>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
                         </li>
                         <li>
-                            <h:commandLink class="glyphicon glyphicon-tags" action="/product_list?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/cart?faces-redirect=true"/>
-                        </li>
-                        <li>
-                            <h:commandLink class="glyphicon glyphicon-user" action="/user_dashboard?faces-redirect=true"/>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
                         </li>      
                         <li>
                             <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
@@ -59,28 +58,28 @@
                                             <f:facet name="header">
                                                 Phone ID
                                             </f:facet>
-                                            <h:outputText value="#{phone.model.id}"/>
+                                            <h:outputText value="#{phone.id}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Manufacturer
                                             </f:facet>
-                                            <h:outputText value="#{phone.model.manufacturer}"/>
+                                            <h:outputText value="#{phone.manufacturer}"/>
                                         </h:column> 
                                         <h:column>
                                             <f:facet name="header">
                                                 Model
                                             </f:facet>
-                                            <h:outputText value="#{phone.model.modelName}"/>
+                                            <h:outputText value="#{phone.modelName}"/>
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
                                                 Price
                                             </f:facet>
-                                            <h:outputText value="#{phone.model.price}"/>
+                                            <h:outputText value="#{phone.price}"/>
                                         </h:column>
                                         <h:column>
-                                            <h:commandButton value="Remove" class="btn btn-danger" action="#"/>
+                                            <h:commandButton value="Remove" class="btn btn-danger" action="#{productController.removePhoneFromCart(phone.id)}"/>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>  
@@ -124,7 +123,7 @@
                                             <h:outputText value="#{sim.price}"/>
                                         </h:column> 
                                         <h:column>
-                                            <h:commandButton value="Remove" class="btn btn-danger" action="#"/>
+                                            <h:commandButton value="Remove" class="btn btn-danger" action="#{productController.removeSimPlanFromCart(sim.id)}"/>
                                         </h:column>
                                     </h:dataTable>
                                 </h:form>  
@@ -143,11 +142,12 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='startdate'>
-                                <input type='text' class="form-control" name="timeOption"/> 
+                                <h:inputText id="startdateinput" class="form-control" value="#{productController.startDateString}"/>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
+                            <h:message for="startdateinput" style="color:red;"/>
                         </div>
                     </div>
                 </div>
@@ -156,109 +156,41 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='enddate'>
-                                <input type='text' class="form-control" name="timeOption"/> 
+                                <h:inputText id="enddateinput" class="form-control" value="#{productController.endDateString}"/>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
+                            <h:message for="enddateinput" style="color:red;"/>
                         </div>
                     </div>
                 </div>
-                <h:commandButton value="Confirm" class="btn btn-info" action="#"/>
+                <h:commandButton value="Confirm" class="btn btn-info" action="#{productController.dateEntered()}">
+                </h:commandButton>
             </div>
         </h:form>
         
-        <h:form>
-            <div class="col-sm-9" style="padding-left: 25%">
-                <div class="panel panel-default">
-                    <div class="panel-body">  
-                        <center>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-sm-3">Address:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="address" value="#{accountController.account.deliveryAddress}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-sm-3">Card Number:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="cardNumber" value="#{accountController.creditCard.cardNumber}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>           
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-sm-3">Name on Card:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="nameOnCard" value="#{accountController.creditCard.nameOnCard}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-sm-3">CVV:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="cvv" value="#{accountController.creditCard.cvv}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-sm-3">Expiry Month:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="expiryMonth" value="#{accountController.creditCard.expiryMonth}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="row">
-                                <label class="control-label col-sm-3">Expiry Year:</label>
-                                    <div class="col-sm-5">
-                                        <h:inputText class="form-control" id="expiryYear" value="#{accountController.creditCard.expiryYear}" validatorMessage="Please ensure you enter a valid email address"/>
-                                    </div>
-                                    <div class="col-sm-3">
-                                        <h:message for="email" style="color:red;"/>
-                                    </div>
-                                </div>
-                            </div>
-                            <h:commandButton value="Confirm" class="btn btn-info" action="#{accountController.editCreditCard()}" style="margin-top:15px;" />   
-                        </center>
-                    </div>                           
-                </div>
-                <center><h:commandButton class="btn btn-info" value="Checkout" action="#"/></center>
-            </div> 
+        <h:form rendered="#{productController.dateConfirmed}">
+                <c:choose>
+                    <c:when test="#{accountController.paymentConfirmed}">
+                        <center><h:commandButton class="btn btn-info" value="Checkout" action="#{productController.ckeckout()}"/></center>
+                    </c:when>
+                    <c:when test="#{!accountController.account.isActivate}">
+                        <center>Please Activate Your Account before making an order</center>
+                    </c:when>
+                    <c:otherwise>
+                        <center>Please Complete Your address and payment detail First</center>
+                    </c:otherwise>
+                </c:choose> 
         </h:form>
  
         <script>
             $(function() {
                 $('#startdate').datetimepicker({
-                    format: 'DD/MM/YYYY',           
+                    format: 'YYYY-MM-DD'           
                 });
                 $('#enddate').datetimepicker({
-                    format: 'DD/MM/YYYY',           
+                    format: 'YYYY-MM-DD'   
                 });
             });
         </script>

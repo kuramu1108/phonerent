@@ -8,6 +8,7 @@ package au.com.phonerent.domain;
 import java.io.*;
 import java.util.*;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -49,6 +50,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the startDate
      */
+    @NotNull
     @Temporal(TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
@@ -66,12 +68,13 @@ public class Purchase implements Serializable {
      * endDate shows the expired date of the renting period.
      * customer/account can choose to extends their contract. 
      * 
-     * 3 days before the endDate, system will send email to customers in order
+     * 3 days before the endDate, system will send SMS to customers in order
      * to remind about the expired date
      * 
      * endDate must not be null
      * @return the endDate
      */
+    @NotNull
     @Temporal(TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
@@ -92,6 +95,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the total
      */
+    @DecimalMin("1.0")
     public double getTotal() {
         return total;
     }
@@ -107,6 +111,7 @@ public class Purchase implements Serializable {
      * status displays the condition of the order whether the purchases have been fulfilled
      * @return the status
      */
+    @Size(min=3)
     public String getStatus() {
         return status;
     }
@@ -121,7 +126,7 @@ public class Purchase implements Serializable {
     /**
      * @return the phones
      */
-    @ManyToMany(mappedBy = "purchases", cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<Phone> getPhones() {
         return phones;
     }
@@ -136,7 +141,7 @@ public class Purchase implements Serializable {
     /**
      * @return the simPlans
      */
-    @ManyToMany(mappedBy = "purchases", cascade=CascadeType.ALL)
+    @ManyToMany(cascade=CascadeType.ALL)
     public List<SimPlan> getSimPlans() {
         return simPlans;
     }

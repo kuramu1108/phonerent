@@ -31,14 +31,11 @@ public class AccountController implements Serializable {
     
     @EJB
     private CreditCardFacadeLocal creditCardFacade;
-    
-    // just for testing
-    @EJB
-    private PurchaseFacadeLocal purchaseFacade;
-    
+        
     private Account account = new Account();
     private CreditCard creditCard = new CreditCard();  
     
+    private int deleteObjectId;
     
     // Presentation Logic Supporting variables =========================================
     private String newPassword;
@@ -47,14 +44,7 @@ public class AccountController implements Serializable {
 
     private boolean loggedIn = false;
     
-    public String getNewPassword() {
-        return newPassword;
-    }
-
-    public void setNewPassword(String newPassword) {
-        this.newPassword = newPassword;
-    }
-    
+    // business logic processing ==============================================
     public String login() {
         FacesContext context = FacesContext.getCurrentInstance();
         HttpServletRequest req = (HttpServletRequest) context.getExternalContext().getRequest();
@@ -62,7 +52,7 @@ public class AccountController implements Serializable {
             req.login(account.getEmail(), account.getPassword());
             account = accountFacade.findByEmail(account.getEmail());
         } catch (ServletException e) {
-            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!",e.getMessage()));
+            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "The credentials you supplied were not correct",e.getMessage()));
             return null;
         }
         loggedIn = true;
@@ -70,7 +60,7 @@ public class AccountController implements Serializable {
             return "/secret/admin_dashboard" + REDIRECT;
         }
         else
-            return "/user_dashboard" + REDIRECT;
+            return "/user/user_dashboard" + REDIRECT;
     }
     
     public String logout() {
@@ -86,6 +76,34 @@ public class AccountController implements Serializable {
         return "/login" + REDIRECT;
     }
     
+    public void addSample() {
+        accountFacade.addSample();
+    }
+    
+    public String signUp() {
+        accountFacade.signUp(account);
+        newRegistration = true;
+        return "/login" + REDIRECT;
+    }
+    
+    public String sendPasswordRecovery() {
+        accountFacade.sendPasswordRecovery(account.getEmail());
+        return "/password_confirmation" + REDIRECT;
+    }
+    
+    public String resetPassword() {
+        accountFacade.resetPassword(account, newPassword);
+        return "/password_changed" + REDIRECT;
+    }
+    
+    public String confirmRegistration(String email) {
+        if (accountFacade.confirmRegistration(email))
+            return null;
+        else
+            return "/login" + REDIRECT;
+    }
+    
+    // Getters ================================================================
     public Account getAccount() {
         return account;
     }
@@ -94,27 +112,11 @@ public class AccountController implements Serializable {
         return creditCard;
     }
     
-    public void addSample() {
-        accountFacade.addSample();
-        purchaseFacade.addSample();
-    }
-    
-    
-    public String signUp() {
-        accountFacade.signUp(account);
-        newRegistration = true;
-        return "/login" + REDIRECT;
-    }
-    
     public List<Account> getAllAccounts() {
         return accountFacade.findAll();
     }
     
-    public String sendPasswordRecovery() {
-        accountFacade.sendPasswordRecovery(account.getEmail());
-        return null;
-    }
-    
+    // Load operations ========================================================
     public String loadAccountByResetId(String resetId) {
         account = accountFacade.findByPasswordResetId(resetId);
         if (null == account)
@@ -129,41 +131,46 @@ public class AccountController implements Serializable {
             if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT;
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashbaord" + REDIRECT;
         }
         else
-            return null;
+            return null;        
     }
     
-    public String resetPassword() {
-        accountFacade.resetPassword(account, newPassword);
-        return "/login" + REDIRECT;
+    public void reloadAccount() {
+        account = accountFacade.find(account.getId());
     }
     
-    public String confirmRegistration(String email) {
-        if (accountFacade.confirmRegistration(email))
-            return null;
-        else
-            return "/login" + REDIRECT;
+    public void loadCreditCard() {
+        creditCard = account.getCreditCard();
     }
     
+    public String loadTempDeleteObject(int id) {
+        deleteObjectId = id;
+        return null;
+    }
+    
+    // add operations =======================================================
     public String addAccount() {
         accountFacade.create(account);
         return "/secret/admin_dashboard" + REDIRECT + "tab=account";
     }
     
+    // edit operations ======================================================
     public String editAccount(String type) {
         accountFacade.edit(account);
         if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT + "tab=account";
             else
-                return "/user_dashbaord" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT + "tab=profile";
     }
     
-    public void editCreditCard() {
+    public String editCreditCard() {
         creditCardFacade.edit(creditCard);
-    }
+        return "/user/user_dashboard" + REDIRECT + "tab=billing";
+    }    
     
+    // delete operaitons ======================================================
     public void deleteAccount() {
         accountFacade.remove(account);
     }
@@ -174,6 +181,10 @@ public class AccountController implements Serializable {
     
     public void deleteCreditCard() {
         creditCardFacade.remove(creditCard);
+    }
+    
+    public void deleteTempObject() {
+        deleteAccount(deleteObjectId);
     }
     
     // initialize new Entities ================================================
@@ -199,10 +210,40 @@ public class AccountController implements Serializable {
         return loggedIn;
     }
     
+    public String loggedInGuard() {
+        if (loggedIn)
+            return "/user/user_dashboard" + REDIRECT;
+        else
+            return null;
+    }
     
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
+    }
     
+    public boolean isPaymentConfirmed() {
+        if (creditCard.getCardNumber() == null)
+            return false;
+        else if (creditCard.getCvv() == null)
+            return false;
+        else if (creditCard.getExpiryMonth() == 0)
+            return false;
+        else if (creditCard.getExpiryYear() == 0)
+            return false;
+        else if (creditCard.getNameOnCard() == null)
+            return false;
+        else if (account.getDeliveryAddress() == null)
+            return false;
+        else
+            return true;
+    }
     
     private boolean test = false;
+    
     // testing function
     public boolean getTest() {
         return test;

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        
+        <title>Product List</title>
+    </h:head>
+    <f:metadata>
+        <f:viewAction action="#{productController.loadShoppingCart(accountController.account.shoppingCart.id)}"/>
+    </f:metadata>
+    <h:body>
+        <h:form>
+            <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true"/>
+                    </div>
+
+                    <ul class="nav navbar-nav navbar-right">
+
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-tags" action="/user/product_list?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-shopping-cart" action="/user/cart?faces-redirect=true"/>
+                        </li>
+                        <li>
+                            <h:commandLink class="glyphicon glyphicon-user" action="/user/user_dashboard?faces-redirect=true"/>
+                        </li>      
+                        <li>
+                            <h:commandLink  class="glyphicon glyphicon-log-out" action="#{accountController.logout()}"/>
+                        </li>
+                    </ul>    
+                </div>
+            </nav>
+        </h:form>
+        <div class="container col-sm-9">
+		<div style="margin: 0 0 0 35%">
+                    <div class="panel-group">
+    			<div class="panel panel-default">
+        			<div class="panel-heading clearfix"> 
+                                    <p class="panel-title pull-left" style="padding-top:7.5px;">List of Available Phones</p>
+                                </div>
+      
+                            <div class="panel-body">  
+                                <h:form>
+                                    <h:dataTable var="phone" value="#{productController.allPhones}" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Model Name
+                                            </f:facet>
+                                            <h:outputText value="#{phone.modelName}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Manufacturer
+                                            </f:facet>
+                                            <h:outputText value="#{phone.manufacturer}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="#{phone.price}" />
+                                        </h:column>
+                                        <h:column>
+                                            <h:link value="View Detail" class="btn btn-info" outcome="/user/phone_detail?faces-redirect=true">
+                                                <f:param name="id" value="#{phone.id}" />
+                                            </h:link>
+                                        </h:column>
+                                        <h:column>
+                                            <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addPhoneToCart(phone.id)}" disabled="#{productController.isPhoneInCart(phone.id)}"/>
+                                        </h:column>                         
+                                    </h:dataTable>
+                                </h:form> 
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+	    
+	</div>
+        
+        <div class="container col-sm-9">
+		<div style="margin: 0 0 0 35%">
+                    <div class="panel-group">
+    			<div class="panel panel-default">
+        			<div class="panel-heading clearfix"> 
+                                    <p class="panel-title pull-left" style="padding-top:7.5px;">List of Available Sims</p>
+                                </div>
+      
+                            <div class="panel-body">          
+                                <h:form>
+                                    <h:dataTable var="sim" value="#{productController.allSimPlans}" class="table table-hover" >
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Sim Name
+                                            </f:facet>
+                                            <h:outputText value="#{sim.name}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Credit
+                                            </f:facet>
+                                            <h:outputText value="#{sim.credit}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Bonus SMS
+                                            </f:facet>
+                                            <h:outputText value="#{sim.bonusSMS}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <f:facet name="header">
+                                                Price
+                                            </f:facet>
+                                            <h:outputText value="#{sim.price}"/>
+                                        </h:column>
+                                        <h:column>
+                                            <h:link value="View Detail" class="btn btn-info" outcome="/user/sim_detail?faces-redirect=true">
+                                                <f:param name="id" value="#{sim.id}" />
+                                            </h:link>
+                                        </h:column>
+                                                <h:column>
+                                                    <h:commandButton value="Add to Cart" class="btn btn-success" action="#{productController.addSimPlanToCart(sim.id)}"  disabled="#{productController.isSimPlanInCart(sim.id)}"/>
+                                                </h:column>
+                                    </h:dataTable>
+                                </h:form> 
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            <h:form>
+                <center style="margin-left: 35%"><h:commandButton value="Checkout" action="/cart?faces-redirect=true" class="btn btn-primary btn-lg"/></center>
+            </h:form>
+	</div>
+    </h:body>
+</html>
