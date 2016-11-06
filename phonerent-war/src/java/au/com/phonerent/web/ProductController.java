@@ -14,6 +14,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -24,6 +27,8 @@ import javax.inject.Named;
 @SessionScoped
 public class ProductController implements Serializable {
     private final String REDIRECT = "?faces-redirect=true";
+    @Inject
+    AccountController accountController;
     
     @EJB
     private PhoneFacadeLocal phoneFacade;
@@ -42,8 +47,8 @@ public class ProductController implements Serializable {
     private String deleteObjectType = "";
     private int deleteObjectId;
     
-    private String startDateString = "";
-    private String endDateString = "";
+    private String startDateString;
+    private String endDateString;
     
     // presentation logic support =============================================
     private boolean dateConfirmed = false;
@@ -59,10 +64,14 @@ public class ProductController implements Serializable {
             purchase.setEndDate(endDate);
             shoppingCartFacade.process(shoppingCart.getId(), purchase);
             purchase = new Purchase();
+            accountController.reloadAccount();
+        return "/user/user_dashboard" + REDIRECT;
         } catch (ParseException ex) {
             Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage("loginresult",new FacesMessage(FacesMessage.SEVERITY_ERROR, "the date shouldn't be empty",""));
+            return null;
         }
-        return "/user/user_dashboard" + REDIRECT;
     }
     
     public String addPhoneToCart(int id) {

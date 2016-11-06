@@ -41,6 +41,7 @@ public class ShoppingCartFacade extends AbstractFacade<ShoppingCart> implements 
     public void process(int id, Purchase purchase) {
         ShoppingCart shoppingCart = this.find(id);
         purchase.setAccount(shoppingCart.getAccount());
+        shoppingCart.getAccount().getPurchases().add(purchase);
         purchase.setPhones(shoppingCart.getPhones());
         purchase.setSimPlans(shoppingCart.getSimPlans());
         purchase.setStatus("Recieved");
