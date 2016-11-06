@@ -4,7 +4,7 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <f:metadata>
-        <f:viewAction action="#{productController.findPurchase(param.purchaseDetail)}"/>
+        <f:viewAction action="#{productController.loadPurchase(param.id, 'Users')}"/>
     </f:metadata>
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
@@ -43,12 +43,6 @@
             <h1>Purchase Details</h1>
             <h:form style="margin-top:40px;">
                 <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                        <label>Purchase ID: 
-                            <h:outputText value="#{productController.purchase.id}"/>
-                        </label>
-                        <label>Card Number:
-                            <h:outputText value="#{productController.purchase.account.creditCard.cardNumber}"/>
-                        </label>
                         <label>Delivery Address:
                             <h:outputText value="#{productController.purchase.account.deliveryAddress}"/>
                         </label>
@@ -77,7 +71,7 @@
       
                             <div class="panel-body">  
                                 <h:form>
-                                    <h:dataTable var="phone" value="#{productController.allPhones}" class="table table-hover" >
+                                    <h:dataTable var="phone" value="#{productController.purchase.phones}" class="table table-hover" >
                                         <h:column>
                                             <f:facet name="header">
                                                 Model Name
@@ -113,7 +107,7 @@
       
                             <div class="panel-body">          
                                 <h:form>
-                                    <h:dataTable var="sim" value="#{productController.allSimPlans}" class="table table-hover" >
+                                    <h:dataTable var="sim" value="#{productController.purchase.simPlans}" class="table table-hover" >
                                         <h:column>
                                             <f:facet name="header">
                                                 Sim Name
@@ -145,8 +139,6 @@
                     </div>
                     <h:form style="margin-bottom : 30px;">
                         <h:link value="Back" outcome="/user/user_dashboard?faces-redirect=true"/>
-                        <h:inputText style="margin-left:25px;" /> week
-                        <h:commandButton value="Extend Rent Period" action="#" style="margin-left:25px;" />
                     </h:form>
                 </div>
             </div>

@@ -77,7 +77,7 @@ public class CreditCard implements Serializable {
         this.expiryYear = expiryYear;
     }
 
-    @OneToOne(mappedBy = "creditCard", cascade=CascadeType.ALL)
+    @OneToOne(mappedBy = "creditCard")
     public Account getOwner() {
         return owner;
     }

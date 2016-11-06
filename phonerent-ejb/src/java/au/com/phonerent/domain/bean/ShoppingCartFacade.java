@@ -38,7 +38,8 @@ public class ShoppingCartFacade extends AbstractFacade<ShoppingCart> implements 
     }
 
     @Override
-    public void process(ShoppingCart shoppingCart, Purchase purchase) {
+    public void process(int id, Purchase purchase) {
+        ShoppingCart shoppingCart = this.find(id);
         purchase.setAccount(shoppingCart.getAccount());
         purchase.setPhones(shoppingCart.getPhones());
         purchase.setSimPlans(shoppingCart.getSimPlans());

@@ -12,6 +12,7 @@
         <title>Your Dashboard</title>
     </h:head>
     <f:metadata>
+        <f:viewAction action="#{accountController.reloadAccount()}"/>
         <f:viewAction action="#{accountController.loadCreditCard()}"/>
     </f:metadata>
     <h:body>    
@@ -76,7 +77,7 @@
                                                 </h:column>      
                                                 <h:column>
                                                         <h:commandButton value="View Detail" action="/user/purchase_detail?faces-redirect=true">
-                                                            <f:param name="purchaseDetail" value="#{purchase.id}" />
+                                                            <f:param name="id" value="#{purchase.id}" />
                                                         </h:commandButton>
                                                 </h:column>
                                             </h:dataTable>

@@ -137,6 +137,11 @@ public class AccountController implements Serializable {
             return null;        
     }
     
+    public void reloadAccount() {
+        if (account.getId() != 0)
+            account = accountFacade.find(account.getId());
+    }
+    
     public void loadCreditCard() {
         creditCard = account.getCreditCard();
     }

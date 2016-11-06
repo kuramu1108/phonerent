@@ -188,7 +188,7 @@ public class Account implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -197,7 +197,7 @@ public class Account implements Serializable {
         this.creditCard = creditCard;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
+    @OneToOne
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

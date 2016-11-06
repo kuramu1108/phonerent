@@ -43,7 +43,7 @@ public class ProductController implements Serializable {
     // shopping cart operation =================================================
     
     public void ckeckout() {
-        shoppingCartFacade.process(shoppingCart, purchase);
+        shoppingCartFacade.process(shoppingCart.getId(), purchase);
         purchase = new Purchase();
     }
     
