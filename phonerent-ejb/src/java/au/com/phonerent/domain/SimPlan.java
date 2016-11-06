@@ -22,7 +22,6 @@ public class SimPlan implements Serializable{
     private double price;
     private double credit;
     private int bonusSMS;
-    private int planDuration;
     private List<Purchase> purchases = new ArrayList<>();
     private List<ShoppingCart> shoppingCarts = new ArrayList<>();
 
@@ -89,7 +88,8 @@ public class SimPlan implements Serializable{
      * bonusSMS can be null
      * @return the endDate
      */
-    @Size(min=1, max=100, message ="Maximum SMS is 100")
+    @Min(1)
+    @Max(100)
     public int getBonusSMS() {
         return bonusSMS;
     }

@@ -37,7 +37,7 @@ public class CreditCard implements Serializable {
         this.id = id;
     }
 
-    @Size(min=12, max=12)
+    @Size(min=16, max=16)
     public String getCardNumber() {
         return cardNumber;
     }
@@ -55,7 +55,8 @@ public class CreditCard implements Serializable {
         this.nameOnCard = nameOnCard;
     }    
     
-    @Size(min=1, max=4)
+    @Min(1)
+    @Max(999)
     public int getCvv() {
         return cvv;
     }
