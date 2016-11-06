@@ -47,6 +47,7 @@ public class SimPlan implements Serializable{
      * name must not be null
      * @return the name
      */
+    @Column(name="simName")
     @Size(min=1, max=255)
     public String getName() {
         return name;
