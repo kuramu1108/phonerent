@@ -87,7 +87,6 @@ public class Account implements Serializable {
     /**
      * @return the password
      */
-    @Size(min=6, max=12)
     public String getPassword() {
         return password;
     }

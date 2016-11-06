@@ -217,21 +217,22 @@ public class ProductController implements Serializable {
         purchaseFacade.remove(purchaseFacade.find(id));
     }
     
-    public void deleteTempObject() {
+    public String deleteTempObject() {
         if (null != deleteObjectType)
             switch (deleteObjectType) {
             case "Phone":
                 this.deletePhone(deleteObjectId);
-                break;
+                return "/secret/admin_dashboard" + REDIRECT + "tab=phone";
             case "SimPlan":
                 this.deleteSimPlan(deleteObjectId);
-                break;
+                return "/secret/admin_dashboard" + REDIRECT + "tab=sim";
             case "Purchase":
                 this.deletePurchase(deleteObjectId);
-                break;
+                return "/secret/admin_dashboard" + REDIRECT + "tab=purchase";
             default:
                 break;
         }
+        return null;
     }
     // initialize new Entities ================================================
     public void newPhone() {

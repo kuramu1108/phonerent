@@ -153,10 +153,12 @@ public class AccountController implements Serializable {
         if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT + "tab=account";
             else
-                return "/user/user_dashboard" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT + "tab=profile";
     }
     
     public void editCreditCard() {
+        account.setCreditCard(creditCard);
+        creditCard.setOwner(account);
         creditCardFacade.edit(creditCard);
     }
     
