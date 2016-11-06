@@ -7,6 +7,7 @@ package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
+import au.com.phonerent.rs.RestClient;
 import java.io.*;
 import java.util.List;
 import javax.ejb.*;
@@ -43,7 +44,6 @@ public class AccountController implements Serializable {
     private boolean registrationChecked = false;
 
     private boolean loggedIn = false;
-    private boolean paymentConfirmed = false;
     
     // business logic processing ==============================================
     public String login() {
@@ -89,12 +89,12 @@ public class AccountController implements Serializable {
     
     public String sendPasswordRecovery() {
         accountFacade.sendPasswordRecovery(account.getEmail());
-        return null;
+        return "/password_confirmation" + REDIRECT;
     }
     
     public String resetPassword() {
         accountFacade.resetPassword(account, newPassword);
-        return "/login" + REDIRECT;
+        return "/password_changed" + REDIRECT;
     }
     
     public String confirmRegistration(String email) {
@@ -136,6 +136,10 @@ public class AccountController implements Serializable {
         }
         else
             return null;        
+    }
+    
+    public void reloadAccount() {
+        account = accountFacade.find(account.getId());
     }
     
     public void loadCreditCard() {
@@ -223,12 +227,20 @@ public class AccountController implements Serializable {
     }
     
     public boolean isPaymentConfirmed() {
-        return paymentConfirmed;
-    }
-
-    public void paymentEntered() {
-        accountFacade.edit(account);
-        this.paymentConfirmed = true;
+        if (creditCard.getCardNumber() == null)
+            return false;
+        else if (creditCard.getCvv() != null)
+            return false;
+        else if (creditCard.getExpiryMonth() == 0)
+            return false;
+        else if (creditCard.getExpiryYear() == 0)
+            return false;
+        else if (creditCard.getNameOnCard() == null)
+            return false;
+        else if (account.getDeliveryAddress() == null)
+            return false;
+        else
+            return true;
     }
     
     private boolean test = false;

@@ -33,6 +33,12 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     
     @EJB
     EmailClient emailClient;
+    
+    @EJB
+    CreditCardFacadeLocal creditCardFacade;
+    
+    @EJB
+    ShoppingCartFacadeLocal shoppingCartFacade;
 
     @Override
     protected EntityManager getEntityManager() {
@@ -49,7 +55,9 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setAccountType("Users");
         CreditCard card = new CreditCard();
         ShoppingCart cart = new ShoppingCart();
+        creditCardFacade.create(card);
         account.setCreditCard(card);
+        shoppingCartFacade.create(cart);
         account.setShoppingCart(cart);
         try {
             account.setPassword(Sha256.hash256(account.getPassword()));
@@ -66,7 +74,9 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
         account.setIsActivate(false);
         account.setAccountType("Users");
         CreditCard card = new CreditCard();
+        creditCardFacade.create(card);
         ShoppingCart cart = new ShoppingCart();
+        shoppingCartFacade.create(cart);
         account.setCreditCard(card);
         account.setShoppingCart(cart);
         try {

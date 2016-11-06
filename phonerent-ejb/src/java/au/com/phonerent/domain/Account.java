@@ -219,12 +219,14 @@ public class Account implements Serializable {
         this.deliveryAddress = deliveryAddress;
     }
 
+
     /**
      * to get or request for the the card number of a credit card
      * card number must be exactly 16 characters 
      * @return cardNumber must not be null 
      */
-    @OneToOne(cascade=CascadeType.ALL)
+
+    @OneToOne
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -233,12 +235,14 @@ public class Account implements Serializable {
         this.creditCard = creditCard;
     }
 
+
     /**
      * to get or request for the the card number of a credit card
      * card number must be exactly 16 characters 
      * @return cardNumber must not be null 
      */
-    @OneToOne(cascade=CascadeType.ALL)
+
+    @OneToOne
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

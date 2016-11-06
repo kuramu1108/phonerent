@@ -19,5 +19,5 @@ insert into simPlan (id, bonussms, credit, phoneNumber, simName, price) values
     (2380, 19, 21.00, '0431911088', 'Po-Hao', 30.00);
 
 insert into account(id, accountType, deliveryAddress, email, firstName, isActivate, lastName, password, passwordResetId, phoneNumber, creditCard_id, shoppingCart_id) values
-    (2001, 'Admins', '2007 George St', 'Rose@gmail.com', 'Rose', 1, 'Rosetta', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', null, '0451050494', null, null);
+    (2001, 'Admins', '2007 George St', 'colagarychen@gmail.com', 'Rose', 1, 'Rosetta', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', null, '0451050494', null, null);
 

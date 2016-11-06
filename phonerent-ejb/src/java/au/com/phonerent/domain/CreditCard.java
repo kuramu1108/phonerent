@@ -135,7 +135,8 @@ public class CreditCard implements Serializable {
      * OneToOne relationship is being used because every user is limited with one credit card
      * @return owner must not be null 
      */ 
-    @OneToOne(mappedBy = "creditCard", cascade=CascadeType.ALL)
+
+    @OneToOne(mappedBy = "creditCard")
     public Account getOwner() {
         return owner;
     }
