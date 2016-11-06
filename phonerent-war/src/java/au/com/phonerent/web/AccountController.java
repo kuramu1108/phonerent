@@ -43,7 +43,7 @@ public class AccountController implements Serializable {
     private boolean registrationChecked = false;
 
     private boolean loggedIn = false;
-    
+    private boolean paymentConfirmed = false;
     
     // business logic processing ==============================================
     public String login() {
@@ -222,6 +222,14 @@ public class AccountController implements Serializable {
         this.newPassword = newPassword;
     }
     
+    public boolean isPaymentConfirmed() {
+        return paymentConfirmed;
+    }
+
+    public void paymentEntered() {
+        accountFacade.edit(account);
+        this.paymentConfirmed = true;
+    }
     
     private boolean test = false;
     

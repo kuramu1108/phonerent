@@ -87,6 +87,7 @@ public class Account implements Serializable {
     /**
      * @return the password
      */
+    @NotNull
     public String getPassword() {
         return password;
     }

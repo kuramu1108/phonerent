@@ -50,7 +50,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the startDate
      */
-    @Future(message="Must choose the date after today")
+    @NotNull
     @Temporal(TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
@@ -74,7 +74,7 @@ public class Purchase implements Serializable {
      * endDate must not be null
      * @return the endDate
      */
-    @Future(message="Must choose the date after today")
+    @NotNull
     @Temporal(TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
@@ -95,7 +95,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the total
      */
-    @DecimalMax("100.0") @DecimalMin("1.0")
+    @DecimalMin("1.0")
     public double getTotal() {
         return total;
     }
