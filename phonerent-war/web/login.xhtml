@@ -21,7 +21,7 @@
             <nav class="navbar navbar-inverse">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <h:commandLink class="navbar-brand" value="Phonerent" action="/login?faces-redirect=true" />
+                        <h:commandLink class="navbar-brand" value="Phonerent" action="/homepage?faces-redirect=true" />
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
@@ -85,14 +85,15 @@
                 <label class="control-label col-sm-5">Password:
                 </label>
                 <div class="col-sm-3">
-                    <h:inputSecret class="form-control" id="password" value="#{accountController.account.password}" validatorMessage="Please enter password" />
+                    <h:inputSecret class="form-control" id="password" value="#{accountController.account.password}" validatorMessage="Password should be at least 6 characters" />
                     <br/>
                     <h:message for="password" style="color:red;"/>
+                    <h:messages  style="color:red;"/>
                 </div>
             </div>
             
             <div align="center">
-            <h:commandButton class="btn btn-primary btn-md" value="Login" action="#{accountController.login()}" style="margin-right: 5px; width: 150px;"/>
+            <h:commandButton id="login" class="btn btn-primary btn-md" value="Login" action="#{accountController.login()}" style="margin-right: 5px; width: 150px;"/>
             </div>
         </h:form>
         <center>

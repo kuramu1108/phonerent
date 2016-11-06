@@ -8,6 +8,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
+        <script src="../js/custom.js"></script>
         <title>Your Dashboard</title>
     </h:head>
     <h:body>    
@@ -39,79 +40,40 @@
         <div class="container">
             <h2>Welcome!</h2>
                 <ul class="nav nav-tabs">
-                    <li class="active"><a data-toggle="tab" href="#active">Active Purchase</a></li>                                   
-                    <li><a data-toggle="tab" href="#history">Purchase History</a></li>
-                    <li><a data-toggle="tab" href="#profile">Your Account Details</a></li>
-                    <li><a data-toggle="tab" href="#billing">Your Billing Details</a></li>
+                    <li class="active"><a href="#history">Purchase History</a></li>
+                    <li><a href="#profile">Your Account Details</a></li>
+                    <li><a href="#billing">Your Billing Details</a></li>
                 </ul>
 
                 <div class="tab-content">
-                    <div id="active" class="tab-pane fade in active">
-                        <div>
-                            <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">          
-                                        <h:form>
-                                            <h:dataTable var="activePurchase" value="#{accountController.account.purchases}" class="table table-hover" >
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        Purchase ID
-                                                    </f:facet>
-                                                    <h:outputText value="#{activePurchase.id}"/>
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        Purchase Date
-                                                    </f:facet>
-                                                    <h:outputText value="#{activePurchase.startDate}"/>
-                                                </h:column>
-                                                <h:column>
-                                                    <f:facet name="header">
-                                                        Total Price
-                                                    </f:facet>
-                                                    <h:outputText value="#{activePurchase.total}"/>
-                                                </h:column>      
-                                                <h:column>
-                                                        <h:commandButton value="View Detail" action="/user/purchase_detail?faces-redirect=true">
-                                                            <f:param name="purchaseDetail" value="#{activePurchase.id}" />
-                                                        </h:commandButton>
-                                                </h:column>
-                                            </h:dataTable>
-                                        </h:form>  
-                                    </div>                           
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div id="history" class="tab-pane fade">
                         <div>
                             <div class="panel-group">
                                 <div class="panel panel-default">
                                     <div class="panel-body">          
                                         <h:form>
-                                            <h:dataTable var="inactivePurchase" value="#{accountController.account.purchases}" class="table table-hover" >
+                                            <h:dataTable var="purchase" value="#{accountController.account.purchases}" class="table table-hover" >
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase ID
                                                     </f:facet>
-                                                    <h:outputText value="#{inactivePurchase.id}"/>
+                                                    <h:outputText value="#{purchase.id}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Purchase Date
                                                     </f:facet>
-                                                    <h:outputText value="#{inactivePurchase.startDate}"/>
+                                                    <h:outputText value="#{purchase.startDate}"/>
                                                 </h:column>
                                                 <h:column>
                                                     <f:facet name="header">
                                                         Total Price
                                                     </f:facet>
-                                                    <h:outputText value="#{inactivePurchase.total}"/>
+                                                    <h:outputText value="#{purchase.total}"/>
                                                 </h:column>      
                                                 <h:column>
                                                         <h:commandButton value="View Detail" action="/user/purchase_detail?faces-redirect=true">
-                                                            <f:param name="purchaseDetail" value="#{inactivePurchase.id}" />
+                                                            <f:param name="purchaseDetail" value="#{purchase.id}" />
                                                         </h:commandButton>
                                                 </h:column>
                                             </h:dataTable>
@@ -123,42 +85,42 @@
                     </div>
                     <div id="profile" class="tab-pane fade">
                         <div class="panel-group">
-                                <div class="panel panel-default">
-                                    <div class="panel-body">          
-                                        <h:form>
-                                            <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                                                <p>
-                                                    <label>Email 
-                                                        <h:inputText id="email" value="#{accountController.account.email}"/>
-                                                    </label>
-                                                </p>
-                                                <p>
-                                                    <label>First Name
-                                                        <h:inputText id="firstName" value="#{accountController.account.firstName}"/>
-                                                    </label>
-                                                </p>
-                                                <p>
-                                                    <label>Last Name
-                                                        <h:inputText id="lastName" value="#{accountController.account.lastName}"/>
-                                                    </label>
-                                                </p>
-                                                <p>
-                                                    <label>Mobile Phone
-                                                        <h:inputText id="mobilePhone" value="#{accountController.account.phoneNumber}"/>
-                                                    </label>
-                                                </p>
-                                                <p>
-                                                    <label>Delivery Address
-                                                        <h:inputText id="deliveryAddress" value="#{accountController.account.deliveryAddress}"/>
-                                                    </label>
-                                                </p>
-                                                <h:commandButton value="Update" action="#{accountController.editAccount('Users')}" style="margin-top:15px;" />
-                                            </h:panelGrid>
-                                        </h:form>  
-                                    </div>                           
-                                </div>
-                            </div> 
-                        </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">          
+                                    <h:form>
+                                        <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
+                                            <p>
+                                                <label>Email 
+                                                    <h:inputText id="email" value="#{accountController.account.email}"/>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>First Name
+                                                    <h:inputText id="firstName" value="#{accountController.account.firstName}"/>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>Last Name
+                                                    <h:inputText id="lastName" value="#{accountController.account.lastName}"/>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>Mobile Phone
+                                                    <h:inputText id="mobilePhone" value="#{accountController.account.phoneNumber}"/>
+                                                </label>
+                                            </p>
+                                            <p>
+                                                <label>Delivery Address
+                                                    <h:inputText id="deliveryAddress" value="#{accountController.account.deliveryAddress}"/>
+                                                </label>
+                                            </p>
+                                            <h:commandButton value="Update" action="#{accountController.editAccount('Users')}" style="margin-top:15px;" />
+                                        </h:panelGrid>
+                                    </h:form>  
+                                </div>                           
+                            </div>
+                        </div> 
+                    </div>
                     
             
                     <div id="billing" class="tab-pane fade">
@@ -201,5 +163,18 @@
                     </div>
                 </div> 
             </div>
+        <script>
+            $('.nav-tabs a').click(function (e) {
+                // No e.preventDefault() here
+                $(this).tab('show');
+            });
+            
+            $(function(){
+                var tab = getParameterByName("tab");
+                if (tab !== null) {
+                    $('.nav-tabs a[href="#' + tab + '"]').tab('show')
+                }
+            });
+        </script>
     </h:body>
 </html>

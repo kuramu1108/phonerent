@@ -6,7 +6,6 @@
 package au.com.phonerent.domain;
 
 import java.io.*;
-import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -38,7 +37,7 @@ public class CreditCard implements Serializable {
         this.id = id;
     }
 
-    @Size(min=4, max=14)
+    @Size(min=16, max=16)
     public String getCardNumber() {
         return cardNumber;
     }
@@ -47,7 +46,7 @@ public class CreditCard implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    @Size(min=1)
+    @Size(min=1, max=70)
     public String getNameOnCard() {
         return nameOnCard;
     }
@@ -56,7 +55,8 @@ public class CreditCard implements Serializable {
         this.nameOnCard = nameOnCard;
     }    
     
-    @Size(min=1, max=4)
+    @Min(1)
+    @Max(999)
     public int getCvv() {
         return cvv;
     }
@@ -76,7 +76,7 @@ public class CreditCard implements Serializable {
     }
 
     @Min(2016)
-    @Size(min=4, max=4)
+    @Max(3000)
     public int getExpiryYear() {
         return expiryYear;
     }

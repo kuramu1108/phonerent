@@ -59,7 +59,7 @@ public class AccountController implements Serializable {
             req.login(account.getEmail(), account.getPassword());
             account = accountFacade.findByEmail(account.getEmail());
         } catch (ServletException e) {
-            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!",e.getMessage()));
+            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Password mismatch",e.getMessage()));
             return null;
         }
         loggedIn = true;
@@ -153,10 +153,12 @@ public class AccountController implements Serializable {
         if ("Admins".equals(type))
                 return "/secret/admin_dashboard" + REDIRECT + "tab=account";
             else
-                return "/user/user_dashboard" + REDIRECT;
+                return "/user/user_dashboard" + REDIRECT + "tab=profile";
     }
     
     public void editCreditCard() {
+        account.setCreditCard(creditCard);
+        creditCard.setOwner(account);
         creditCardFacade.edit(creditCard);
     }
     

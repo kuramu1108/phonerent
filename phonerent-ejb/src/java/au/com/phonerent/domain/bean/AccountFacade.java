@@ -84,7 +84,6 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
             admin.setLastName("Chen");
             admin.setPassword(Sha256.hash256("841108"));
             admin.setPhoneNumber("0431911088");
-            admin.setDob(new GregorianCalendar(1995, 11, 8).getTime());
             admin.setIsActivate(true);
             em.persist(admin);
         } catch (NoSuchAlgorithmException ex) {
