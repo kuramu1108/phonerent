@@ -71,7 +71,7 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
     
     @Override
     public void create(Account account) {
-        account.setIsActivate(false);
+        account.setIsActivate(true);
         account.setAccountType("Users");
         CreditCard card = new CreditCard();
         creditCardFacade.create(card);
