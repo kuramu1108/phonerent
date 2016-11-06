@@ -86,37 +86,60 @@
                     <div id="profile" class="tab-pane fade">
                         <div class="panel-group">
                             <div class="panel panel-default">
-                                <div class="panel-body">          
-                                    <h:form>
-                                        <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                                            <p>
-                                                <label>Email 
-                                                    <h:inputText id="email" value="#{accountController.account.email}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>First Name
-                                                    <h:inputText id="firstName" value="#{accountController.account.firstName}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Last Name
-                                                    <h:inputText id="lastName" value="#{accountController.account.lastName}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Mobile Phone
-                                                    <h:inputText id="mobilePhone" value="#{accountController.account.phoneNumber}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Delivery Address
-                                                    <h:inputText id="deliveryAddress" value="#{accountController.account.deliveryAddress}"/>
-                                                </label>
-                                            </p>
-                                            <h:commandButton value="Update" action="#{accountController.editAccount('Users')}" style="margin-top:15px;" />
-                                        </h:panelGrid>
-                                    </h:form>  
+                                <div class="panel-body">    
+                                    <h:form class="form-horizontal" style="margin-top:30px;">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Email:
+                                            </label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="email" value="#{accountController.account.email}" validatorMessage="Please ensure you enter a valid email address" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="email" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">First Name:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="firstName" value="#{accountController.account.firstName}" validatorMessage="This field must not be empty" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="firstName" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Last Name:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="lastName" value="#{accountController.account.lastName}" validatorMessage="This field must not be empty" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="lastName" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Mobile Phone:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="phoneNumber" value="#{accountController.account.phoneNumber}" validatorMessage="Please enter a valid mobile phone number" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="phoneNumber" style="color:red;"/>
+                                            </div>
+                                        </div>             
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Delivery Address:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="deliveryAddress" value="#{accountController.account.deliveryAddress}" validatorMessage="Please enter a valid mobile phone number" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="deliveryAddress" style="color:red;"/>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="col-sm-5" align="center">
+                                                <h:commandButton class="btn btn-primary btn-md" value="Update" action="#{accountController.editAccount('Users')}" style="margin-top : 12px;"/>
+                                            </div>
+                                        </div>
+                                    </h:form>
                                 </div>                           
                             </div>
                         </div> 
@@ -126,37 +149,60 @@
                     <div id="billing" class="tab-pane fade">
                         <div class="panel-group">
                             <div class="panel panel-default">
-                                <div class="panel-body">          
-                                    <h:form>
-                                        <h:panelGrid id="panel" columns="2" cellpadding="10" cellspacing="1" width="30%">
-                                            <p>
-                                                <label>Card Number 
-                                                    <h:inputText id="cardNumber" value="#{accountController.creditCard.cardNumber}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Name on Card
-                                                    <h:inputText id="nameOnCard" value="#{accountController.creditCard.nameOnCard}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>CVV
-                                                    <h:inputText id="cvv" value="#{accountController.creditCard.cvv}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Expiry Month
-                                                    <h:inputText id="expiryMonth" value="#{accountController.creditCard.expiryMonth}"/>
-                                                </label>
-                                            </p>
-                                            <p>
-                                                <label>Expiry Year
-                                                    <h:inputText id="expiryYear" value="#{accountController.creditCard.expiryYear}"/>
-                                                </label>
-                                            </p>
-                                            <h:commandButton value="Update" action="#{accountController.editCreditCard()}" style="margin-top:15px;" />
-                                        </h:panelGrid>
-                                    </h:form>  
+                                <div class="panel-body">
+                                    <h:form class="form-horizontal" style="margin-top:30px;">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Card Number:
+                                            </label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="cardNumber" value="#{accountController.creditCard.cardNumber}" validatorMessage="Please enter a valid credit card number" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="cardNumber" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Name on Card:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="nameOnCard" value="#{accountController.creditCard.nameOnCard}" validatorMessage="Name on Card must not be empty" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="nameOnCard" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">CVV:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="cvv" value="#{accountController.creditCard.cvv}" validatorMessage="Please enter a valid CVV number" converterMessage="CVV number must be entered in numerical format" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="cvv" style="color:red;"/>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Expiry Month:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="expiryMonth" value="#{accountController.creditCard.expiryMonth}" validatorMessage="Please enter a valid expiry month" converterMessage="Expiry Month must be entered in numerical format" />
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="expiryMonth" style="color:red;"/>
+                                            </div>
+                                        </div>             
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2">Expiry Year:</label>
+                                            <div class="col-sm-3">
+                                                <h:inputText class="form-control" id="expiryYear" value="#{accountController.creditCard.expiryYear}" validatorMessage="Please enter a valid expiry year" converterMessage="Expiry Year must be entered in numerical format"/>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <h:message for="expiryYear" style="color:red;"/>
+                                            </div>
+                                        </div> 
+                                        <div class="form-group">
+                                            <div class="col-sm-5" align="center">
+                                                <h:commandButton class="btn btn-primary btn-md" value="Update" action="#{accountController.editCreditCard()}" style="margin-top : 12px;"/>
+                                            </div>
+                                        </div>
+                                    </h:form>
                                 </div>                           
                             </div>
                         </div> 

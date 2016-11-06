@@ -55,8 +55,9 @@ public class CreditCard implements Serializable {
         this.nameOnCard = nameOnCard;
     }    
     
+    @NotNull
     @Min(1)
-    @Max(999)
+    @Max(9999)
     public int getCvv() {
         return cvv;
     }
@@ -65,6 +66,7 @@ public class CreditCard implements Serializable {
         this.cvv = cvv;
     }
     
+    @NotNull
     @Min(1)
     @Max(12)
     public int getExpiryMonth() {
@@ -75,6 +77,7 @@ public class CreditCard implements Serializable {
         this.expiryMonth = expiryMonth;
     }
 
+    @NotNull
     @Min(2016)
     @Max(3000)
     public int getExpiryYear() {
