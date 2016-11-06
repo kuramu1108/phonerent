@@ -8,13 +8,13 @@
  * Created: 28/10/2016
  */
 
-insert into phoneModel (id, manufacturer, modelName, price) values
-    (1, 'Apple', 'Iphone 7', 30.00);
-insert into phoneModel (id, manufacturer, modelName, price) values
-    (2, 'Samsung', 'S7', 20.00);
-insert into phone (id, model_id) values
-    (1, 2);
-insert into phone (id, model_id) values
-    (2, 1);
+insert into phone (id, manufacturer, modelName, price) values
+    (19999, 'Apple', 'Iphone 7', 30.00);
+insert into phone (id, manufacturer, modelName, price) values
+    (22202, 'Samsung', 'S7', 20.00);
 
+insert into simPlan (id, bonussms, credit, simName, price) values
+    (2100, 12, 12.00, 'Optus', 21.00);
+insert into simPlan (id, bonussms, credit, simName, price) values
+    (2380, 19, 21.00, 'Optus', 30.00);
 
