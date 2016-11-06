@@ -28,7 +28,7 @@ public class CreditCard implements Serializable {
     /**
      * to get or request for the id of the credit card
      * Id is being auto generated for every new instances of credit card
-     * @return id must not be null and it is a primary key for this class
+     * @return id must not be null and it is a primary key for credit card
      */
     @Id
     @GeneratedValue
@@ -135,7 +135,6 @@ public class CreditCard implements Serializable {
      * OneToOne relationship is being used because every user is limited with one credit card
      * @return owner must not be null 
      */ 
-
     @OneToOne(mappedBy = "creditCard")
     public Account getOwner() {
         return owner;
