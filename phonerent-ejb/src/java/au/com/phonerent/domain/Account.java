@@ -1,7 +1,6 @@
 package au.com.phonerent.domain;
 
 import java.io.Serializable;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -19,7 +18,6 @@ import javax.validation.constraints.*;
 })
 public class Account implements Serializable {
     private int id;
-    private Date dob;
     private String firstName;
     private String lastName;
     private String password;
@@ -55,26 +53,11 @@ public class Account implements Serializable {
         this.id = id;
     }
 
-    /**
-     * @return the dob
-     */
-    
-    @Temporal(TemporalType.DATE)
-    public Date getDob() {
-        return dob;
-    }
-
-    /**
-     * @param dob the dob to set
-     */
-    public void setDob(Date dob) {
-        this.dob = dob;
-    }
 
     /**
      * @return the firstName
      */
-    @Size(min=1)
+    @Size(min=1, max=50)
     public String getFirstName() {
         return firstName;
     }
@@ -89,7 +72,7 @@ public class Account implements Serializable {
     /**
      * @return the lastName
      */
-    @Size(min=1)
+    @Size(min=1, max=20)
     public String getLastName() {
         return lastName;
     }
@@ -104,7 +87,7 @@ public class Account implements Serializable {
     /**
      * @return the password
      */
-    @Size(min=6)
+    @Size(min=6, max=12)
     public String getPassword() {
         return password;
     }
@@ -175,7 +158,7 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param accountType the accountType to set
+     * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
