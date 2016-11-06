@@ -151,7 +151,7 @@ public class Account implements Serializable {
      * accountType must not be null.
      * @return the orders
      */
-    @Size(min=4, max=12)
+    @Size(min=4, max=14)
     public String getPhoneNumber() {
         return phoneNumber;
     }

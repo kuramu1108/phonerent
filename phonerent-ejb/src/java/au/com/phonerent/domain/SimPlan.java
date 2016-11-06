@@ -56,6 +56,7 @@ public class SimPlan implements Serializable{
         this.name = name;
     }
 
+    @NotNull
     @DecimalMax("100.0") @DecimalMin("1.0") 
     public double getPrice() {
         return price;
@@ -72,6 +73,7 @@ public class SimPlan implements Serializable{
      * credit must not be null
      * @return the credit
      */
+    @NotNull
     @DecimalMax("500.0") @DecimalMin("10.0") 
     public double getCredit() {
         return credit;
@@ -88,6 +90,7 @@ public class SimPlan implements Serializable{
      * bonusSMS can be null
      * @return the endDate
      */
+    @NotNull
     @Min(1)
     @Max(100)
     public int getBonusSMS() {

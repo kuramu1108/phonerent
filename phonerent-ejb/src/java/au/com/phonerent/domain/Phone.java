@@ -69,6 +69,7 @@ public class Phone implements Serializable {
         this.manufacturer = manufacturer;
     }
 
+    @NotNull
     @DecimalMax("100.0") @DecimalMin("1.0")
     public double getPrice() {
         return price;
