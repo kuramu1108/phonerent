@@ -157,6 +157,7 @@ public class AccountController implements Serializable {
     }
     
     public void editCreditCard() {
+        account.setCreditCard(creditCard);
         creditCard.setOwner(account);
         creditCardFacade.edit(creditCard);
     }

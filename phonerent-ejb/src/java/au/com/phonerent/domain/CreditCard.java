@@ -76,7 +76,7 @@ public class CreditCard implements Serializable {
     }
 
     @Min(2016)
-    @Size(min=4, max=4)
+    @Max(3000)
     public int getExpiryYear() {
         return expiryYear;
     }
