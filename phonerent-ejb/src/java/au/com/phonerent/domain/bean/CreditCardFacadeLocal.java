@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Credit card DAO local interface
  * @author mac
  */
 @Local

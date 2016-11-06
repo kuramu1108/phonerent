@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Phone DAO implementation
  * @author TOSHIBA
  */
 @Stateless

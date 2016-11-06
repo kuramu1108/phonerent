@@ -6,7 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * Credit card DAO implementation
  * @author mac
  */
 @Stateless

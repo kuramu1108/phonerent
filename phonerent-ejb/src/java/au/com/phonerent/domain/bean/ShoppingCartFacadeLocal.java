@@ -6,7 +6,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * shopping cart DAO local interface
  * @author mac
  */
 @Local

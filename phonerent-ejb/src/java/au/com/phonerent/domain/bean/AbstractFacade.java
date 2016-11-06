@@ -4,7 +4,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
- *
+ * Generic abstract DAO class
  * @author TOSHIBA
  */
 public abstract class AbstractFacade<T> {

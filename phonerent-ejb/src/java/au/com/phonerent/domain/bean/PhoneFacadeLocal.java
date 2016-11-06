@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * phone DAO local interface
  * @author TOSHIBA
  */
 @Local

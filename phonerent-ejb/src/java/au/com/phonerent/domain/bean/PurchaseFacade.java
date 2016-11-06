@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * purhcase DAO implementation
  * @author TOSHIBA
  */
 @Stateless

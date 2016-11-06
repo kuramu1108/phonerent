@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 /**
- *
+ * account DAO implementation
  * @author TOSHIBA
  */
 @Stateless

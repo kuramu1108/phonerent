@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
- *
+ * shopping cart DAO implementation
  * @author mac
  */
 @Stateless

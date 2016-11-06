@@ -5,7 +5,7 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Sim plan DAO local interface
  * @author TOSHIBA
  */
 @Local
