@@ -6,7 +6,6 @@
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Purchase;
-import au.com.phonerent.domain.SimPlan;
 import au.com.phonerent.rs.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,12 +59,10 @@ public class PurchaseFacade extends AbstractFacade<Purchase> implements Purchase
         body.setTo(p.getAccount().getPhoneNumber());
         String sms = "Update from Phonerent\n"
                 + "your order(#" + p.getId() + ") has been processed\n"
-                + "Current Status:" + p.getStatus() + "\n"
+                + "Current Status: " + p.getStatus() + "\n"
                 + "Please visit our website for detail";
         body.setBody(sms);
         restClient.postWithData(body);
-                        
+        this.edit(p);
     }
-    
-    
 }

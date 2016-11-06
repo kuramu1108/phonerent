@@ -262,6 +262,11 @@ public class ProductController implements Serializable {
         return "/secret/admin_dashboard" + REDIRECT + "tab=purchase";
     }
     
+    public String updatePurchaseStatus() {
+        purchaseFacade.updateStatus(purchase);
+        return "/secret/admin_dashboard" + REDIRECT + "tab=purchase";
+    }
+    
     public String editShoppingCart() {
         shoppingCartFacade.edit(shoppingCart);
         return "/user/user_dashboard" + REDIRECT;

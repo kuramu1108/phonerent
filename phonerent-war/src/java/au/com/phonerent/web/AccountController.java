@@ -7,7 +7,6 @@ package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
-import au.com.phonerent.rs.RestClient;
 import java.io.*;
 import java.util.List;
 import javax.ejb.*;
@@ -229,7 +228,7 @@ public class AccountController implements Serializable {
     public boolean isPaymentConfirmed() {
         if (creditCard.getCardNumber() == null)
             return false;
-        else if (creditCard.getCvv() != null)
+        else if (creditCard.getCvv() == null)
             return false;
         else if (creditCard.getExpiryMonth() == 0)
             return false;
