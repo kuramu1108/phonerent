@@ -4,6 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  *
@@ -50,6 +51,7 @@ public class Phone implements Serializable {
         this.shoppingCarts = shoppingCarts;
     }
 
+    @Size(min=1, max=20)
     public String getModelName() {
         return modelName;
     }
@@ -58,6 +60,7 @@ public class Phone implements Serializable {
         this.modelName = modelName;
     }
 
+    @Size(min=1, max=20)
     public String getManufacturer() {
         return manufacturer;
     }
@@ -66,6 +69,7 @@ public class Phone implements Serializable {
         this.manufacturer = manufacturer;
     }
 
+    @DecimalMax("100.0") @DecimalMin("1.0")
     public double getPrice() {
         return price;
     }

@@ -50,6 +50,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the startDate
      */
+    @Future(message="Must choose the date after today")
     @Temporal(TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
@@ -67,12 +68,13 @@ public class Purchase implements Serializable {
      * endDate shows the expired date of the renting period.
      * customer/account can choose to extends their contract. 
      * 
-     * 3 days before the endDate, system will send email to customers in order
+     * 3 days before the endDate, system will send SMS to customers in order
      * to remind about the expired date
      * 
      * endDate must not be null
      * @return the endDate
      */
+    @Future(message="Must choose the date after today")
     @Temporal(TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
@@ -93,7 +95,7 @@ public class Purchase implements Serializable {
      * must not be null
      * @return the total
      */
-    @Size(min=1)
+    @DecimalMax("100.0") @DecimalMin("1.0")
     public double getTotal() {
         return total;
     }
