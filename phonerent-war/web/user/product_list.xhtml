@@ -40,8 +40,6 @@
                 </div>
             </nav>
         </h:form>
-        
-        <h:form>
         <div class="container col-sm-9">
 		<div style="margin: 0 0 0 35%">
                     <div class="panel-group">
@@ -119,12 +117,6 @@
                                         </h:column>
                                         <h:column>
                                             <f:facet name="header">
-                                                Plan Duration
-                                            </f:facet>
-                                            <h:outputText value="#{sim.planDuration}"/>
-                                        </h:column>
-                                        <h:column>
-                                            <f:facet name="header">
                                                 Price
                                             </f:facet>
                                             <h:outputText value="#{sim.price}"/>
@@ -143,9 +135,9 @@
                         </div>
                     </div>
                 </div>
-            <center style="margin-left: 35%"><h:commandButton value="Checkout" action="/cart?faces-redirect=true" class="btn btn-primary btn-lg"/></center>
+            <h:form>
+                <center style="margin-left: 35%"><h:commandButton value="Checkout" action="/cart?faces-redirect=true" class="btn btn-primary btn-lg"/></center>
+            </h:form>
 	</div>
-           
-        </h:form>
     </h:body>
 </html>

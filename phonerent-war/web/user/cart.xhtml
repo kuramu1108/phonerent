@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -140,11 +141,14 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='startdate'>
-                                <input type='text' class="form-control" name="timeOption"/> 
+                                <h:inputText id="startdateinput" class="form-control" value="#{productController.purchase.startDate}">  
+                                   <f:convertDateTime pattern="dd/mm/yyyy"/>  
+                                </h:inputText>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
+                            <h:message for="startdateinput" style="color:red;"/>
                         </div>
                     </div>
                 </div>
@@ -153,19 +157,23 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='enddate'>
-                                <input type='text' class="form-control" name="timeOption"/> 
+                                <h:inputText id="enddateinput" class="form-control" value="#{productController.purchase.endDate}">  
+                                   <f:convertDateTime pattern="dd/mm/yyyy"/>  
+                                </h:inputText>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
                             </div>
+                            <h:message for="enddateinput" style="color:red;"/>
                         </div>
                     </div>
                 </div>
-                <h:commandButton value="Confirm" class="btn btn-info" action="#"/>
+                <h:commandButton value="Confirm" class="btn btn-info" action="#{productController.dateEntered()}">
+                </h:commandButton>
             </div>
         </h:form>
         
-        <h:form>
+        <h:form rendered="#{productController.dateConfirmed}">
             <div class="col-sm-9" style="padding-left: 25%">
                 <div class="panel panel-default">
                     <div class="panel-body">  
@@ -229,11 +237,28 @@
                                 </div>
                                 <h:message for="expiryYear" style="color:red;"/>
                             </div>
-                            <h:commandButton value="Confirm" class="btn btn-info" action="#{accountController.editCreditCard()}" style="margin-top:15px;" />   
+                            <c:choose>
+                                <c:when test="#{productController.dateConfirmed}">
+                                    <h:commandButton value="Confirm" class="btn btn-info" action="#{accountController.paymentEntered()}" style="margin-top:15px;">
+                                    </h:commandButton>   
+                                </c:when>
+                                <c:otherwise>
+                                    Please Complete Above Fields First
+                                </c:otherwise>
+                            </c:choose>
+                            
                         </center>
                     </div>                           
                 </div>
-                <center><h:commandButton class="btn btn-info" value="Checkout" action="#{productController.ckeckout()}"/></center>
+                <c:choose>
+                    <c:when test="#{accountController.paymentConfirmed}">
+                        <center><h:commandButton class="btn btn-info" value="Checkout" action="#{productController.ckeckout()}"/></center>
+                    </c:when>
+                    <c:otherwise>
+                        <center>Please Complete Above Fields First</center>
+                    </c:otherwise>
+                </c:choose>
+                
             </div> 
         </h:form>
  
