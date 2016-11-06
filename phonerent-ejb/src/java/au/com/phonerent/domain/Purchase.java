@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.domain;
 
 import java.io.*;
@@ -11,8 +6,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 /**
- *
- * @author mac
+ * A class that stores the information about purchase
+ * @author 12108573
  */
 @Entity
 public class Purchase implements Serializable {
@@ -25,12 +20,17 @@ public class Purchase implements Serializable {
     private List<Phone> phones = new ArrayList<>();
     private List<SimPlan> simPlans = new ArrayList<>();
 
+    /**
+     * Creates a new instance of purchase
+     */
     public Purchase(){
         
     }
     
     /**
-     * @return the id
+     * to get or request for the id of a particular purchase
+     * Id is being auto generated for every new instances of purchase
+     * @return id must not be null and it is a primary key for purchase
      */
     @Id
     @GeneratedValue
@@ -39,7 +39,8 @@ public class Purchase implements Serializable {
     }
 
     /**
-     * @param id the id to set
+     * to set new id into the purchase
+     * @param id 
      */
     public void setId(int id) {
         this.id = id;
@@ -91,7 +92,7 @@ public class Purchase implements Serializable {
     /**
      * total shows the total amount of money that need to be paid for a
      * particular purchase session.
-     * 
+     * the price must be at least more than 1 dollar
      * must not be null
      * @return the total
      */
@@ -101,7 +102,8 @@ public class Purchase implements Serializable {
     }
 
     /**
-     * @param total the total to set
+     * to set the total price of a purchase
+     * @param total
      */
     public void setTotal(double total) {
         this.total = total;
@@ -109,6 +111,7 @@ public class Purchase implements Serializable {
 
     /**
      * status displays the condition of the order whether the purchases have been fulfilled
+     * status must be at least 3 characters long
      * @return the status
      */
     @Size(min=3)
@@ -117,14 +120,19 @@ public class Purchase implements Serializable {
     }
 
     /**
-     * @param status the status to set
+     * to set the status of the purchase
+     * @param status
      */
     public void setStatus(String status) {
         this.status = status;
     }
 
     /**
-     * @return the phones
+     * to get or request for the list of the phones that are linked with purchase
+     * The list can be null. One phone can be bought in multiple purchases. 
+     * One purchase can include with multiple phones.
+     * Thus, many to many relationship is being used
+     * @return phones can be null
      */
     @ManyToMany
     public List<Phone> getPhones() {
@@ -132,14 +140,19 @@ public class Purchase implements Serializable {
     }
 
     /**
-     * @param phones the phones to set
+     * to set the list of phone to a particular purchase
+     * @param phones 
      */
     public void setPhones(List<Phone> phones) {
         this.phones = phones;
     }
 
     /**
-     * @return the simPlans
+     * to get or request for the list of the sim plan that are linked with purchase
+     * The list can be null. One sim plan can be bought in multiple purchases. 
+     * One purchase can include with multiple sim plans.
+     * Thus, many to many relationship is being used
+     * @return phones can be null
      */
     @ManyToMany
     public List<SimPlan> getSimPlans() {
@@ -147,17 +160,28 @@ public class Purchase implements Serializable {
     }
 
     /**
-     * @param simPlans the simPlans to set
+     * to set the list of sim plan to the purchase
+     * @param simPlans 
      */ 
     public void setSimPlans(List<SimPlan> simPlans) {
         this.simPlans = simPlans;
     }   
     
+    /**
+     * to get or request for the account of the purchase
+     * account in here symbolize as the customer who made the purchase
+     * Many purchase can be own by one account
+     * @return account 
+     */
     @ManyToOne
     public Account getAccount() {
         return account;
     }
     
+    /**
+     * to set the account for the purchase
+     * @param account 
+     */ 
     public void setAccount(Account account) {
         this.account = account;
     }

@@ -58,8 +58,8 @@ public class Phone implements Serializable {
     }
 
     /**
-     * to set new purchases into the phone
-     * @param id 
+     * to set new a list of purchase into the phone
+     * @param purchases 
      */
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
@@ -68,7 +68,7 @@ public class Phone implements Serializable {
     /**
      * to get or request for the list of the shopping Cart that are linked with phone
      * One phone can be put in multiple shopping carts and
-     * One shopping cart can has multiple phones.
+     * One shopping cart can hold multiple phones.
      * many to many relationship is being used because of this
      * @return shoppingCarts can be null
      */
@@ -77,34 +77,66 @@ public class Phone implements Serializable {
         return shoppingCarts;
     }
 
+    /**
+     * to set a list of shopping cart into the phone
+     * @param shoppingCarts 
+     */
     public void setShoppingCarts(List<ShoppingCart> shoppingCarts) {
         this.shoppingCarts = shoppingCarts;
     }
 
+    /**
+     * to get or request for the name of the phone model
+     * Model name must be between 1 to 20 characters
+     * @return modelName must not be null
+     */
     @Size(min=1, max=20)
     public String getModelName() {
         return modelName;
     }
 
+    /**
+     * to set a modelName in a phone
+     * @param modelName 
+     */
     public void setModelName(String modelName) {
         this.modelName = modelName;
     }
 
+    /**
+     * to get or request for the manufacturer's name of a particular phone
+     * Manufacturer name must be between 1 to 20 characters
+     * @return manufacturer must not be null
+     */
     @Size(min=1, max=20)
     public String getManufacturer() {
         return manufacturer;
     }
 
+    /**
+     * to set a manufacturer's name into a specific phone
+     * @param manufacturer 
+     */
     public void setManufacturer(String manufacturer) {
         this.manufacturer = manufacturer;
     }
 
+    /**
+     * to get or request for the price of a particular phone
+     * The price is being set in order to signify the renting price
+     * Price must be between 1 to 100
+     * @return price must not be null
+     */
     @NotNull
     @DecimalMax("100.0") @DecimalMin("1.0")
     public double getPrice() {
         return price;
     }
 
+    /**
+     * to set price into a phone
+     * @param price 
+     */
     public void setPrice(double price) {
         this.price = price;
     }
