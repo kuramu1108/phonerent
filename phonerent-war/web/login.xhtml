@@ -75,7 +75,7 @@
                 <label class="control-label col-sm-5">Email:
                 </label>
                 <div class="col-sm-3">
-                    <h:inputText class="form-control" id="email" value="#{accountController.account.email}" validatorMessage="Please ensure you enter a valid email address" />
+                    <h:inputText class="form-control" id="email" value="#{accountController.account.email}" validatorMessage="Please enter your email" />
                 </div>
                 <div class="col-sm-3">
                     <h:message for="email" style="color:red;"/>
@@ -85,10 +85,12 @@
                 <label class="control-label col-sm-5">Password:
                 </label>
                 <div class="col-sm-3">
-                    <h:inputSecret class="form-control" id="password" value="#{accountController.account.password}" validatorMessage="Password should be at least 6 characters" />
+                    <h:inputSecret class="form-control" id="password" value="#{accountController.account.password}" validatorMessage="Please enter your password" />
                     <br/>
-                    <h:message for="password" style="color:red;"/>
                     <h:messages  style="color:red;"/>
+                </div>
+                <div class="col-sm-3">
+                    <h:message for="password" style="color:red;"/>
                 </div>
             </div>
             
@@ -96,10 +98,10 @@
             <h:commandButton id="login" class="btn btn-primary btn-md" value="Login" action="#{accountController.login()}" style="margin-right: 5px; width: 150px;"/>
             </div>
         </h:form>
-        <center>
+        <div align="center">
             <p style="margin-top: 15px;">Forgot your password? Click <h:link value="here" outcome="/password_recovery?faces-redirect=true"/> for password recovery</p>
             <p>Not a member yet? <h:link value="Sign Up" outcome="/register?faces-redirect=true"/> now!</p>
-        </center>
+        </div>
    
     </h:body>
 </html>
