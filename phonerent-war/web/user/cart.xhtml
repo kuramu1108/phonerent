@@ -142,7 +142,9 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='startdate'>
-                                <h:inputText id="startdateinput" class="form-control" value="#{productController.startDateString}"/>
+                                <h:inputText id="startdateinput" class="form-control" value="#{productController.purchase.startDate}">
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                                </h:inputText>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -156,7 +158,9 @@
                     <div class='col-sm-6'>
                         <div class="form-group">
                             <div class='input-group date' id='enddate'>
-                                <h:inputText id="enddateinput" class="form-control" value="#{productController.endDateString}"/>
+                                <h:inputText id="enddateinput" class="form-control" value="#{productController.purchase.endDate}">
+                                    <f:convertDateTime pattern="yyyy-MM-dd"/>  
+                                </h:inputText>
                                 <span class="input-group-addon"> 
                                     <span class="glyphicon glyphicon-calendar"></span>
                                 </span>
@@ -165,7 +169,6 @@
                         </div>
                     </div>
                 </div>
-                <h:messages  style="color:red;"/>
                 <h:commandButton value="Confirm" class="btn btn-info" action="#{productController.dateEntered()}">
                 </h:commandButton>
             </div>

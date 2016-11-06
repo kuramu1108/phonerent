@@ -59,22 +59,11 @@ public class ProductController implements Serializable {
      * @return page redirection
      */
     public String ckeckout() {
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            Date startDate = formatter.parse(startDateString);
-            Date endDate = formatter.parse(endDateString);
-            purchase.setStartDate(startDate);
-            purchase.setEndDate(endDate);
-            shoppingCartFacade.process(shoppingCart.getId(), purchase);
-            purchase = new Purchase();
-            accountController.reloadAccount();
+        shoppingCartFacade.process(shoppingCart.getId(), purchase);
+        purchase = new Purchase();
+        accountController.reloadAccount();
+        dateConfirmed = false;
         return "/user/user_dashboard" + REDIRECT;
-        } catch (ParseException ex) {
-            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage("loginresult",new FacesMessage(FacesMessage.SEVERITY_ERROR, "the date shouldn't be empty",""));
-            return null;
-        }
     }
     
      /**

@@ -52,6 +52,7 @@ public class Purchase implements Serializable {
      * @return the startDate
      */
     @NotNull
+    @Future
     @Temporal(TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
@@ -76,6 +77,7 @@ public class Purchase implements Serializable {
      * @return the endDate
      */
     @NotNull
+    @Future
     @Temporal(TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
