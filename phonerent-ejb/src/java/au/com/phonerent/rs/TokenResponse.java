@@ -1,14 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.rs;
 
 import javax.xml.bind.annotation.*;
 
 /**
- *
+ * the mapping object for the token getting request
  * @author mac
  */
 @XmlRootElement
@@ -16,6 +11,10 @@ public class TokenResponse {
     private String access_token;
     private String expires_in;
 
+    /**
+     * access token
+     * @return string of access token
+     */
     @XmlElement(name="access_token")
     public String getAccess_token() {
         return access_token;
@@ -25,6 +24,10 @@ public class TokenResponse {
         this.access_token = access_token;
     }
 
+    /**
+     * expires period
+     * @return string of expires period
+     */
     @XmlElement(name="expires_in")
     public String getExpires_in() {
         return expires_in;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.jma;
 
 import java.util.Properties;
@@ -15,7 +10,7 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 /**
- *
+ * Email client to handle the smtp email sending
  * @author mac
  */
 @Stateless
@@ -39,6 +34,12 @@ public class EmailClient {
         props.put("mail.smtp.port", 587);
     }
     
+    /**
+     * sent out the password recovery email
+     * @param to email destination
+     * @param resetId the password reset id
+     * @return whether email sent successed or not
+     */
     public boolean passwordRecoverySendTo(String to, String resetId) {
         Message message = getMessageInstance();
         
@@ -60,6 +61,11 @@ public class EmailClient {
         return true;
     }
     
+    /**
+     * sent out the registeration confirmation email
+     * @param to email destination
+     * @return whether email sent successed or not
+     */
     public boolean registerationConfirmationSendTo(String to) {
         Message message = getMessageInstance();
         
@@ -80,6 +86,10 @@ public class EmailClient {
         return true;
     }
     
+    /**
+     * get a new message instance
+     * @return a new message instance
+     */
     private Message getMessageInstance() {
         Session session = Session.getInstance(props,
                 new javax.mail.Authenticator() {

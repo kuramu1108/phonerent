@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.Account;
@@ -90,23 +85,6 @@ public class AccountFacade extends AbstractFacade<Account> implements AccountFac
             System.out.println("error encrpytion");
         }
         getEntityManager().persist(account);
-    }
-    
-    @Override
-    public void addSample() {
-        try {
-            Account admin = new Account();
-            admin.setAccountType("Admins");
-            admin.setEmail("colagarychen@gmail.com");
-            admin.setFirstName("Gary");
-            admin.setLastName("Chen");
-            admin.setPassword(Sha256.hash256("841108"));
-            admin.setPhoneNumber("0431911088");
-            admin.setIsActivate(true);
-            em.persist(admin);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(AccountFacade.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
     
     @Override

@@ -76,10 +76,6 @@ public class AccountController implements Serializable {
         return "/login" + REDIRECT;
     }
     
-    public void addSample() {
-        accountFacade.addSample();
-    }
-    
     public String signUp() {
         accountFacade.signUp(account);
         newRegistration = true;

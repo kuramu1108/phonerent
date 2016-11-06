@@ -7,7 +7,7 @@ import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 /**
- *
+ * Rest client for handling the sms web service
  * @author mac
  */
 @Stateless
@@ -23,7 +23,6 @@ public class RestClient {
     private Date initTime;
     private int expires_in;
     
-    // use constructor for now
     public RestClient() {
         
     }
@@ -46,6 +45,11 @@ public class RestClient {
         client.close();
     }
     
+    /**
+     * sent out a post request with body
+     * @param body the body of the request
+     * @return whether the request is success or not
+     */
     public boolean postWithData(SmsRequestBody body) {
         if (expired()) {
             init();
@@ -61,6 +65,10 @@ public class RestClient {
         return result.getStatus() == 202;
     }
     
+    /**
+     * test whether the authentication expired or not
+     * @return whether the authentication expired or not
+     */
     private boolean expired() {
         Date current = new Date();
         // check difference

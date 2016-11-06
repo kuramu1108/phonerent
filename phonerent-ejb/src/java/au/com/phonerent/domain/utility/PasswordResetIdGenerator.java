@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.domain.utility;
 
 import java.security.NoSuchAlgorithmException;
@@ -11,12 +6,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ * password reset id generator
  * @author mac
  */
 public class PasswordResetIdGenerator {
     private static Random r;
     
+    /**
+     * generate a password reset id
+     * @param a the email of the account
+     * @return password reset id
+     */
     public static String generateId(String a) {
         String id = "Error";
         try {
@@ -27,6 +27,10 @@ public class PasswordResetIdGenerator {
         return id;
     }
     
+    /**
+     * generate a random postfix for the source
+     * @return postfix string
+     */
     private static String randomPostfix() {
         r = new Random(); 
         StringBuilder sb = new StringBuilder();

@@ -3,10 +3,6 @@ package au.com.phonerent.domain.utility;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-/**
- *
- * @author mac
- */
 public class Sha256 {
     /**
      * encrypt string to encrypted string using sha-256

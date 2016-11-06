@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package au.com.phonerent.domain.bean;
 
 import au.com.phonerent.domain.CreditCard;
@@ -16,18 +11,38 @@ import javax.ejb.Local;
 @Local
 public interface CreditCardFacadeLocal {
 
+    /**
+     * create an credit card entity and persist into database
+     * @param creditCard the new creditcard
+     */
     void create(CreditCard creditCard);
 
+    /**
+     * update an credit card entity
+     * @param creditCard the creditcard to be edit
+     */
     void edit(CreditCard creditCard);
 
+    /**
+     * remove an credit card object
+     * @param creditCard the creditcard to be removed
+     */
     void remove(CreditCard creditCard);
 
+    /**
+     * find the credit card in the database
+     * @param id the id of th credit card
+     * @return the credit card found, null if not found
+     */
     CreditCard find(Object id);
 
+    /**
+     * get all the credit card objects
+     * @return the list of credit cards
+     */
     List<CreditCard> findAll();
 
     List<CreditCard> findRange(int[] range);
 
     int count();
-    
 }
