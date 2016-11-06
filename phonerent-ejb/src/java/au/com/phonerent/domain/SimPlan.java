@@ -121,6 +121,8 @@ public class SimPlan implements Serializable{
         this.shoppingCarts = shoppingCarts;
     }
 
+    @NotNull
+    @Pattern(regexp = "[0-9]{8,14}")
     public String getPhoneNumber() {
         return phoneNumber;
     }

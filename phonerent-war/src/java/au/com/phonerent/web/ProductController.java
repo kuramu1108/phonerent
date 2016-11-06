@@ -47,38 +47,75 @@ public class ProductController implements Serializable {
         purchase = new Purchase();
     }
     
-    public void addPhoneToCart(int id) {
+    public String addPhoneToCart(int id) {
         Phone ph = phoneFacade.find(id);
         if (null != ph) {
             shoppingCart.getPhones().add(ph);
             shoppingCartFacade.edit(shoppingCart);
         }
+        return null;
     }
     
-    public void addSimPlanToCart(int id) {
+    public String addSimPlanToCart(int id) {
         SimPlan sim = simplanFacade.find(id);
         if (null != sim) {
             shoppingCart.getSimPlans().add(sim);
             shoppingCartFacade.edit(shoppingCart);
         }
+        return null;
     }
     
-    public void removePhoneFromCart(int id) {
+    public String removePhoneFromCart(int id) {
         Phone ph = phoneFacade.find(id);
+        int indexToRemove = -1;
         if (null != ph) {
-            shoppingCart.getPhones().remove(ph);
-            shoppingCartFacade.edit(shoppingCart);
+            for (int i = 0; i < shoppingCart.getPhones().size(); i++) {
+                if (shoppingCart.getPhones().get(i).getId() == id) {
+                    indexToRemove = i;
+                    break;
+                }
+            }
+            if (indexToRemove != -1) {
+                shoppingCart.getPhones().remove(indexToRemove);
+                shoppingCartFacade.edit(shoppingCart);
+            }
         }
+        return null;
     }
     
-    public void removeSimPlanFromCart(int id) {
+    public String removeSimPlanFromCart(int id) {
         SimPlan sim = simplanFacade.find(id);
+        int indexToRemove = -1;
         if (null != sim) {
-            shoppingCart.getSimPlans().remove(sim);
-            shoppingCartFacade.edit(shoppingCart);
+            for (int i = 0; i < shoppingCart.getSimPlans().size(); i++) {
+                if (shoppingCart.getSimPlans().get(i).getId() == id) {
+                    indexToRemove = i;
+                    break;
+                }
+            }
+            if (indexToRemove != -1) {
+                shoppingCart.getSimPlans().remove(indexToRemove);
+                shoppingCartFacade.edit(shoppingCart);
+            }
         }
+        return null;
     }
     
+    public boolean isPhoneInCart(int id) {
+        for (Phone p: shoppingCart.getPhones()) {
+            if (p.getId() == id)
+                return true;
+        }
+        return false;
+    }
+    
+    public boolean isSimPlanInCart(int id) {
+        for (SimPlan sp: shoppingCart.getSimPlans()) {
+            if (sp.getId() == id)
+                return true;
+        }
+        return false;
+    }
     // Getters =================================================================
     
     public List<Phone> getAllPhones() {
