@@ -48,7 +48,7 @@ public class EmailClient {
             message.setSubject("Your Password Recovery for PhoneRent");
             message.setContent("<h1>You've requested a password recovery for your Phonerent account</h1>"
                     + "<br/>"
-                    + "<a href='http://52.62.193.240//phonerent-war/faces/password_reset.xhtml?resetId=" + resetId 
+                    + "<a href='http://52.62.193.240/phonerent-war/faces/password_reset.xhtml?resetId=" + resetId 
                     + "'>Reset Password</a>", "text/html");
             
             Transport.send(message);
@@ -68,7 +68,7 @@ public class EmailClient {
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
             message.setSubject("Confrim your registration with Phonerent");
             message.setContent("<h1>You've just signed up with Phonerent</h1>"
-                    + "<a href='http://52.62.193.240//phonerent-war/faces/confirm_registration.xhtml?email=" + to 
+                    + "<a href='http://52.62.193.240/phonerent-war/faces/confirm_registration.xhtml?email=" + to 
                     + "'>Confirm</a>", "text/html");
             
             Transport.send(message);
