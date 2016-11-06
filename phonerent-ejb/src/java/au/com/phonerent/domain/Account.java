@@ -43,7 +43,7 @@ public class Account implements Serializable {
     /**
      * to get or request for the id of a particular account
      * Id is being auto generated for every new instances of account
-     * @return id must not be null and it is a primary key for this class
+     * @return id must not be null and it is a primary key for account
      */
     @Id
     @GeneratedValue
@@ -62,10 +62,10 @@ public class Account implements Serializable {
 
     /**
      * to get or request for the first name of the account
-     * first name must be between 1 and 50 characters
+     * first name must be between 1 and 20 characters
      * @return the firstName must not be null
      */
-    @Size(min=1, max=50)
+    @Size(min=1, max=20)
     public String getFirstName() {
         return firstName;
     }
@@ -79,9 +79,9 @@ public class Account implements Serializable {
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the last name of the account
+     * last name must be between 1 and 20 characters
+     * @return lastName must not be null
      */
     @Size(min=1, max=20)
     public String getLastName() {
@@ -89,16 +89,17 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param lastName the lastName to set
+     * to set the last name into a particular account
+     * @param lastName 
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the password of an account
+     * password must not be null
+     * @return password
      */
     @NotNull
     public String getPassword() {
@@ -106,16 +107,19 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param password the password to set
+     * to set the password into an account
+     * @param password 
      */
     public void setPassword(String password){
         this.password = password;
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get the email of an account
+     * email must has one @ character inside it 
+     * Regex pattern has been applied in order to ensure that the entered email
+     * has at least a proper format
+     * @return email must not be null 
      */
     @Pattern(regexp = "[a-zA-Z0-9\\.]+@[a-z]+(\\.[a-z]+)+")
     public String getEmail() {
@@ -123,16 +127,18 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param email the email to set
+     * to set the email into a particular account
+     * @param email
      */
     public void setEmail(String email) {
         this.email = email;
     }
 
     /**
-     * to get or request for the list of orders made by an account
-     * The list can be null. One account can issues several order at the same time
-     * @return the orders
+     * to get or request for the list of purchases made by this account
+     * The list can be null. One account can issues several purchase at the same time
+     * Hence, it is a one to many relationship between those two variables
+     * @return purchases can be null
      */
     @OneToMany(mappedBy = "account", cascade=CascadeType.ALL)
     public List<Purchase> getPurchases() {
@@ -140,7 +146,8 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param purchases the purchases to set
+     * to set a list of purchases into this account
+     * @param purchases
      */
     public void setPurchases(List<Purchase> purchases) {
         this.purchases = purchases;
@@ -157,16 +164,17 @@ public class Account implements Serializable {
     }
 
     /**
-     * @param accountType the accountType to set
+     * To set an account type into the account
+     * @param accountType 
      */
     public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
 
     /**
-     * to get the accountType of a particular account
-     * accountType must not be null.
-     * @return the orders
+     * to get the phone number from an account
+     * phone number must contain from 8 to 14 digits
+     * @return phoneNumber must not be null
      */
     @Pattern(regexp = "[0-9]{8,14}")
     public String getPhoneNumber() {
@@ -174,6 +182,7 @@ public class Account implements Serializable {
     }
 
     /**
+     * to set phone number to the account
      * @param phoneNumber
      */
     public void setPhoneNumber(String phoneNumber) {
@@ -181,72 +190,92 @@ public class Account implements Serializable {
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
-     */
+     * to get or request for the status of an account
+     * whether it is activate or not activate yet
+     * @return isActivate can be null
+    */
     public boolean isIsActivate() {
         return isActivate;
     }
 
+    /**
+     * to set the status to an account
+     * @param isActivate
+     */
     public void setIsActivate(boolean isActivate) {
         this.isActivate = isActivate;
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the passwordResetID of an account
+     * passwordResetID is being used in order to allow user to reset their password
+     * in case they forget their password
+     * @return passwordResetId can be null 
      */
     public String getPasswordResetId() {
         return passwordResetId;
     }
 
+    /**
+     * to set the passwordResetId to an account
+     * @param passwordResetId
+     */
     public void setPasswordResetId(String passwordResetId) {
         this.passwordResetId = passwordResetId;
     }
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the delivery address of an account
+     * This is the address where the product is being sent to
+     * deliveryAddress must not be null when purchase is going to be made
+     * @return deliveryAddress 
      */
     public String getDeliveryAddress() {
         return deliveryAddress;
     }
 
+    /**
+     * to set the deliveryAddress to an account
+     * @param deliveryAddress
+     */
     public void setDeliveryAddress(String deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
     }
 
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the credit card that is linked with the account
+     * OneToOne relationship is being used because one user can only have one credit card details
+     * @return creditCard 
      */
-
     @OneToOne
     public CreditCard getCreditCard() {
         return creditCard;
     }
 
+    /**
+     * to set the creditCard to an account
+     * @param creditCard
+     */
     public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
     }
 
 
     /**
-     * to get or request for the the card number of a credit card
-     * card number must be exactly 16 characters 
-     * @return cardNumber must not be null 
+     * to get or request for the shopping cart that is linked with the account
+     * OneToOne relationship is used because one user can only have one cart
+     * @return shoppingCart can be null
      */
-
     @OneToOne
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }
 
+    /**
+     * to set the shoppingCart to an account
+     * @param shoppingCart
+     */
     public void setShoppingCart(ShoppingCart shoppingCart) {
         this.shoppingCart = shoppingCart;
     }
