@@ -18,7 +18,7 @@ public class CreditCard implements Serializable {
     private int id;
     private String cardNumber;
     private String nameOnCard;
-    private int cvv;
+    private String cvv;
     private int expiryMonth;
     private int expiryYear;
     private Account owner;
@@ -37,7 +37,6 @@ public class CreditCard implements Serializable {
         this.id = id;
     }
 
-    @Size(min=16, max=16)
     public String getCardNumber() {
         return cardNumber;
     }
@@ -46,7 +45,6 @@ public class CreditCard implements Serializable {
         this.cardNumber = cardNumber;
     }
 
-    @Size(min=1, max=70)
     public String getNameOnCard() {
         return nameOnCard;
     }
@@ -55,20 +53,14 @@ public class CreditCard implements Serializable {
         this.nameOnCard = nameOnCard;
     }    
     
-    @NotNull
-    @Min(1)
-    @Max(9999)
-    public int getCvv() {
+    public String getCvv() {
         return cvv;
     }
 
-    public void setCvv(int cvv) {
+    public void setCvv(String cvv) {
         this.cvv = cvv;
     }
     
-    @NotNull
-    @Min(1)
-    @Max(12)
     public int getExpiryMonth() {
         return expiryMonth;
     }
@@ -77,9 +69,6 @@ public class CreditCard implements Serializable {
         this.expiryMonth = expiryMonth;
     }
 
-    @NotNull
-    @Min(2016)
-    @Max(3000)
     public int getExpiryYear() {
         return expiryYear;
     }
