@@ -7,6 +7,7 @@ package au.com.phonerent.web;
 
 import au.com.phonerent.domain.*;
 import au.com.phonerent.domain.bean.*;
+import au.com.phonerent.rs.RestClient;
 import java.io.*;
 import java.util.List;
 import javax.ejb.*;

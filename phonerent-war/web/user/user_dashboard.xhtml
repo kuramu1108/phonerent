@@ -68,6 +68,12 @@
                                             <h:dataTable var="purchase" value="#{accountController.account.purchases}" class="table table-hover" >
                                                 <h:column>
                                                     <f:facet name="header">
+                                                        Purchase ID
+                                                    </f:facet>
+                                                    <h:outputText value="#{purchase.id}"/>
+                                                </h:column>
+                                                <h:column>
+                                                    <f:facet name="header">
                                                         Purchase Date
                                                     </f:facet>
                                                     <h:outputText value="#{purchase.startDate}">

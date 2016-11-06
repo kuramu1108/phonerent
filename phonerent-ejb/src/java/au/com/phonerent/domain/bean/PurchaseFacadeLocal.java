@@ -32,5 +32,5 @@ public interface PurchaseFacadeLocal {
         
     List<Purchase> findExpiringPurchase(int day);
     
-    void sendReminders(List<Purchase> purchases);
+    void updateStatus(Purchase p);
 }
