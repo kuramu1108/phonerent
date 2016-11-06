@@ -226,7 +226,7 @@ public class Account implements Serializable {
      * @return cardNumber must not be null 
      */
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public CreditCard getCreditCard() {
         return creditCard;
     }
@@ -242,7 +242,7 @@ public class Account implements Serializable {
      * @return cardNumber must not be null 
      */
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     public ShoppingCart getShoppingCart() {
         return shoppingCart;
     }

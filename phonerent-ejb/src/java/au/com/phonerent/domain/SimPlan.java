@@ -103,7 +103,7 @@ public class SimPlan implements Serializable{
         this.bonusSMS = bonusSMS;
     }
 
-    @ManyToMany(mappedBy = "simPlans", cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "simPlans")
     public List<Purchase> getPurchases() {
         return purchases;
     }
@@ -112,7 +112,7 @@ public class SimPlan implements Serializable{
         this.purchases = purchases;
     }
 
-    @ManyToMany(mappedBy = "simPlans", cascade=CascadeType.ALL)
+    @ManyToMany(mappedBy = "simPlans")
     public List<ShoppingCart> getShoppingCarts() {
         return shoppingCarts;
     }
