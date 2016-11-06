@@ -88,12 +88,12 @@ public class AccountController implements Serializable {
     
     public String sendPasswordRecovery() {
         accountFacade.sendPasswordRecovery(account.getEmail());
-        return null;
+        return "/password_confirmation" + REDIRECT;
     }
     
     public String resetPassword() {
         accountFacade.resetPassword(account, newPassword);
-        return "/login" + REDIRECT;
+        return "/password_changed" + REDIRECT;
     }
     
     public String confirmRegistration(String email) {
@@ -138,8 +138,7 @@ public class AccountController implements Serializable {
     }
     
     public void reloadAccount() {
-        if (account.getId() != 0)
-            account = accountFacade.find(account.getId());
+        account = accountFacade.find(account.getId());
     }
     
     public void loadCreditCard() {
