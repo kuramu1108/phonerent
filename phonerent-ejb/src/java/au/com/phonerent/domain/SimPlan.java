@@ -48,7 +48,7 @@ public class SimPlan implements Serializable{
      * name must not be null
      * @return the name
      */
-    @Size(min=1)
+    @Size(min=1, max=255)
     public String getName() {
         return name;
     }
@@ -57,7 +57,7 @@ public class SimPlan implements Serializable{
         this.name = name;
     }
 
-    @Size(min=1)
+    @DecimalMax("100.0") @DecimalMin("1.0") 
     public double getPrice() {
         return price;
     }
@@ -73,7 +73,7 @@ public class SimPlan implements Serializable{
      * credit must not be null
      * @return the credit
      */
-    @Size(min=1)
+    @DecimalMax("500.0") @DecimalMin("10.0") 
     public double getCredit() {
         return credit;
     }
@@ -89,20 +89,13 @@ public class SimPlan implements Serializable{
      * bonusSMS can be null
      * @return the endDate
      */
+    @Size(min=1, max=100, message ="Maximum SMS is 100")
     public int getBonusSMS() {
         return bonusSMS;
     }
 
     public void setBonusSMS(int bonusSMS) {
         this.bonusSMS = bonusSMS;
-    }
-
-    public int getPlanDuration() {
-        return planDuration;
-    }
-
-    public void setPlanDuration(int planDuration) {
-        this.planDuration = planDuration;
     }
 
     @ManyToMany(cascade=CascadeType.ALL)

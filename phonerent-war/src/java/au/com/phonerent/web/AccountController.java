@@ -59,7 +59,7 @@ public class AccountController implements Serializable {
             req.login(account.getEmail(), account.getPassword());
             account = accountFacade.findByEmail(account.getEmail());
         } catch (ServletException e) {
-            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "ERROR!",e.getMessage()));
+            context.addMessage("loginresult", new FacesMessage(FacesMessage.SEVERITY_ERROR, "Email Password mismatch",e.getMessage()));
             return null;
         }
         loggedIn = true;
